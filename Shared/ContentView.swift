@@ -211,6 +211,15 @@ struct ContentView: View {
     #endif
 }
 
+#if os(iOS)
+extension UISplitViewController {
+    open override func viewDidLoad() {
+        super.viewDidLoad()
+        self.show(.primary)
+    }
+}
+#endif
+
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
