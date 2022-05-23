@@ -99,9 +99,17 @@
 			isa = PBXGroup;
 			children = (
 				933CE3AD283BA21200ADBE50 /* ChooseGameView.swift */,
-				933CE3B1283BB67700ADBE50 /* EditGameSheet.swift */,
+				933CE3CB283BBF5C00ADBE50 /* EditGame */,
 			);
 			path = Games;
+			sourceTree = "<group>";
+		};
+		933CE3CB283BBF5C00ADBE50 /* EditGame */ = {
+			isa = PBXGroup;
+			children = (
+				933CE3B1283BB67700ADBE50 /* EditGameSheet.swift */,
+			);
+			path = EditGame;
 			sourceTree = "<group>";
 		};
 		93C5267F283B891600371B6A = {
