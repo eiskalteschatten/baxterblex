@@ -15,7 +15,7 @@ struct CharactersView: View {
     init(game: Game) {
         self._characters = FetchRequest<Character>(
             sortDescriptors: [SortDescriptor(\Character.name, order: .forward)],
-            predicate: NSPredicate(format: "ANY games == %@", game),
+            predicate: NSPredicate(format: "ANY game == %@", game),
             animation: .default
         )
         self.game = game
