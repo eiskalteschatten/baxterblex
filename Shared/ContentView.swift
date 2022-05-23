@@ -15,7 +15,6 @@ struct ContentView: View {
     
     @State private var showEditSheet = false
     @State private var gameToEdit: Game?
-    @State private var gameIndexSetToDelete: IndexSet?
     
     #if os(iOS)
     @State private var presentDeleteAlert = false
@@ -31,7 +30,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 Section("Games") {
-                    ForEach(Array(games.filter { !$0.archived }.enumerated()), id: \.offset) { index, game in
+                    ForEach(games.filter { !$0.archived }) { game in
                         NavigationLink(
                             // TODO: add game view
                             destination: Text(game.name ?? DEFAULT_GAME_NAME),
@@ -46,13 +45,7 @@ struct ContentView: View {
                             })
                             Divider()
                             Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
-                                #if os(macOS)
-                                // TODO
-//                                EditListViewModel.promptToDeleteList(list)
-                                #else
-                                gameIndexSetToDelete = IndexSet([index])
-                                presentDeleteAlert.toggle()
-                                #endif
+                                confirmDelete(game: game)
                             })
                         }
                     }
@@ -69,6 +62,15 @@ struct ContentView: View {
                             // TODO: add icon or color or something else
                             label: { Text(game.name ?? DEFAULT_GAME_NAME) }
                         )
+                        .contextMenu {
+                            Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
+                                // TODO
+                            })
+                            Divider()
+                            Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
+                                confirmDelete(game: game)
+                            })
+                        }
                     }
                     .onDelete(perform: deleteGames)
                 }
@@ -89,14 +91,9 @@ struct ContentView: View {
             .navigationBarTitle("Baxterblex")
             .alert("Are you sure you want to delete this game?", isPresented: $presentDeleteAlert, actions: {
                 Button("No", role: .cancel, action: {
-                    gameIndexSetToDelete = nil
+                    gameToEdit = nil
                 })
-                Button("Yes", role: .destructive, action: {
-                    if let unwrapped = gameIndexSetToDelete {
-                        deleteGames(offsets: unwrapped)
-                        gameIndexSetToDelete = nil
-                    }
-                })
+                Button("Yes", role: .destructive, action: deleteGame)
             }, message: {
                 Text("Everything within the game will be deleted.")
             })
@@ -108,6 +105,16 @@ struct ContentView: View {
         .sheet(isPresented: $showEditSheet) {
             EditGameSheet()
         }
+    }
+    
+    private func confirmDelete(game: Game) {
+        gameToEdit = game
+        
+        #if os(macOS)
+        promptToDeleteGame()
+        #else
+        presentDeleteAlert.toggle()
+        #endif
     }
     
     private func deleteGames(offsets: IndexSet) {
@@ -124,6 +131,43 @@ struct ContentView: View {
             }
         }
     }
+    
+    private func deleteGame() {
+        if let unwrapped = gameToEdit {
+            withAnimation {
+                if unwrapped.objectID.uriRepresentation().path == selectedGame {
+                    selectedGame = nil
+                }
+                
+                viewContext.delete(unwrapped)
+                gameToEdit = nil
+                
+                do {
+                    try viewContext.save()
+                } catch {
+                    // TODO
+    //                handleCoreDataError(error as NSError)
+                }
+            }
+        }
+    }
+    
+    #if os(macOS)
+    private func promptToDeleteGame() {
+        let alert = NSAlert()
+        alert.messageText = "Are you sure you want to delete this game?"
+        alert.informativeText = "Everything within the game will be deleted."
+        alert.addButton(withTitle: "No")
+        alert.addButton(withTitle: "Yes")
+        alert.alertStyle = .warning
+        
+        let delete = alert.runModal() == NSApplication.ModalResponse.alertSecondButtonReturn
+        
+        if delete {
+            deleteGame()
+        }
+    }
+    #endif
 }
 
 struct ContentView_Previews: PreviewProvider {
