@@ -28,57 +28,81 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                Section("Games") {
-                    ForEach(games.filter { !$0.archived }) { game in
-                        NavigationLink(
-                            // TODO: add game view
-                            destination: Text(game.name ?? DEFAULT_GAME_NAME),
-                            tag: game.objectID.uriRepresentation().path,
-                            selection: $selectedGame,
-                            // TODO: add icon or color or something else
-                            label: { Text(game.name ?? DEFAULT_GAME_NAME) }
-                        )
-                        .contextMenu {
-                            Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
-                                editGame(game: game)
-                            })
-                            Divider()
-                            Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
-                                confirmDelete(game: game)
-                            })
+            ZStack {
+                VStack {
+                    List {
+                        Section("Games") {
+                            ForEach(games.filter { !$0.archived }) { game in
+                                NavigationLink(
+                                    // TODO: add game view
+                                    destination: Text(game.name ?? DEFAULT_GAME_NAME),
+                                    tag: game.objectID.uriRepresentation().path,
+                                    selection: $selectedGame,
+                                    // TODO: add icon or color or something else
+                                    label: { Text(game.name ?? DEFAULT_GAME_NAME) }
+                                )
+                                .contextMenu {
+                                    Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
+                                        editGame(game: game)
+                                    })
+                                    Divider()
+                                    Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
+                                        confirmDelete(game: game)
+                                    })
+                                }
+                            }
+                            .onDelete(perform: deleteGames)
+                        }
+                        
+                        Section("Archived Games") {
+                            ForEach(games.filter { $0.archived }) { game in
+                                NavigationLink(
+                                    // TODO: add game view
+                                    destination: Text(game.name ?? DEFAULT_GAME_NAME),
+                                    tag: game.objectID.uriRepresentation().path,
+                                    selection: $selectedGame,
+                                    // TODO: add icon or color or something else
+                                    label: { Text(game.name ?? DEFAULT_GAME_NAME) }
+                                )
+                                .contextMenu {
+                                    Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
+                                        editGame(game: game)
+                                    })
+                                    Divider()
+                                    Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
+                                        confirmDelete(game: game)
+                                    })
+                                }
+                            }
+                            .onDelete(perform: deleteGames)
                         }
                     }
-                    .onDelete(perform: deleteGames)
                 }
+                .padding(.bottom, 35)
                 
-                Section("Archived Games") {
-                    ForEach(games.filter { $0.archived }) { game in
-                        NavigationLink(
-                            // TODO: add game view
-                            destination: Text(game.name ?? DEFAULT_GAME_NAME),
-                            tag: game.objectID.uriRepresentation().path,
-                            selection: $selectedGame,
-                            // TODO: add icon or color or something else
-                            label: { Text(game.name ?? DEFAULT_GAME_NAME) }
-                        )
-                        .contextMenu {
-                            Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
-                                editGame(game: game)
-                            })
-                            Divider()
-                            Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
-                                confirmDelete(game: game)
-                            })
-                        }
+                #if os(macOS)
+                VStack(alignment: .center) {
+                    Spacer()
+
+                    Button {
+                        showEditSheet.toggle()
+                    } label: {
+                        Label("Create a New Game", systemImage: "plus")
                     }
-                    .onDelete(perform: deleteGames)
+                    .buttonStyle(.plain)
+                    .padding(.bottom, 10)
                 }
+                #endif
             }
             .toolbar {
                 #if os(iOS)
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
+                }
+                ToolbarItem {
+                    Button(action: { showEditSheet.toggle() }) {
+                        Label("Create a New Game", systemImage: "plus")
+                    }
                 }
                 #else
                 ToolbarItem {
@@ -87,11 +111,6 @@ struct ContentView: View {
                     })
                 }
                 #endif
-                ToolbarItem {
-                    Button(action: { showEditSheet.toggle() }) {
-                        Label("Create a New Game", systemImage: "plus")
-                    }
-                }
             }
             .onChange(of: showEditSheet) { show in
                 if !show {
