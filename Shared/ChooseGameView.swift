@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+fileprivate struct ChooseButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .buttonStyle(.plain)
+            .padding(15)
+            .background(Color(red: 0.2, green: 0.2, blue: 0.2))
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .font(.system(size: 14))
+    }
+}
+
 struct ChooseGameView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
@@ -22,6 +33,7 @@ struct ChooseGameView: View {
             } label : {
                 Label("Create a New Game", systemImage: "plus")
             }
+            .buttonStyle(ChooseButtonStyle())
             
             ScrollView {
                 List {
