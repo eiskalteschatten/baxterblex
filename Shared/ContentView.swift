@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @SceneStorage("selectedGame") private var selectedGame: String?
+    @SceneStorage("selectedGame") private var selectedGame: URL?
     
     @State private var showEditSheet = false
     @State private var gameToEdit: Game?
@@ -36,7 +36,7 @@ struct ContentView: View {
                                 NavigationLink(
                                     // TODO: keep track of selected game
                                     destination: GameView(),
-                                    tag: game.objectID.uriRepresentation().path,
+                                    tag: game.objectID.uriRepresentation(),
                                     selection: $selectedGame,
                                     // TODO: add icon or color or something else
                                     label: { Text(game.name ?? DEFAULT_GAME_NAME) }
@@ -59,7 +59,7 @@ struct ContentView: View {
                                 NavigationLink(
                                     // TODO: keep track of selected game
                                     destination: GameView(),
-                                    tag: game.objectID.uriRepresentation().path,
+                                    tag: game.objectID.uriRepresentation(),
                                     selection: $selectedGame,
                                     // TODO: add icon or color or something else
                                     label: { Text(game.name ?? DEFAULT_GAME_NAME) }
@@ -172,7 +172,7 @@ struct ContentView: View {
     private func deleteGame() {
         if let unwrapped = gameToEdit {
             withAnimation {
-                if unwrapped.objectID.uriRepresentation().path == selectedGame {
+                if unwrapped.objectID.uriRepresentation() == selectedGame {
                     selectedGame = nil
                 }
                 
