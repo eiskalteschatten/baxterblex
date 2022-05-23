@@ -10,7 +10,7 @@ import SwiftUI
 struct iOSEditGameForm: View {
     @Environment(\.dismiss) var dismiss
     
-    @StateObject private var editGameModel = EditGameModel()
+    @ObservedObject var editGameModel: EditGameModel
     
     var body: some View {
         NavigationView {
@@ -60,7 +60,9 @@ struct iOSEditGameForm: View {
 }
 
 struct iOSEditGameForm_Previews: PreviewProvider {
+    @StateObject static var editGameModel = EditGameModel()
+    
     static var previews: some View {
-        iOSEditGameForm()
+        iOSEditGameForm(editGameModel: editGameModel)
     }
 }
