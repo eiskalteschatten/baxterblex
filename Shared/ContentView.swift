@@ -14,6 +14,12 @@ struct ContentView: View {
     @AppStorage("selectedGame") private var selectedGame: String?
     
     @State private var showEditSheet = false
+    @State private var gameToEdit: Game?
+    @State private var gameIndexSetToDelete: IndexSet?
+    
+    #if os(iOS)
+    @State private var presentDeleteAlert = false
+    #endif
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Game.name, ascending: true)],
@@ -25,7 +31,7 @@ struct ContentView: View {
         NavigationView {
             List {
                 Section("Games") {
-                    ForEach(games.filter { !$0.archived }) { game in
+                    ForEach(Array(games.filter { !$0.archived }.enumerated()), id: \.offset) { index, game in
                         NavigationLink(
                             // TODO: add game view
                             destination: Text(game.name ?? DEFAULT_GAME_NAME),
@@ -34,6 +40,21 @@ struct ContentView: View {
                             // TODO: add icon or color or something else
                             label: { Text(game.name ?? DEFAULT_GAME_NAME) }
                         )
+                        .contextMenu {
+                            Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
+                                // TODO
+                            })
+                            Divider()
+                            Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
+                                #if os(macOS)
+                                // TODO
+//                                EditListViewModel.promptToDeleteList(list)
+                                #else
+                                gameIndexSetToDelete = IndexSet([index])
+                                presentDeleteAlert.toggle()
+                                #endif
+                            })
+                        }
                     }
                     .onDelete(perform: deleteGames)
                 }
@@ -66,6 +87,19 @@ struct ContentView: View {
             }
             #if os(iOS)
             .navigationBarTitle("Baxterblex")
+            .alert("Are you sure you want to delete this game?", isPresented: $presentDeleteAlert, actions: {
+                Button("No", role: .cancel, action: {
+                    gameIndexSetToDelete = nil
+                })
+                Button("Yes", role: .destructive, action: {
+                    if let unwrapped = gameIndexSetToDelete {
+                        deleteGames(offsets: unwrapped)
+                        gameIndexSetToDelete = nil
+                    }
+                })
+            }, message: {
+                Text("Everything within the game will be deleted.")
+            })
             #endif
             
             // TODO: show monchrome icon
