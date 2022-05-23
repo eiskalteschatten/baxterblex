@@ -10,10 +10,10 @@ import SwiftUI
 struct iOSGameTabView: View {
     var body: some View {
         TabView {
-            DashboardView()
-                .tabItem {
-                    Label("Dashboard", systemImage: "square.grid.3x3.square")
-                }
+//            DashboardView()
+//                .tabItem {
+//                    Label("Dashboard", systemImage: "square.grid.3x3.square")
+//                }
             
             CharacterView()
                 .tabItem {

@@ -36,9 +36,9 @@ struct MacGameTabView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $selectedTab) {
-                    Text("Dashboard")
-                        .tag(Tabs.dashboard)
-                    
+//                    Text("Dashboard")
+//                        .tag(Tabs.dashboard)
+//                    
                     Text("Characters")
                         .tag(Tabs.characters)
                     
