@@ -12,11 +12,22 @@ struct MacGameTabView: View {
         case dashboard, character, gear, accounting, sessions
     }
     
-    @State private var selectedTab: Tabs = .dashboard
+    @AppStorage("selectedGameViewTab") private var selectedTab: Tabs = .dashboard
     
     var body: some View {
         VStack {
-            Text("test")
+            switch selectedTab {
+            case .dashboard:
+                DashboardView()
+            case .character:
+                CharacterView()
+            case .gear:
+                GearView()
+            case .accounting:
+                AccountingView()
+            case .sessions:
+                SessionsView()
+            }
         }
         .toolbar {
             ToolbarItem(placement: .principal) {
