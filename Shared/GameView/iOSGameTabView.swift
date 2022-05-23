@@ -1,13 +1,13 @@
 //
-//  GameView.swift
-//  Baxterblex
+//  iOSGameTabView.swift
+//  Baxterblex (iOS)
 //
 //  Created by Alex Seifert on 23.05.22.
 //
 
 import SwiftUI
 
-struct GameView: View {
+struct iOSGameTabView: View {
     var body: some View {
         TabView {
             DashboardView()
@@ -38,8 +38,8 @@ struct GameView: View {
     }
 }
 
-struct GameView_Previews: PreviewProvider {
+struct iOSGameTabView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        iOSGameTabView()
     }
 }
