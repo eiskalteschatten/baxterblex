@@ -127,6 +127,8 @@ struct ContentView: View {
             }, message: {
                 Text("Everything within the game will be deleted.")
             })
+            #else
+            .frame(minWidth: 175)
             #endif
             
             // TODO: show monchrome icon
