@@ -16,14 +16,25 @@ struct ChooseGameView: View {
     private var games: FetchedResults<Game>
 
     var body: some View {
-        List {
-            ForEach(games) { game in
-                Button(game.name ?? "Untitled Game") {
-                    // TODO: switch to the game view with an animation and persist the selected game
+        VStack(alignment: .center, spacing: 10) {
+            Button {
+                // TODO: create new game
+            } label : {
+                Label("Create a New Game", systemImage: "plus")
+            }
+            
+            ScrollView {
+                List {
+                    ForEach(games) { game in
+                        Button(game.name ?? "Untitled Game") {
+                            // TODO: switch to the game view with an animation and persist the selected game
+                        }
+                    }
+                    .onDelete(perform: deleteItems)
                 }
             }
-            .onDelete(perform: deleteItems)
         }
+        .padding(.top, 40)
     }
     
     private func addItem() {
