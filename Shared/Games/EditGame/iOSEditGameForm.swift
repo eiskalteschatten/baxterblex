@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct iOSEditGameForm: View {
-    @Binding var showEditSheet: Bool
+    @Environment(\.dismiss) var dismiss
     
     @StateObject private var editGameModel = EditGameModel()
     
@@ -36,24 +36,26 @@ struct iOSEditGameForm: View {
                 }
             }
         }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button("Cancel") { showEditSheet = false }
-            }
-            ToolbarItem {
-                Button("Save") {
+        .navigationBarTitle(Text("Create a New Game"), displayMode: .inline)
+            .navigationBarItems(
+                leading: Button(action: {
+                    dismiss()
+                }) {
+                    Text("Cancel")
+                },
+                trailing: Button(action: {
                     editGameModel.save()
-                    showEditSheet = false
+                    dismiss()
+                }) {
+                    Text("Save").bold()
                 }
-            }
-        }
+            )
+        
     }
 }
 
 struct iOSEditGameForm_Previews: PreviewProvider {
-    @State static var showEditSheet = false
-    
     static var previews: some View {
-        iOSEditGameForm(showEditSheet: $showEditSheet)
+        iOSEditGameForm()
     }
 }

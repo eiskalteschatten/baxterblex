@@ -8,21 +8,17 @@
 import SwiftUI
 
 struct EditGameSheet: View {
-    @Binding var showEditSheet: Bool
-       
     var body: some View {
         #if os(macOS)
-        MacEditGameForm(showEditSheet: $showEditSheet)
+        MacEditGameForm()
         #else
-        iOSEditGameForm(showEditSheet: $showEditSheet)
+        iOSEditGameForm()
         #endif
     }
 }
 
 struct EditGameSheet_Previews: PreviewProvider {
-    @State static var showEditSheet = false
-    
     static var previews: some View {
-        EditGameSheet(showEditSheet: $showEditSheet)
+        EditGameSheet()
     }
 }

@@ -62,7 +62,7 @@ struct ChooseGameView: View {
         .padding(.vertical, 40)
         .padding(.horizontal, 20)
         .sheet(isPresented: $showEditSheet) {
-            EditGameSheet(showEditSheet: $showEditSheet)
+            EditGameSheet()
         }
     }
     

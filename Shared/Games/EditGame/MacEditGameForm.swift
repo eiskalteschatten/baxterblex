@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MacEditGameForm: View {
-    @Binding var showEditSheet: Bool
+    @Environment(\.dismiss) var dismiss
     
     @StateObject private var editGameModel = EditGameModel()
     
@@ -46,12 +46,12 @@ struct MacEditGameForm: View {
             HStack {
                 Spacer()
                 
-                Button("Cancel") { showEditSheet = false }
+                Button("Cancel") { dismiss() }
                     .keyboardShortcut(.cancelAction)
                 
                 Button("Save") {
                     editGameModel.save()
-                    showEditSheet = false
+                    dismiss()
                 }
                 .keyboardShortcut(.defaultAction)
             }
@@ -62,9 +62,7 @@ struct MacEditGameForm: View {
 }
 
 struct MacEditGameForm_Previews: PreviewProvider {
-    @State static var showEditSheet = false
-    
     static var previews: some View {
-        MacEditGameForm(showEditSheet: $showEditSheet)
+        MacEditGameForm()
     }
 }
