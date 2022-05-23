@@ -17,6 +17,7 @@ struct GameView: View {
             #if os(iOS)
             iOSGameTabView()
                 .environmentObject(gameStore)
+                .navigationTitle(game.name ?? DEFAULT_GAME_NAME)
             #else
             MacGameTabView()
                 .environmentObject(gameStore)
