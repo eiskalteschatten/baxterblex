@@ -21,7 +21,7 @@ struct MacEditGameForm: View {
                 TextField("Name", text: $editGameModel.name)
                     .padding(.bottom, 15)
                 
-                Group {
+                Section {
                     Toggle("Add Start Date", isOn: $editGameModel.addStartDate)
 
                     DatePicker(selection: $editGameModel.startDate, displayedComponents: .date) {
@@ -36,6 +36,11 @@ struct MacEditGameForm: View {
                         Text("End Date:")
                     }
                     .disabled(!editGameModel.addEndDate)
+                    .padding(.bottom, 15)
+                }
+                
+                Section {
+                    Toggle("Archive Game", isOn: $editGameModel.archived)
                 }
             }
             .frame(minWidth: 400)

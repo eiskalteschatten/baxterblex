@@ -17,6 +17,7 @@ final class EditGameModel: ObservableObject {
     @Published var startDate: Date = Date()
     @Published var addEndDate: Bool = false
     @Published var endDate: Date = Date()
+    @Published var archived: Bool = false
     
     init(game: Game? = nil) {
         let persistenceController = PersistenceController.shared
@@ -32,6 +33,7 @@ final class EditGameModel: ObservableObject {
             startDate = unwrapped.startDate ?? startDate
             addEndDate = unwrapped.endDate != nil
             endDate = unwrapped.endDate ?? endDate
+            archived = unwrapped.archived
         }
     }
     
@@ -44,6 +46,7 @@ final class EditGameModel: ObservableObject {
             newGame.name = name
             newGame.startDate = startDate
             newGame.endDate = endDate
+            newGame.archived = archived
 
             do {
                 try viewContext!.save()

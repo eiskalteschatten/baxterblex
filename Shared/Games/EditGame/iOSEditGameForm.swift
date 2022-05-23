@@ -36,6 +36,10 @@ struct iOSEditGameForm: View {
                         .transition(.scale)
                     }
                 }
+                
+                Section {
+                    Toggle("Archive Game", isOn: $editGameModel.archived)
+                }
             }
             .navigationBarTitle(Text("Create a New Game"), displayMode: .inline)
                 .navigationBarItems(
