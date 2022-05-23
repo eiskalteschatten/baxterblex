@@ -12,7 +12,7 @@ struct MacGameTabView: View {
         case dashboard, character, gear, accounting, sessions
     }
     
-    @AppStorage("selectedGameViewTab") private var selectedTab: Tabs = .dashboard
+    @SceneStorage("selectedGameViewTab") private var selectedTab: Tabs = .dashboard
     
     var body: some View {
         VStack {

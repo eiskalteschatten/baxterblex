@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @AppStorage("selectedGame") private var selectedGame: String?
+    @SceneStorage("selectedGame") private var selectedGame: String?
     
     @State private var showEditSheet = false
     @State private var gameToEdit: Game?
