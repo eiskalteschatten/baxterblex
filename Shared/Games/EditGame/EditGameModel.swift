@@ -45,8 +45,8 @@ final class EditGameModel: ObservableObject {
             game!.updatedAt = Date()
             
             game!.name = name
-            game!.startDate = startDate
-            game!.endDate = endDate
+            game!.startDate = addStartDate ? startDate : nil
+            game!.endDate = addEndDate ? endDate : nil
             game!.archived = archived
 
             do {
