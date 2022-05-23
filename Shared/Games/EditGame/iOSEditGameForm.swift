@@ -13,44 +13,45 @@ struct iOSEditGameForm: View {
     @StateObject private var editGameModel = EditGameModel()
     
     var body: some View {
-        Form {
-            TextField("Name", text: $editGameModel.name)
-            
-            Section {
-                Toggle("Add Start Date", isOn: $editGameModel.addStartDate.animation())
+        NavigationView {
+            Form {
+                TextField("Name", text: $editGameModel.name)
+                
+                Section {
+                    Toggle("Add Start Date", isOn: $editGameModel.addStartDate.animation())
 
-                if editGameModel.addStartDate {
-                    DatePicker(selection: $editGameModel.startDate, displayedComponents: .date) {
-                        Text("Start Date:")
+                    if editGameModel.addStartDate {
+                        DatePicker(selection: $editGameModel.startDate, displayedComponents: .date) {
+                            Text("Start Date:")
+                        }
+                        .transition(.scale)
                     }
-                    .transition(.scale)
-                }
 
-                Toggle("Add End Date", isOn: $editGameModel.addEndDate.animation())
+                    Toggle("Add End Date", isOn: $editGameModel.addEndDate.animation())
 
-                if editGameModel.addEndDate {
-                    DatePicker(selection: $editGameModel.endDate, displayedComponents: .date) {
-                        Text("End Date:")
+                    if editGameModel.addEndDate {
+                        DatePicker(selection: $editGameModel.endDate, displayedComponents: .date) {
+                            Text("End Date:")
+                        }
+                        .transition(.scale)
                     }
-                    .transition(.scale)
                 }
             }
+            .navigationBarTitle(Text("Create a New Game"), displayMode: .inline)
+                .navigationBarItems(
+                    leading: Button(action: {
+                        dismiss()
+                    }) {
+                        Text("Cancel")
+                    },
+                    trailing: Button(action: {
+                        editGameModel.save()
+                        dismiss()
+                    }) {
+                        Text("Save").bold()
+                    }
+                )
         }
-        .navigationBarTitle(Text("Create a New Game"), displayMode: .inline)
-            .navigationBarItems(
-                leading: Button(action: {
-                    dismiss()
-                }) {
-                    Text("Cancel")
-                },
-                trailing: Button(action: {
-                    editGameModel.save()
-                    dismiss()
-                }) {
-                    Text("Save").bold()
-                }
-            )
-        
     }
 }
 
