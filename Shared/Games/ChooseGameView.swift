@@ -37,6 +37,11 @@ struct ChooseGameView: View {
 
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
+            Text("Baxterblex")
+                .font(.system(.title))
+                .bold()
+                .padding(.bottom, 15)
+            
             Button {
                 showEditSheet.toggle()
             } label : {
@@ -59,8 +64,7 @@ struct ChooseGameView: View {
             }
             .frame(width: 500)
         }
-        .padding(.vertical, 40)
-        .padding(.horizontal, 20)
+        .padding(20)
         .sheet(isPresented: $showEditSheet) {
             EditGameSheet()
         }
