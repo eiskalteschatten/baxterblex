@@ -20,6 +20,7 @@ struct GameView: View {
             #else
             MacGameTabView()
                 .environmentObject(gameStore)
+                .navigationTitle(game.name ?? DEFAULT_GAME_NAME)
             #endif
         }
         .onAppear {
