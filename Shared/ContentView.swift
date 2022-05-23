@@ -41,7 +41,7 @@ struct ContentView: View {
                         )
                         .contextMenu {
                             Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
-                                // TODO
+                                editGame(game: game)
                             })
                             Divider()
                             Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
@@ -64,7 +64,7 @@ struct ContentView: View {
                         )
                         .contextMenu {
                             Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
-                                // TODO
+                                editGame(game: game)
                             })
                             Divider()
                             Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
@@ -87,6 +87,11 @@ struct ContentView: View {
                     }
                 }
             }
+            .onChange(of: showEditSheet) { show in
+                if !show {
+                    gameToEdit = nil
+                }
+            }
             #if os(iOS)
             .navigationBarTitle("Baxterblex")
             .alert("Are you sure you want to delete this game?", isPresented: $presentDeleteAlert, actions: {
@@ -103,8 +108,13 @@ struct ContentView: View {
             Text("TODO: show monochrome icon")
         }
         .sheet(isPresented: $showEditSheet) {
-            EditGameSheet()
+            EditGameSheet(game: gameToEdit)
         }
+    }
+    
+    private func editGame(game: Game) {
+        gameToEdit = game
+        showEditSheet.toggle()
     }
     
     private func confirmDelete(game: Game) {

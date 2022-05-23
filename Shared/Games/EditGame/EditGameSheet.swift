@@ -8,11 +8,19 @@
 import SwiftUI
 
 struct EditGameSheet: View {
+    var game: Game?
+    
+    @ObservedObject private var editGameModel: EditGameModel
+    
+    init(game: Game? = nil) {
+        editGameModel = EditGameModel(game: game)
+    }
+    
     var body: some View {
         #if os(macOS)
-        MacEditGameForm()
+        MacEditGameForm(editGameModel: editGameModel)
         #else
-        iOSEditGameForm()
+        iOSEditGameForm(editGameModel: editGameModel)
         #endif
     }
 }

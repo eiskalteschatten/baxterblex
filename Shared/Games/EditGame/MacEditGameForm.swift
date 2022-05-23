@@ -10,7 +10,7 @@ import SwiftUI
 struct MacEditGameForm: View {
     @Environment(\.dismiss) var dismiss
     
-    @StateObject private var editGameModel = EditGameModel()
+    @ObservedObject var editGameModel: EditGameModel
     
     var body: some View {
         VStack {
@@ -67,7 +67,9 @@ struct MacEditGameForm: View {
 }
 
 struct MacEditGameForm_Previews: PreviewProvider {
+    @StateObject static var editGameModel = EditGameModel()
+    
     static var previews: some View {
-        MacEditGameForm()
+        MacEditGameForm(editGameModel: editGameModel)
     }
 }

@@ -39,14 +39,15 @@ final class EditGameModel: ObservableObject {
     
     func save() {
         withAnimation {
-            let newGame = Game(context: viewContext!)
-            newGame.createdAt = Date()
-            newGame.updatedAt = Date()
+            game = game != nil ? game : Game(context: viewContext!)
             
-            newGame.name = name
-            newGame.startDate = startDate
-            newGame.endDate = endDate
-            newGame.archived = archived
+            game!.createdAt = Date()
+            game!.updatedAt = Date()
+            
+            game!.name = name
+            game!.startDate = startDate
+            game!.endDate = endDate
+            game!.archived = archived
 
             do {
                 try viewContext!.save()
