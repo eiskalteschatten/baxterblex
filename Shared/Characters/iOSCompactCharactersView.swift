@@ -8,14 +8,47 @@
 import SwiftUI
 
 struct iOSCompactCharactersView: View {
+    var game: Game
+    
+    @State private var selectedCharacter: Character?
+    @FetchRequest private var characters: FetchedResults<Character>
+    
+    init(game: Game) {
+        self._characters = FetchRequest<Character>(
+            sortDescriptors: [SortDescriptor(\Character.name, order: .forward)],
+            predicate: NSPredicate(format: "ANY game == %@", game),
+            animation: .default
+        )
+        self.game = game
+    }
+    
     var body: some View {
-        // TODO: simulate a stacked navigation view
-        Text("Compact view")
+        if let character = selectedCharacter {
+            Text("TODO: show edit character screen")
+        }
+        else {
+            // TODO: simulate a stacked navigation view
+            List {
+                Button("Some character") {}
+                    .buttonStyle(.plain)
+                
+                ForEach(characters) { character in
+                    Button(character.name ?? DEFAULT_CHARACTER_NAME) {
+                        selectedCharacter = character
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .listStyle(.plain)
+        }
     }
 }
 
 struct iOSCompactCharactersView_Previews: PreviewProvider {
     static var previews: some View {
-        iOSCompactCharactersView()
+        let context = PersistenceController.preview.container.viewContext
+        let game = context.registeredObjects.first(where: { $0 is Game }) as! Game
+        
+        iOSCompactCharactersView(game: game)
     }
 }

@@ -18,7 +18,7 @@ struct CharactersView: View {
         if let game = gameStore.selectedGame {
             #if os(iOS)
             if horizontalSizeClass == .compact {
-                iOSCompactCharactersView()
+                iOSCompactCharactersView(game: game)
             }
             else {
                 ColumnCharactersView(game: game)

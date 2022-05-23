@@ -25,13 +25,14 @@ struct ColumnCharactersView: View {
     var body: some View {
         HStack {
             List {
-                Button("1") {
-                    // TODO: select character
-                }
+                Button("Some character") {}
+                    .buttonStyle(.plain)
+                
                 ForEach(characters) { character in
                     Button(character.name ?? DEFAULT_CHARACTER_NAME) {
                         selectedCharacter = character
                     }
+                    .buttonStyle(.plain)
                 }
             }
             .listStyle(.plain)
