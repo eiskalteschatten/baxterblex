@@ -8,32 +8,36 @@
 import SwiftUI
 
 struct iOSGameTabView: View {
+    @EnvironmentObject var gameStore: GameStore
+    
     var body: some View {
         TabView {
-//            DashboardView()
-//                .tabItem {
-//                    Label("Dashboard", systemImage: "square.grid.3x3.square")
-//                }
-            
-            CharacterView()
-                .tabItem {
-                    Label("Character", systemImage: "person")
-                }
-            
-            GearView()
-                .tabItem {
-                    Label("Gear", systemImage: "wrench.and.screwdriver.fill")
-                }
-            
-            AccountingView()
-                .tabItem {
-                    Label("Accounting", systemImage: "dollarsign.square")
-                }
-            
-            SessionsView()
-                .tabItem {
-                    Label("Sessions", systemImage: "doc.on.doc")
-                }
+            if let game = gameStore.selectedGame {
+//                DashboardView()
+//                    .tabItem {
+//                        Label("Dashboard", systemImage: "square.grid.3x3.square")
+//                    }
+                
+                CharactersView(game: game)
+                    .tabItem {
+                        Label("Characters", systemImage: "person.3.fill")
+                    }
+                
+                GearView()
+                    .tabItem {
+                        Label("Gear", systemImage: "wrench.and.screwdriver.fill")
+                    }
+                
+                AccountingView()
+                    .tabItem {
+                        Label("Accounting", systemImage: "dollarsign.square")
+                    }
+                
+                SessionsView()
+                    .tabItem {
+                        Label("Sessions", systemImage: "doc.on.doc")
+                    }
+            }
         }
     }
 }
