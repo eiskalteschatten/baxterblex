@@ -8,11 +8,18 @@
 import SwiftUI
 
 fileprivate struct ChooseButtonStyle: ButtonStyle {
+    @Environment(\.colorScheme) var colorScheme
+    
     func makeBody(configuration: Configuration) -> some View {
+        let defaultColor: Color = colorScheme == .dark ? Color(red: 0.2, green: 0.2, blue: 0.2) : Color(red: 0.88, green: 0.88, blue: 0.88)
+        let pressedColor: Color = colorScheme == .dark ? Color(red: 0.18, green: 0.18, blue: 0.18) : Color(red: 0.85, green: 0.85, blue: 0.85)
+        
         configuration.label
             .buttonStyle(.plain)
-            .padding(15)
-            .background(Color(red: 0.2, green: 0.2, blue: 0.2))
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 12)
+            .padding(.horizontal, 15)
+            .background(configuration.isPressed ? pressedColor : defaultColor)
             .clipShape(RoundedRectangle(cornerRadius: 5))
             .font(.system(size: 14))
     }
@@ -45,8 +52,10 @@ struct ChooseGameView: View {
                     .onDelete(perform: deleteItems)
                 }
             }
+            .frame(width: 500)
         }
-        .padding(.top, 40)
+        .padding(.vertical, 40)
+        .padding(.horizontal, 20)
     }
     
     private func addItem() {
