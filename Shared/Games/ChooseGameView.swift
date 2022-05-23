@@ -52,12 +52,21 @@ struct ChooseGameView: View {
             
             List {
                 ForEach(games) { game in
+                    #if os(macOS)
                     Button {
                         // TODO: switch to the game view with an animation and persist the selected game
                     } label: {
-                        Text(game.name ?? "Untitled Game")
+                        Text(game.name ?? DEFAULT_GAME_NAME)
                     }
                     .buttonStyle(ChooseButtonStyle())
+                    #else
+                    NavigationLink {
+                        // TODO: switch to the game view and persist the selected game
+                        Text(game.name ?? DEFAULT_GAME_NAME)
+                    } label: {
+                        Text(game.name ?? DEFAULT_GAME_NAME)
+                    }
+                    #endif
                 }
                 .onDelete(perform: deleteGames)
             }
