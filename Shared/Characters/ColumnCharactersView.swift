@@ -37,7 +37,7 @@ struct ColumnCharactersView: View {
                     Text("TODO: show edit character screen")
                 }
                 else {
-                    EmptyView()
+                    Text("No character selected")
                 }
             }
             .frame(maxWidth: .infinity)
