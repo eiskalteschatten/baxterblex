@@ -13,18 +13,9 @@ struct EditGameSheet: View {
     var body: some View {
         #if os(macOS)
         MacEditGameForm(showEditSheet: $showEditSheet)
+        #else
+        iOSEditGameForm(showEditSheet: $showEditSheet)
         #endif
-//        .toolbar {
-//            ToolbarItem(placement: .navigationBarLeading) {
-//                Button("Cancel") { showEditSheet = false }
-//            }
-//            ToolbarItem {
-//                Button("Save") {
-//                    addGame()
-//                    showEditSheet = false
-//                }
-//            }
-//        }
     }
 }
 
