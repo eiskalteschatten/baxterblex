@@ -28,6 +28,7 @@
 		93486578283BF894005497A1 /* SessionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486577283BF894005497A1 /* SessionsView.swift */; };
 		93486579283BF894005497A1 /* SessionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486577283BF894005497A1 /* SessionsView.swift */; };
 		9348657C283C001E005497A1 /* iOSGameTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348657B283C001E005497A1 /* iOSGameTabView.swift */; };
+		9348657E283C0072005497A1 /* MacGameTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348657D283C0072005497A1 /* MacGameTabView.swift */; };
 		93C526A1283B891800371B6A /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A0283B891800371B6A /* Tests_iOS.swift */; };
 		93C526A3283B891800371B6A /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A2283B891800371B6A /* Tests_iOSLaunchTests.swift */; };
 		93C526AD283B891800371B6A /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526AC283B891800371B6A /* Tests_macOS.swift */; };
@@ -74,6 +75,7 @@
 		93486574283BF882005497A1 /* AccountingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountingView.swift; sourceTree = "<group>"; };
 		93486577283BF894005497A1 /* SessionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsView.swift; sourceTree = "<group>"; };
 		9348657B283C001E005497A1 /* iOSGameTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSGameTabView.swift; sourceTree = "<group>"; };
+		9348657D283C0072005497A1 /* MacGameTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacGameTabView.swift; sourceTree = "<group>"; };
 		93C52686283B891600371B6A /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		93C52687283B891600371B6A /* BaxterblexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaxterblexApp.swift; sourceTree = "<group>"; };
 		93C52688283B891600371B6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			children = (
 				93486563283BF6F7005497A1 /* GameView.swift */,
 				9348657B283C001E005497A1 /* iOSGameTabView.swift */,
+				9348657D283C0072005497A1 /* MacGameTabView.swift */,
 			);
 			path = GameView;
 			sourceTree = "<group>";
@@ -450,6 +453,7 @@
 				93486579283BF894005497A1 /* SessionsView.swift in Sources */,
 				93C526B1283B891800371B6A /* Baxterblex.xcdatamodeld in Sources */,
 				9348656D283BF774005497A1 /* DashboardView.swift in Sources */,
+				9348657E283C0072005497A1 /* MacGameTabView.swift in Sources */,
 				93C526B5283B891800371B6A /* ContentView.swift in Sources */,
 				933CE3DA283BC99B00ADBE50 /* Constants.swift in Sources */,
 			);

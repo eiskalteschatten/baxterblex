@@ -12,7 +12,7 @@ struct GameView: View {
         #if os(iOS)
         iOSGameTabView()
         #else
-        Text("to do")
+        MacGameTabView()
         #endif
     }
 }
