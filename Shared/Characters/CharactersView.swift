@@ -8,29 +8,30 @@
 import SwiftUI
 
 struct CharactersView: View {
-    var game: Game
+    @EnvironmentObject var gameStore: GameStore
     
-    @FetchRequest private var characters: FetchedResults<Character>
-    
-    init(game: Game) {
-        self._characters = FetchRequest<Character>(
-            sortDescriptors: [SortDescriptor(\Character.name, order: .forward)],
-            predicate: NSPredicate(format: "ANY game == %@", game),
-            animation: .default
-        )
-        self.game = game
-    }
+    #if os(iOS)
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
+    #endif
     
     var body: some View {
-        Text("Characters")
+        if let game = gameStore.selectedGame {
+            #if os(iOS)
+            if horizontalSizeClass == .compact {
+                iOSCompactCharactersView()
+            }
+            else {
+                ColumnCharactersView(game: game)
+            }
+            #else
+            ColumnCharactersView(game: game)
+            #endif
+        }
     }
 }
 
 struct CharactersView_Previews: PreviewProvider {
     static var previews: some View {
-        let context = PersistenceController.preview.container.viewContext
-        let game = context.registeredObjects.first(where: { $0 is Game }) as! Game
-        
-        CharactersView(game: game)
+        CharactersView()
     }
 }

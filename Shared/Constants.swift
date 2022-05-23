@@ -8,3 +8,4 @@
 import Foundation
 
 let DEFAULT_GAME_NAME = "Untitled Game"
+let DEFAULT_CHARACTER_NAME = "Unnamed Character"
