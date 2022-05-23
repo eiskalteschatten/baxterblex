@@ -1,5 +1,5 @@
 //
-//  CharacterView.swift
+//  CharactersView.swift
 //  Baxterblex
 //
 //  Created by Alex Seifert on 23.05.22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CharacterView: View {
+struct CharactersView: View {
     var game: Game
     
     @FetchRequest private var characters: FetchedResults<Character>
@@ -22,15 +22,15 @@ struct CharacterView: View {
     }
     
     var body: some View {
-        Text("Character")
+        Text("Characters")
     }
 }
 
-struct CharacterView_Previews: PreviewProvider {
+struct CharactersView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let game = context.registeredObjects.first(where: { $0 is Game }) as! Game
         
-        CharacterView(game: game)
+        CharactersView(game: game)
     }
 }

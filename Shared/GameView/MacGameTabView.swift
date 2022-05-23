@@ -11,7 +11,7 @@ struct MacGameTabView: View {
     @EnvironmentObject var gameStore: GameStore
     
     private enum Tabs: Int {
-        case dashboard, character, gear, accounting, sessions
+        case dashboard, characters, gear, accounting, sessions
     }
     
     @SceneStorage("selectedGameViewTab") private var selectedTab: Tabs = .dashboard
@@ -22,8 +22,8 @@ struct MacGameTabView: View {
                 switch selectedTab {
                 case .dashboard:
                     DashboardView()
-                case .character:
-                    CharacterView(game: game)
+                case .characters:
+                    CharactersView(game: game)
                 case .gear:
                     GearView()
                 case .accounting:
@@ -39,8 +39,8 @@ struct MacGameTabView: View {
                     Text("Dashboard")
                         .tag(Tabs.dashboard)
                     
-                    Text("Character")
-                        .tag(Tabs.character)
+                    Text("Characters")
+                        .tag(Tabs.characters)
                     
                     Text("Gear")
                         .tag(Tabs.gear)
