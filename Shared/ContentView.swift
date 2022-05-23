@@ -105,7 +105,7 @@ struct ContentView: View {
                     }
                 }
                 #else
-                ToolbarItem {
+                ToolbarItem(placement: .navigation) {
                     Button(action: toggleSidebar, label: {
                         Image(systemName: "sidebar.leading")
                     })
