@@ -80,6 +80,12 @@ struct ContentView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
+                #else
+                ToolbarItem {
+                    Button(action: toggleSidebar, label: {
+                        Image(systemName: "sidebar.leading")
+                    })
+                }
                 #endif
                 ToolbarItem {
                     Button(action: { showEditSheet.toggle() }) {
@@ -176,6 +182,10 @@ struct ContentView: View {
         if delete {
             deleteGame()
         }
+    }
+    
+    private func toggleSidebar() {
+        NSApp.keyWindow?.firstResponder?.tryToPerform(#selector(NSSplitViewController.toggleSidebar(_:)), with: nil)
     }
     #endif
 }
