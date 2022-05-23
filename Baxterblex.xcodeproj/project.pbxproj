@@ -34,8 +34,6 @@
 		93486583283C2A01005497A1 /* iOSCompactCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486582283C2A01005497A1 /* iOSCompactCharactersView.swift */; };
 		93486585283C2A61005497A1 /* ColumnCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486584283C2A61005497A1 /* ColumnCharactersView.swift */; };
 		93486586283C2A61005497A1 /* ColumnCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486584283C2A61005497A1 /* ColumnCharactersView.swift */; };
-		9348658A283C2CA6005497A1 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486589283C2CA6005497A1 /* EmptyView.swift */; };
-		9348658B283C2CA6005497A1 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486589283C2CA6005497A1 /* EmptyView.swift */; };
 		93C526A1283B891800371B6A /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A0283B891800371B6A /* Tests_iOS.swift */; };
 		93C526A3283B891800371B6A /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A2283B891800371B6A /* Tests_iOSLaunchTests.swift */; };
 		93C526AD283B891800371B6A /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526AC283B891800371B6A /* Tests_macOS.swift */; };
@@ -86,7 +84,6 @@
 		9348657F283C0BD8005497A1 /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		93486582283C2A01005497A1 /* iOSCompactCharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCompactCharactersView.swift; sourceTree = "<group>"; };
 		93486584283C2A61005497A1 /* ColumnCharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnCharactersView.swift; sourceTree = "<group>"; };
-		93486589283C2CA6005497A1 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		93C52686283B891600371B6A /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		93C52687283B891600371B6A /* BaxterblexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaxterblexApp.swift; sourceTree = "<group>"; };
 		93C52688283B891600371B6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -207,14 +204,6 @@
 			path = GameView;
 			sourceTree = "<group>";
 		};
-		93486588283C2C96005497A1 /* Elements */ = {
-			isa = PBXGroup;
-			children = (
-				93486589283C2CA6005497A1 /* EmptyView.swift */,
-			);
-			path = Elements;
-			sourceTree = "<group>";
-		};
 		93C5267F283B891600371B6A = {
 			isa = PBXGroup;
 			children = (
@@ -232,7 +221,6 @@
 				93C52689283B891600371B6A /* Persistence.swift */,
 				93C52687283B891600371B6A /* BaxterblexApp.swift */,
 				93C52688283B891600371B6A /* ContentView.swift */,
-				93486588283C2C96005497A1 /* Elements */,
 				933CE3B0283BB66200ADBE50 /* Games */,
 				9348657A283BFFED005497A1 /* GameView */,
 				93486566283BF73B005497A1 /* Dashboard */,
@@ -447,7 +435,6 @@
 				93486585283C2A61005497A1 /* ColumnCharactersView.swift in Sources */,
 				93486575283BF882005497A1 /* AccountingView.swift in Sources */,
 				93C526B6283B891800371B6A /* Persistence.swift in Sources */,
-				9348658A283C2CA6005497A1 /* EmptyView.swift in Sources */,
 				933CE3CD283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
 				933CE3B2283BB67700ADBE50 /* EditGameSheet.swift in Sources */,
 				9348656F283BF7E9005497A1 /* CharactersView.swift in Sources */,
@@ -478,7 +465,6 @@
 				933CE3D0283BC24F00ADBE50 /* MacEditGameForm.swift in Sources */,
 				93486573283BF872005497A1 /* GearView.swift in Sources */,
 				93486579283BF894005497A1 /* SessionsView.swift in Sources */,
-				9348658B283C2CA6005497A1 /* EmptyView.swift in Sources */,
 				93486581283C0BD8005497A1 /* GameStore.swift in Sources */,
 				93486586283C2A61005497A1 /* ColumnCharactersView.swift in Sources */,
 				93C526B1283B891800371B6A /* Baxterblex.xcdatamodeld in Sources */,
