@@ -31,8 +31,9 @@ struct ChooseGameView: View {
     @State private var showEditSheet = false
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Game.updatedAt, ascending: true)],
-        animation: .default)
+        sortDescriptors: [NSSortDescriptor(keyPath: \Game.name, ascending: true)],
+        animation: .default
+    )
     private var games: FetchedResults<Game>
 
     var body: some View {
@@ -49,20 +50,20 @@ struct ChooseGameView: View {
             }
             .buttonStyle(ChooseButtonStyle())
             
-            ScrollView {
-                List {
-                    ForEach(games) { game in
-                        Button {
-                            // TODO: switch to the game view with an animation and persist the selected game
-                        } label: {
-                            Text(game.name ?? "Untitled Game")
-                        }
-                        .buttonStyle(ChooseButtonStyle())
+            List {
+                ForEach(games) { game in
+                    Button {
+                        // TODO: switch to the game view with an animation and persist the selected game
+                    } label: {
+                        Text(game.name ?? "Untitled Game")
                     }
-                    .onDelete(perform: deleteGames)
+                    .buttonStyle(ChooseButtonStyle())
                 }
+                .onDelete(perform: deleteGames)
             }
+            #if os(macOS)
             .frame(width: 500)
+            #endif
         }
         .padding(20)
         .sheet(isPresented: $showEditSheet) {
