@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Character" representedClassName="Character" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="name" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
         <attribute name="picture" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" spotlightIndexingEnabled="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="characters" inverseEntity="Game" spotlightIndexingEnabled="YES"/>
@@ -23,7 +24,7 @@
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="sessions" inverseEntity="Game"/>
     </entity>
     <elements>
-        <element name="Character" positionX="-63" positionY="-9" width="128" height="89"/>
+        <element name="Character" positionX="-63" positionY="-9" width="128" height="104"/>
         <element name="Game" positionX="-63" positionY="-18" width="128" height="164"/>
         <element name="Session" positionX="-54" positionY="0" width="128" height="74"/>
     </elements>

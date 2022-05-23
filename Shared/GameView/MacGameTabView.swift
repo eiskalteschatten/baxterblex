@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MacGameTabView: View {
+    @EnvironmentObject var gameStore: GameStore
+    
     private enum Tabs: Int {
         case dashboard, character, gear, accounting, sessions
     }
@@ -16,17 +18,19 @@ struct MacGameTabView: View {
     
     var body: some View {
         VStack {
-            switch selectedTab {
-            case .dashboard:
-                DashboardView()
-            case .character:
-                CharacterView()
-            case .gear:
-                GearView()
-            case .accounting:
-                AccountingView()
-            case .sessions:
-                SessionsView()
+            if let game = gameStore.selectedGame {
+                switch selectedTab {
+                case .dashboard:
+                    DashboardView()
+                case .character:
+                    CharacterView(game: game)
+                case .gear:
+                    GearView()
+                case .accounting:
+                    AccountingView()
+                case .sessions:
+                    SessionsView()
+                }
             }
         }
         .toolbar {
