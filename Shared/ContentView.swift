@@ -11,6 +11,8 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
+    @AppStorage("selectedGame") private var selectedGame: String?
+    
     @State private var showEditSheet = false
 
     @FetchRequest(
@@ -24,26 +26,28 @@ struct ContentView: View {
             List {
                 Section("Games") {
                     ForEach(games.filter { !$0.archived }) { game in
-                        NavigationLink {
+                        NavigationLink(
                             // TODO: add game view
-                            Text(game.name ?? DEFAULT_GAME_NAME)
-                        } label: {
+                            destination: Text(game.name ?? DEFAULT_GAME_NAME),
+                            tag: game.objectID.uriRepresentation().path,
+                            selection: $selectedGame,
                             // TODO: add icon or color or something else
-                            Text(game.name ?? DEFAULT_GAME_NAME)
-                        }
+                            label: { Text(game.name ?? DEFAULT_GAME_NAME) }
+                        )
                     }
                     .onDelete(perform: deleteGames)
                 }
                 
                 Section("Archived Games") {
                     ForEach(games.filter { $0.archived }) { game in
-                        NavigationLink {
+                        NavigationLink(
                             // TODO: add game view
-                            Text(game.name ?? DEFAULT_GAME_NAME)
-                        } label: {
+                            destination: Text(game.name ?? DEFAULT_GAME_NAME),
+                            tag: game.objectID.uriRepresentation().path,
+                            selection: $selectedGame,
                             // TODO: add icon or color or something else
-                            Text(game.name ?? DEFAULT_GAME_NAME)
-                        }
+                            label: { Text(game.name ?? DEFAULT_GAME_NAME) }
+                        )
                     }
                     .onDelete(perform: deleteGames)
                 }
