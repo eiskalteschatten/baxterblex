@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		933CE3AE283BA21200ADBE50 /* ChooseGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CE3AD283BA21200ADBE50 /* ChooseGameView.swift */; };
-		933CE3AF283BA21200ADBE50 /* ChooseGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CE3AD283BA21200ADBE50 /* ChooseGameView.swift */; };
 		933CE3B2283BB67700ADBE50 /* EditGameSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CE3B1283BB67700ADBE50 /* EditGameSheet.swift */; };
 		933CE3B3283BB67700ADBE50 /* EditGameSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CE3B1283BB67700ADBE50 /* EditGameSheet.swift */; };
 		933CE3CD283BC06F00ADBE50 /* EditGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933CE3CC283BC06F00ADBE50 /* EditGameModel.swift */; };
@@ -51,7 +49,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		933CE3AD283BA21200ADBE50 /* ChooseGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseGameView.swift; sourceTree = "<group>"; };
 		933CE3B1283BB67700ADBE50 /* EditGameSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGameSheet.swift; sourceTree = "<group>"; };
 		933CE3CC283BC06F00ADBE50 /* EditGameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGameModel.swift; sourceTree = "<group>"; };
 		933CE3CF283BC24F00ADBE50 /* MacEditGameForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacEditGameForm.swift; sourceTree = "<group>"; };
@@ -108,7 +105,6 @@
 		933CE3B0283BB66200ADBE50 /* Games */ = {
 			isa = PBXGroup;
 			children = (
-				933CE3AD283BA21200ADBE50 /* ChooseGameView.swift */,
 				933CE3CB283BBF5C00ADBE50 /* EditGame */,
 			);
 			path = Games;
@@ -139,9 +135,9 @@
 		93C52684283B891600371B6A /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				93C52689283B891600371B6A /* Persistence.swift */,
 				93C52687283B891600371B6A /* BaxterblexApp.swift */,
 				93C52688283B891600371B6A /* ContentView.swift */,
-				93C52689283B891600371B6A /* Persistence.swift */,
 				933CE3B0283BB66200ADBE50 /* Games */,
 				933CE3D8283BC99B00ADBE50 /* Constants.swift */,
 				93C5268A283B891800371B6A /* Assets.xcassets */,
@@ -345,7 +341,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				933CE3AE283BA21200ADBE50 /* ChooseGameView.swift in Sources */,
 				93C526B2283B891800371B6A /* BaxterblexApp.swift in Sources */,
 				93C526B6283B891800371B6A /* Persistence.swift in Sources */,
 				933CE3CD283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
@@ -361,7 +356,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				933CE3AF283BA21200ADBE50 /* ChooseGameView.swift in Sources */,
 				93C526B3283B891800371B6A /* BaxterblexApp.swift in Sources */,
 				93C526B7283B891800371B6A /* Persistence.swift in Sources */,
 				933CE3CE283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
