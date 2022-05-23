@@ -27,6 +27,9 @@ struct GameView: View {
         .onAppear {
             gameStore.selectedGame = game
         }
+        .onDisappear {
+            gameStore.selectedGame = nil
+        }
     }
 }
 

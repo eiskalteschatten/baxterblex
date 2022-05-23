@@ -11,7 +11,7 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @SceneStorage("selectedGame") private var selectedGame: URL?
+    @SceneStorage("selectedGameURL") private var selectedGameURL: URL?
     
     @State private var showEditSheet = false
     @State private var gameToEdit: Game?
@@ -37,7 +37,7 @@ struct ContentView: View {
                                     // TODO: keep track of selected game
                                     destination: GameView(game: game),
                                     tag: game.objectID.uriRepresentation(),
-                                    selection: $selectedGame,
+                                    selection: $selectedGameURL,
                                     // TODO: add icon or color or something else
                                     label: { Text(game.name ?? DEFAULT_GAME_NAME) }
                                 )
@@ -60,7 +60,7 @@ struct ContentView: View {
                                     // TODO: keep track of selected game
                                     destination: GameView(game: game),
                                     tag: game.objectID.uriRepresentation(),
-                                    selection: $selectedGame,
+                                    selection: $selectedGameURL,
                                     // TODO: add icon or color or something else
                                     label: { Text(game.name ?? DEFAULT_GAME_NAME) }
                                 )
@@ -172,8 +172,8 @@ struct ContentView: View {
     private func deleteGame() {
         if let unwrapped = gameToEdit {
             withAnimation {
-                if unwrapped.objectID.uriRepresentation() == selectedGame {
-                    selectedGame = nil
+                if unwrapped.objectID.uriRepresentation() == selectedGameURL {
+                    selectedGameURL = nil
                 }
                 
                 viewContext.delete(unwrapped)
