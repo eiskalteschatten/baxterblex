@@ -8,17 +8,31 @@
 import SwiftUI
 
 struct GameView: View {
+    var game: Game
+    
+    @ObservedObject private var gameStore = GameStore()
+    
     var body: some View {
-        #if os(iOS)
-        iOSGameTabView()
-        #else
-        MacGameTabView()
-        #endif
+        Group {
+            #if os(iOS)
+            iOSGameTabView()
+                .environmentObject(gameStore)
+            #else
+            MacGameTabView()
+                .environmentObject(gameStore)
+            #endif
+        }
+        .onAppear {
+            gameStore.selectedGame = game
+        }
     }
 }
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        let context = PersistenceController.preview.container.viewContext
+        let game = context.registeredObjects.first(where: { $0 is Game }) as! Game
+        
+        GameView(game: game)
     }
 }
