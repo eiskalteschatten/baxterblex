@@ -27,6 +27,8 @@ fileprivate struct ChooseButtonStyle: ButtonStyle {
 
 struct ChooseGameView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    
+    @State private var showEditSheet = false
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Game.updatedAt, ascending: true)],
@@ -36,7 +38,7 @@ struct ChooseGameView: View {
     var body: some View {
         VStack(alignment: .center, spacing: 10) {
             Button {
-                // TODO: create new game
+                showEditSheet.toggle()
             } label : {
                 Label("Create a New Game", systemImage: "plus")
             }
@@ -45,38 +47,26 @@ struct ChooseGameView: View {
             ScrollView {
                 List {
                     ForEach(games) { game in
-                        Button(game.name ?? "Untitled Game") {
+                        Button {
                             // TODO: switch to the game view with an animation and persist the selected game
+                        } label: {
+                            Text(game.name ?? "Untitled Game")
                         }
+                        .buttonStyle(ChooseButtonStyle())
                     }
-                    .onDelete(perform: deleteItems)
+                    .onDelete(perform: deleteGames)
                 }
             }
             .frame(width: 500)
         }
         .padding(.vertical, 40)
         .padding(.horizontal, 20)
-    }
-    
-    private func addItem() {
-        withAnimation {
-            let newGame = Game(context: viewContext)
-            newGame.createdAt = Date()
-            newGame.updatedAt = Date()
-            // TODO: add the rest of the fields
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
+        .sheet(isPresented: $showEditSheet) {
+            EditGameSheet(showEditSheet: $showEditSheet)
         }
     }
-
-    private func deleteItems(offsets: IndexSet) {
+    
+    private func deleteGames(offsets: IndexSet) {
         withAnimation {
             offsets.map { games[$0] }.forEach(viewContext.delete)
 
