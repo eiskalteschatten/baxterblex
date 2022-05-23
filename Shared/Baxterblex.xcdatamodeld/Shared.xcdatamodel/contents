@@ -9,7 +9,7 @@
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="icon" optional="YES" attributeType="Binary"/>
-        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="name" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Character" inverseName="games" inverseEntity="Character" spotlightIndexingEnabled="YES"/>
@@ -21,8 +21,8 @@
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="sessions" inverseEntity="Game"/>
     </entity>
     <elements>
-        <element name="Game" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="Character" positionX="-63" positionY="-9" width="128" height="74"/>
+        <element name="Game" positionX="-63" positionY="-18" width="128" height="149"/>
         <element name="Session" positionX="-54" positionY="0" width="128" height="74"/>
     </elements>
 </model>
