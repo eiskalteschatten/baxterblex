@@ -28,16 +28,8 @@ struct iOSCompactCharactersView: View {
         }
         else {
             // TODO: simulate a stacked navigation view
-            List {
-                Button("Some character") {}
-                    .buttonStyle(.plain)
-                
-                ForEach(characters) { character in
-                    Button(character.name ?? DEFAULT_CHARACTER_NAME) {
-                        selectedCharacter = character
-                    }
-                    .buttonStyle(.plain)
-                }
+            List(characters, id: \.self, selection: $selectedCharacter) { character in
+                Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
             .listStyle(.plain)
         }
