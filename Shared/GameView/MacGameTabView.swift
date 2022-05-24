@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct MacGameTabView: View {
-    private enum Tabs: Int {
-        case dashboard, characters, gear, accounting, sessions
-    }
-    
     // TODO: change default to .dashboard as soon as the dashboard is implemented
-    @SceneStorage("selectedGameViewTab") private var selectedTab: Tabs = .characters
+    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .characters
     
     var body: some View {
         VStack {
@@ -34,47 +30,24 @@ struct MacGameTabView: View {
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $selectedTab) {
 //                    Text("Dashboard")
-//                        .tag(Tabs.dashboard)
+//                        .tag(GameViewTabs.dashboard)
 //                    
                     Text("Characters")
-                        .tag(Tabs.characters)
+                        .tag(GameViewTabs.characters)
                     
                     Text("Gear")
-                        .tag(Tabs.gear)
+                        .tag(GameViewTabs.gear)
                     
                     Text("Accounting")
-                        .tag(Tabs.accounting)
+                        .tag(GameViewTabs.accounting)
                     
                     Text("Sessions")
-                        .tag(Tabs.sessions)
+                        .tag(GameViewTabs.sessions)
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
             
-            ToolbarItemGroup {
-                Spacer()
-                
-                switch selectedTab {
-                case .dashboard:
-                    EmptyView()
-                case .characters:
-                    Button(action: {  }) {
-                        Label("Create a Character", systemImage: "person.badge.plus")
-                    }
-                case .gear:
-                    Button(action: {  }) {
-                        Label("Add Gear", systemImage: "plus.circle")
-                    }
-                case .accounting:
-                    Button(action: {  }) {
-                        Label("Add an Account", systemImage: "plus.circle")
-                    }
-                case .sessions:
-                    Button(action: {  }) {
-                        Label("Add a Session", systemImage: "rectangle.stack.badge.plus")
-                    }
-                }
-            }
+            GameViewToolbar(selectedTab: selectedTab)
         }
     }
 }

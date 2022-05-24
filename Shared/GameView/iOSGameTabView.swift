@@ -8,12 +8,10 @@
 import SwiftUI
 
 struct iOSGameTabView: View {
-    private enum Tabs: Int {
-        case dashboard, characters, gear, accounting, sessions
-    }
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
     
     // TODO: change default to .dashboard as soon as the dashboard is implemented
-    @SceneStorage("selectedGameViewTab") private var selectedTab: Tabs = .characters
+    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .characters
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -21,58 +19,34 @@ struct iOSGameTabView: View {
 //                    .tabItem {
 //                        Label("Dashboard", systemImage: "square.grid.3x3.square")
 //                    }
-//                    .tag(Tabs.dashboard)
+//                    .tag(GameViewTabs.dashboard)
             
             CharactersView()
                 .tabItem {
                     Label("Characters", systemImage: "person.3.fill")
                 }
-                .tag(Tabs.characters)
+                .tag(GameViewTabs.characters)
             
             GearView()
                 .tabItem {
                     Label("Gear", systemImage: "wrench.and.screwdriver.fill")
                 }
-                .tag(Tabs.gear)
+                .tag(GameViewTabs.gear)
             
             AccountingView()
                 .tabItem {
                     Label("Accounting", systemImage: "dollarsign.square")
                 }
-                .tag(Tabs.accounting)
+                .tag(GameViewTabs.accounting)
             
             SessionsView()
                 .tabItem {
                     Label("Sessions", systemImage: "rectangle.stack.fill")
                 }
-                .tag(Tabs.sessions)
+                .tag(GameViewTabs.sessions)
         }
-        .toolbar(content: toolbarContent)
-    }
-    
-    @ToolbarContentBuilder
-    private func toolbarContent() -> some ToolbarContent {
-        ToolbarItemGroup {
-            switch selectedTab {
-            case .dashboard:
-                EmptyView()
-            case .characters:
-                Button(action: {  }) {
-                    Label("Create a Character", systemImage: "person.badge.plus")
-                }
-            case .gear:
-                Button(action: {  }) {
-                    Label("Gear Menu", systemImage: "ellipsis.circle")
-                }
-            case .accounting:
-                Button(action: {  }) {
-                    Label("Accounting Menu", systemImage: "ellipsis.circle")
-                }
-            case .sessions:
-                Button(action: {  }) {
-                    Label("Add a Session", systemImage: "rectangle.stack.badge.plus")
-                }
-            }
+        .toolbar {
+            GameViewToolbar(selectedTab: selectedTab, horizontalSizeClass: horizontalSizeClass)
         }
     }
 }
