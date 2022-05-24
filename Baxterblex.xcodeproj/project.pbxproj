@@ -156,6 +156,11 @@
 		933CE3B0283BB66200ADBE50 /* Games */ = {
 			isa = PBXGroup;
 			children = (
+				9348657F283C0BD8005497A1 /* GameStore.swift */,
+				93486563283BF6F7005497A1 /* GameView.swift */,
+				93486594283CECBA005497A1 /* GameViewToolbar.swift */,
+				9348657B283C001E005497A1 /* iOSGameTabView.swift */,
+				9348657D283C0072005497A1 /* MacGameTabView.swift */,
 				933CE3CB283BBF5C00ADBE50 /* EditGame */,
 			);
 			path = Games;
@@ -187,8 +192,7 @@
 				9348656E283BF7E9005497A1 /* CharactersView.swift */,
 				93486582283C2A01005497A1 /* iOSCompactCharactersView.swift */,
 				93486584283C2A61005497A1 /* ColumnCharactersView.swift */,
-				93486597283CF304005497A1 /* EditCharacterView.swift */,
-				9348659A283CF370005497A1 /* EditCharacterModel.swift */,
+				934865A4283CF9A5005497A1 /* EditCharacter */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -217,18 +221,6 @@
 			path = Sessions;
 			sourceTree = "<group>";
 		};
-		9348657A283BFFED005497A1 /* GameView */ = {
-			isa = PBXGroup;
-			children = (
-				9348657F283C0BD8005497A1 /* GameStore.swift */,
-				93486563283BF6F7005497A1 /* GameView.swift */,
-				93486594283CECBA005497A1 /* GameViewToolbar.swift */,
-				9348657B283C001E005497A1 /* iOSGameTabView.swift */,
-				9348657D283C0072005497A1 /* MacGameTabView.swift */,
-			);
-			path = GameView;
-			sourceTree = "<group>";
-		};
 		9348658C283CE138005497A1 /* Styles */ = {
 			isa = PBXGroup;
 			children = (
@@ -253,6 +245,15 @@
 			path = Abstract;
 			sourceTree = "<group>";
 		};
+		934865A4283CF9A5005497A1 /* EditCharacter */ = {
+			isa = PBXGroup;
+			children = (
+				93486597283CF304005497A1 /* EditCharacterView.swift */,
+				9348659A283CF370005497A1 /* EditCharacterModel.swift */,
+			);
+			path = EditCharacter;
+			sourceTree = "<group>";
+		};
 		93C5267F283B891600371B6A = {
 			isa = PBXGroup;
 			children = (
@@ -271,7 +272,6 @@
 				93C52687283B891600371B6A /* BaxterblexApp.swift */,
 				93C52688283B891600371B6A /* ContentView.swift */,
 				933CE3B0283BB66200ADBE50 /* Games */,
-				9348657A283BFFED005497A1 /* GameView */,
 				93486566283BF73B005497A1 /* Dashboard */,
 				93486567283BF742005497A1 /* Characters */,
 				93486568283BF750005497A1 /* Gear */,
