@@ -37,42 +37,40 @@ struct GamesListView: View {
             List {
                 Section("Games") {
                     ForEach(games.filter { !$0.archived }) { game in
-                        ListLabelView(text: game.name ?? DEFAULT_GAME_NAME)
-                            .onTapGesture {
-                                selectedGameURL = game.objectID.uriRepresentation()
-                                gameStore.selectedGame = game
-                                selectedTab = .characters
-                            }
-                            .contextMenu {
-                                Button("Edit Game", action: {
-                                    editGame(game: game)
-                                })
-                                Divider()
-                                Button("Delete Game", role: .destructive, action: {
-                                    confirmDelete(game: game)
-                                })
-                            }
+                        GamesListItemView(game: game) {
+                            selectedGameURL = game.objectID.uriRepresentation()
+                            gameStore.selectedGame = game
+                            selectedTab = .characters
+                        }
+                        .contextMenu {
+                            Button("Edit Game", action: {
+                                editGame(game: game)
+                            })
+                            Divider()
+                            Button("Delete Game", role: .destructive, action: {
+                                confirmDelete(game: game)
+                            })
+                        }
                     }
                     .onDelete(perform: deleteGames)
                 }
                 
                 Section("Archived Games") {
                     ForEach(games.filter { $0.archived }) { game in
-                        ListLabelView(text: game.name ?? DEFAULT_GAME_NAME)
-                            .onTapGesture {
-                                selectedGameURL = game.objectID.uriRepresentation()
-                                gameStore.selectedGame = game
-                                selectedTab = .characters
-                            }
-                            .contextMenu {
-                                Button("Edit Game", action: {
-                                    editGame(game: game)
-                                })
-                                Divider()
-                                Button("Delete Game", role: .destructive, action: {
-                                    confirmDelete(game: game)
-                                })
-                            }
+                        GamesListItemView(game: game) {
+                            selectedGameURL = game.objectID.uriRepresentation()
+                            gameStore.selectedGame = game
+                            selectedTab = .characters
+                        }
+                        .contextMenu {
+                            Button("Edit Game", action: {
+                                editGame(game: game)
+                            })
+                            Divider()
+                            Button("Delete Game", role: .destructive, action: {
+                                confirmDelete(game: game)
+                            })
+                        }
                     }
                     .onDelete(perform: deleteGames)
                 }
@@ -170,20 +168,6 @@ struct GamesListView: View {
         }
     }
     #endif
-}
-
-fileprivate struct ListLabelView: View {
-    var text: String
-    
-    var body: some View {
-        HStack {
-            Text(text)
-            Spacer()
-            Image(systemName: "chevron.right")
-                .font(.system(size: 13, weight: .semibold))
-                .opacity(0.3)
-        }
-    }
 }
 
 struct GamesListView_Previews: PreviewProvider {
