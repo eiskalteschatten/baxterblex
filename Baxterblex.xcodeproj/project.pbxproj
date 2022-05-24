@@ -59,8 +59,6 @@
 		93C526B1283B891800371B6A /* Baxterblex.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 93C52685283B891600371B6A /* Baxterblex.xcdatamodeld */; };
 		93C526B2283B891800371B6A /* BaxterblexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C52687283B891600371B6A /* BaxterblexApp.swift */; };
 		93C526B3283B891800371B6A /* BaxterblexApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C52687283B891600371B6A /* BaxterblexApp.swift */; };
-		93C526B4283B891800371B6A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C52688283B891600371B6A /* ContentView.swift */; };
-		93C526B5283B891800371B6A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C52688283B891600371B6A /* ContentView.swift */; };
 		93C526B6283B891800371B6A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C52689283B891600371B6A /* Persistence.swift */; };
 		93C526B7283B891800371B6A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C52689283B891600371B6A /* Persistence.swift */; };
 		93C526B8283B891800371B6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C5268A283B891800371B6A /* Assets.xcassets */; };
@@ -115,7 +113,6 @@
 		934865B7283D29AD005497A1 /* GamesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesListView.swift; sourceTree = "<group>"; };
 		93C52686283B891600371B6A /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		93C52687283B891600371B6A /* BaxterblexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaxterblexApp.swift; sourceTree = "<group>"; };
-		93C52688283B891600371B6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		93C52689283B891600371B6A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		93C5268A283B891800371B6A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		93C5268F283B891800371B6A /* Baxterblex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Baxterblex.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,8 +165,8 @@
 				93486563283BF6F7005497A1 /* GameView.swift */,
 				9348657B283C001E005497A1 /* iOSGameTabView.swift */,
 				9348657D283C0072005497A1 /* MacGameTabView.swift */,
-				933CE3CB283BBF5C00ADBE50 /* EditGame */,
 				934865B7283D29AD005497A1 /* GamesListView.swift */,
+				933CE3CB283BBF5C00ADBE50 /* EditGame */,
 			);
 			path = Games;
 			sourceTree = "<group>";
@@ -283,7 +280,6 @@
 			children = (
 				93C52689283B891600371B6A /* Persistence.swift */,
 				93C52687283B891600371B6A /* BaxterblexApp.swift */,
-				93C52688283B891600371B6A /* ContentView.swift */,
 				933CE3B0283BB66200ADBE50 /* Games */,
 				93486566283BF73B005497A1 /* Dashboard */,
 				93486567283BF742005497A1 /* Characters */,
@@ -513,7 +509,6 @@
 				934865A6283D2037005497A1 /* iOSGearView.swift in Sources */,
 				934865B6283D221A005497A1 /* SessionsView.swift in Sources */,
 				934865AE283D2185005497A1 /* iOSAccountingView.swift in Sources */,
-				93C526B4283B891800371B6A /* ContentView.swift in Sources */,
 				9348659B283CF370005497A1 /* EditCharacterModel.swift in Sources */,
 				9348656C283BF774005497A1 /* DashboardView.swift in Sources */,
 				934865B5283D2214005497A1 /* iOSSessionsView.swift in Sources */,
@@ -549,7 +544,6 @@
 				9348657E283C0072005497A1 /* MacGameTabView.swift in Sources */,
 				934865B2283D2201005497A1 /* MacSessionsView.swift in Sources */,
 				934865B4283D2201005497A1 /* SessionsView.swift in Sources */,
-				93C526B5283B891800371B6A /* ContentView.swift in Sources */,
 				93486599283CF304005497A1 /* EditCharacterView.swift in Sources */,
 				933CE3DA283BC99B00ADBE50 /* Constants.swift in Sources */,
 				934865B9283D29AD005497A1 /* GamesListView.swift in Sources */,

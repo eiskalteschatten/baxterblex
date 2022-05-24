@@ -18,6 +18,10 @@ struct CharactersView: View {
             MacCharactersView(game: game)
             #endif
         }
+        else {
+            Text("No game selected.")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
 }
 

@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct iOSGameTabView: View {
-    // TODO: change default to .dashboard as soon as the dashboard is implemented
-    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .characters
+    @EnvironmentObject private var gameStore: GameStore
+    
+    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .games
     
     var body: some View {
         TabView(selection: $selectedTab) {
@@ -48,6 +49,11 @@ struct iOSGameTabView: View {
                     Label("Sessions", systemImage: "rectangle.stack.fill")
                 }
                 .tag(GameViewTabs.sessions)
+        }
+        .onAppear {
+            if gameStore.selectedGame == nil {
+                selectedTab = .games
+            }
         }
     }
 }

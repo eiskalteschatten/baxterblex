@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct SessionsView: View {
+    @EnvironmentObject var gameStore: GameStore
+    
     var body: some View {
-        #if os(iOS)
-        iOSSessionsView()
-        #else
-        MacSessionsView()
-        #endif
+        if let game = gameStore.selectedGame {
+            #if os(iOS)
+            iOSSessionsView()
+            #else
+            MacSessionsView()
+            #endif
+        }
+        else {
+            Text("No game selected.")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        }
     }
 }
 
