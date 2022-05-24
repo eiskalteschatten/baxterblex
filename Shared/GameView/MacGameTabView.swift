@@ -12,7 +12,8 @@ struct MacGameTabView: View {
         case dashboard, characters, gear, accounting, sessions
     }
     
-    @SceneStorage("selectedGameViewTab") private var selectedTab: Tabs = .dashboard
+    // TODO: change default to .dashboard as soon as the dashboard is implemented
+    @SceneStorage("selectedGameViewTab") private var selectedTab: Tabs = .characters
     
     var body: some View {
         VStack {

@@ -30,6 +30,7 @@ struct ColumnCharactersView: View {
                 }
                 .listStyle(.plain)
                 
+                #if os(macOS)
                 VStack(alignment: .center) {
                     Spacer()
 
@@ -38,9 +39,10 @@ struct ColumnCharactersView: View {
                     } label : {
                         Label("Create a Character", systemImage: "person.badge.plus")
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(.borderless)
                     .padding(.bottom, 10)
                 }
+                #endif
             }
             .frame(width: 300)
                 
