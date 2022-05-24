@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BottomOfListButtonStyle: ButtonStyle {
+struct RoundedFlatButtonStyle: ButtonStyle {
     @Environment(\.colorScheme) var colorScheme
     @State private var isHovering = false
     

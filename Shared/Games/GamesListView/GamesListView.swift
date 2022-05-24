@@ -79,7 +79,7 @@ struct GamesListView: View {
             Button(action: { gameStore.showEditGameSheet.toggle() }) {
                 Label("Create a New Game", systemImage: "plus.circle")
             }
-            .buttonStyle(BottomOfListButtonStyle())
+            .buttonStyle(RoundedFlatButtonStyle())
             .padding(.bottom, 15)
         }
         .sheet(isPresented: $gameStore.showEditGameSheet) {
