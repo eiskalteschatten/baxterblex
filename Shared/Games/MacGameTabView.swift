@@ -29,6 +29,14 @@ struct MacGameTabView: View {
             }
         }
         .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button {
+                    gameStore.selectedGame = nil
+                } label: {
+                    Label("Back to Games", systemImage: "chevron.left")
+                }
+            }
+            
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $selectedTab) {
 //                    Text("Dashboard")

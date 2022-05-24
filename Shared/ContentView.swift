@@ -41,7 +41,7 @@ struct ContentView: View {
                     .bold()
                 #endif
                 
-                List(selection: $selectedGameURL) {
+                List {
                     Section("Games") {
                         ForEach(games.filter { !$0.archived }) { game in
                             ListLabelView(text: game.name ?? DEFAULT_GAME_NAME)
