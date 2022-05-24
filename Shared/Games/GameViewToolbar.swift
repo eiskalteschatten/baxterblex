@@ -40,7 +40,11 @@ fileprivate struct GameViewToolbarCompact: View {
         case .dashboard:
             EmptyView()
         case .characters:
-            Button(action: { gameStore.createCharacter = true }) {
+            Button {
+                withAnimation {
+                    gameStore.createCharacter = true
+                }
+            } label: {
                 Label("Create a Character", systemImage: "person.badge.plus")
             }
         case .gear:

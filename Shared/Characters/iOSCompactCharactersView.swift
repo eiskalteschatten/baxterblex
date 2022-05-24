@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct iOSCompactCharactersView: View {
+    @EnvironmentObject var gameStore: GameStore
+    
     var game: Game
     
-    @State private var selectedCharacter: Character?
     @FetchRequest private var characters: FetchedResults<Character>
     
     init(game: Game) {
@@ -23,15 +24,19 @@ struct iOSCompactCharactersView: View {
     }
     
     var body: some View {
-        if let character = selectedCharacter {
-            Text("TODO: show edit character screen")
+        let showEditCharacterView = gameStore.createCharacter || gameStore.selectedCharacter != nil
+        
+        if showEditCharacterView {
+            EditCharacterView(character: gameStore.selectedCharacter)
+                .transition(.slide)
         }
         else {
             // TODO: simulate a stacked navigation view
-            List(characters, id: \.self, selection: $selectedCharacter) { character in
+            List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
             .listStyle(.plain)
+            .transition(.slide)
         }
     }
 }
