@@ -60,7 +60,7 @@ struct GamesListView: View {
                             }
                         }
                     }
-                    .padding(.top, 15)
+                    .padding(.vertical, 15)
 
                     VStack {
                         Section("Archived Games") {

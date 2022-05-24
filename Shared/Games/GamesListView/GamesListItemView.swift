@@ -36,11 +36,7 @@ struct GamesListItemView: View {
             }
             .frame(height: 35)
         }
-        #if os(macOS)
         .buttonStyle(RoundedFlatButtonStyle())
-        #else
-        .buttonStyle(.plain)
-        #endif
     }
 }
 
