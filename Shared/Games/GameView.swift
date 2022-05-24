@@ -12,24 +12,19 @@ enum GameViewTabs: Int {
 }
 
 struct GameView: View {
-    var game: Game
+    @EnvironmentObject private var gameStore: GameStore
     
-    @StateObject private var gameStore = GameStore()
+    var game: Game
     
     var body: some View {
         Group {
             #if os(iOS)
             iOSGameTabView()
-                .environmentObject(gameStore)
                 .navigationTitle(game.name ?? DEFAULT_GAME_NAME)
             #else
             MacGameTabView()
-                .environmentObject(gameStore)
                 .navigationTitle(game.name ?? DEFAULT_GAME_NAME)
             #endif
-        }
-        .onAppear {
-            gameStore.selectedGame = game
         }
         .onDisappear {
             gameStore.selectedGame = nil

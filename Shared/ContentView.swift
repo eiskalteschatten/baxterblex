@@ -13,9 +13,10 @@ struct ContentView: View {
     
     @SceneStorage("selectedGameURL") private var selectedGameURL: URL?
     
+    @StateObject private var gameStore = GameStore()
+    
     @State private var showEditSheet = false
     @State private var gameToEdit: Game?
-    @State private var tempSelectedGame: Game?
     
     #if os(iOS)
     @State private var presentDeleteAlert = false
@@ -28,8 +29,9 @@ struct ContentView: View {
     private var games: FetchedResults<Game>
 
     var body: some View {
-        if let game = tempSelectedGame {
+        if let game = gameStore.selectedGame {
             GameView(game: game)
+                .environmentObject(gameStore)
         }
         else {
             VStack {
@@ -38,7 +40,7 @@ struct ContentView: View {
                         ForEach(games.filter { !$0.archived }) { game in
                             Button {
                                 selectedGameURL = game.objectID.uriRepresentation()
-                                tempSelectedGame = game
+                                gameStore.selectedGame = game
                             } label: {
                                 Text(game.name ?? DEFAULT_GAME_NAME)
                             }
@@ -59,7 +61,7 @@ struct ContentView: View {
                         ForEach(games.filter { $0.archived }) { game in
                             Button {
                                 selectedGameURL = game.objectID.uriRepresentation()
-                                tempSelectedGame = game
+                                gameStore.selectedGame = game
                             } label: {
                                 Text(game.name ?? DEFAULT_GAME_NAME)
                             }
