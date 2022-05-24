@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ColumnCharactersView: View {
-    @EnvironmentObject var characterStore: CharacterStore
+    @EnvironmentObject var gameStore: GameStore
     
     var game: Game
     
@@ -24,8 +24,10 @@ struct ColumnCharactersView: View {
     }
     
     var body: some View {
-        HStack {
-            List(characters, id: \.self, selection: $characterStore.selectedCharacter) { character in
+        let showEditCharacterView = gameStore.createCharacter || gameStore.selectedCharacter != nil
+        
+        HStack(alignment: showEditCharacterView ? .top : .center) {
+            List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
             .listStyle(.plain)
@@ -34,8 +36,9 @@ struct ColumnCharactersView: View {
             Divider()
             
             Group {
-                if let character = characterStore.selectedCharacter {
-                    EditCharacterView(character: character)
+                if showEditCharacterView {
+                    EditCharacterView(character: gameStore.selectedCharacter)
+                        .padding(15)
                 }
                 else {
                     Text("No character selected")
@@ -44,6 +47,9 @@ struct ColumnCharactersView: View {
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
+        .onChange(of: gameStore.selectedCharacter) { _ in
+            gameStore.createCharacter = false
+        }
     }
 }
 

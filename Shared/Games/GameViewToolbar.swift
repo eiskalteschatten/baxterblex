@@ -31,6 +31,8 @@ struct GameViewToolbar: ToolbarContent {
 }
 
 fileprivate struct GameViewToolbarCompact: View {
+    @EnvironmentObject var gameStore: GameStore
+    
     var selectedTab: GameViewTabs
 
     var body: some View {
@@ -38,7 +40,7 @@ fileprivate struct GameViewToolbarCompact: View {
         case .dashboard:
             EmptyView()
         case .characters:
-            Button(action: {  }) {
+            Button(action: { gameStore.createCharacter = true }) {
                 Label("Create a Character", systemImage: "person.badge.plus")
             }
         case .gear:
@@ -58,6 +60,8 @@ fileprivate struct GameViewToolbarCompact: View {
 }
 
 fileprivate struct GameViewToolbarLarge: View {
+    @EnvironmentObject var gameStore: GameStore
+    
     var selectedTab: GameViewTabs
 
     var body: some View {
@@ -69,7 +73,7 @@ fileprivate struct GameViewToolbarLarge: View {
         case .dashboard:
             EmptyView()
         case .characters:
-            Button(action: {  }) {
+            Button(action: { gameStore.createCharacter = true }) {
                 Label("Create a Character", systemImage: "person.badge.plus")
             }
         case .gear:

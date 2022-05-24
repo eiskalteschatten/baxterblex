@@ -10,7 +10,7 @@ import SwiftUI
 final class EditCharacterModel: AbstractEditModel {
     private var character: Character?
     
-    @Published var name: String = DEFAULT_CHARACTER_NAME
+    @Published var name: String = ""
     @Published var picture: Data?
     
     init(character: Character? = nil) {
