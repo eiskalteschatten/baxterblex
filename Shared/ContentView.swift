@@ -33,7 +33,6 @@ struct ContentView: View {
                     Section("Games") {
                         ForEach(games.filter { !$0.archived }) { game in
                             NavigationLink(
-                                // TODO: keep track of selected game
                                 destination: GameView(game: game),
                                 tag: game.objectID.uriRepresentation(),
                                 selection: $selectedGameURL,
@@ -56,7 +55,6 @@ struct ContentView: View {
                     Section("Archived Games") {
                         ForEach(games.filter { $0.archived }) { game in
                             NavigationLink(
-                                // TODO: keep track of selected game
                                 destination: GameView(game: game),
                                 tag: game.objectID.uriRepresentation(),
                                 selection: $selectedGameURL,
