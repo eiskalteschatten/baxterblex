@@ -12,6 +12,7 @@ struct GamesListView: View {
     @EnvironmentObject private var gameStore: GameStore
     
     @SceneStorage("selectedGameURL") private var selectedGameURL: URL?
+    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .games
     
     @State private var gameToEdit: Game?
     
@@ -40,6 +41,7 @@ struct GamesListView: View {
                             .onTapGesture {
                                 selectedGameURL = game.objectID.uriRepresentation()
                                 gameStore.selectedGame = game
+                                selectedTab = .characters
                             }
                             .contextMenu {
                                 Button("Edit Game", action: {
@@ -60,6 +62,7 @@ struct GamesListView: View {
                             .onTapGesture {
                                 selectedGameURL = game.objectID.uriRepresentation()
                                 gameStore.selectedGame = game
+                                selectedTab = .characters
                             }
                             .contextMenu {
                                 Button("Edit Game", action: {

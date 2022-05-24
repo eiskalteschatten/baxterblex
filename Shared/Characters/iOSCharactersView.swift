@@ -30,15 +30,6 @@ struct iOSCharactersView: View {
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button {
-                        gameStore.selectedGame = nil
-                    } label: {
-                        Label("Back to Games", systemImage: "chevron.left")
-                            .font(.system(size: 18, weight: .semibold))
-                    }
-                }
-                
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     if horizontalSizeClass == .compact {
                         Button (action: { gameStore.createCharacter = true }) {
