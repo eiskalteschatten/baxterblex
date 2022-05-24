@@ -16,6 +16,8 @@ struct MacGameTabView: View {
     var body: some View {
         VStack {
             switch selectedTab {
+            case .games:
+                GamesListView()
             case .dashboard:
                 DashboardView()
             case .characters:
@@ -29,16 +31,11 @@ struct MacGameTabView: View {
             }
         }
         .toolbar {
-            ToolbarItem(placement: .navigation) {
-                Button {
-                    gameStore.selectedGame = nil
-                } label: {
-                    Label("Back to Games", systemImage: "chevron.left")
-                }
-            }
-            
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $selectedTab) {
+                    Text("Games")
+                        .tag(GameViewTabs.games)
+                    
 //                    Text("Dashboard")
 //                        .tag(GameViewTabs.dashboard)
 //                    
@@ -61,6 +58,10 @@ struct MacGameTabView: View {
                 Spacer()
                 
                 switch selectedTab {
+                case .games:
+                    Button(action: { gameStore.showEditGameSheet.toggle() }) {
+                        Label("Create a New Game", systemImage: "plus.circle")
+                    }
                 case .dashboard:
                     EmptyView()
                 case .characters:

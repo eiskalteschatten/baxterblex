@@ -10,6 +10,7 @@ import SwiftUI
 final class GameStore: ObservableObject {
     // Games
     @Published var selectedGame: Game?
+    @Published var showEditGameSheet: Bool = false
     
     // Characters
     @Published var selectedCharacter: Character?

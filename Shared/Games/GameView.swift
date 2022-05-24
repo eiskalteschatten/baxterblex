@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum GameViewTabs: Int {
-    case dashboard, characters, gear, accounting, sessions
+    case games, dashboard, characters, gear, accounting, sessions
 }
 
 struct GameView: View {
