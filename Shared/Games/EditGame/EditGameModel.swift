@@ -8,8 +8,7 @@
 import SwiftUI
 import CoreData
 
-final class EditGameModel: ObservableObject {
-    private var viewContext: NSManagedObjectContext?
+final class EditGameModel: AbstractEditModel {
     private var game: Game?
     
     @Published var name: String = ""
@@ -20,13 +19,12 @@ final class EditGameModel: ObservableObject {
     @Published var archived: Bool = false
     
     init(game: Game? = nil) {
-        let persistenceController = PersistenceController.shared
-        viewContext = persistenceController.container.viewContext
+        super.init()
         self.game = game
         initVariables()
     }
     
-    private func initVariables() {
+    override func initVariables() {
         if let unwrapped = game {
             name = unwrapped.name ?? name
             addStartDate = unwrapped.startDate != nil
@@ -37,7 +35,7 @@ final class EditGameModel: ObservableObject {
         }
     }
     
-    func save() {
+    override func save() {
         withAnimation {
             game = game != nil ? game : Game(context: viewContext!)
             
