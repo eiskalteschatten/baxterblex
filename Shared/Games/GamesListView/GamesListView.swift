@@ -26,6 +26,12 @@ struct GamesListView: View {
     )
     private var games: FetchedResults<Game>
     
+    #if os(macOS)
+    private var gameGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    #else
+    private var gameGrid = [GridItem(.flexible()), GridItem(.flexible())]
+    #endif
+    
     var body: some View {
         VStack(spacing: 15) {
             #if os(iOS)
@@ -34,48 +40,52 @@ struct GamesListView: View {
                 .bold()
             #endif
             
-            List {
-                Section("Games") {
-                    ForEach(games.filter { !$0.archived }) { game in
-                        GamesListItemView(game: game) {
-                            selectedGameURL = game.objectID.uriRepresentation()
-                            gameStore.selectedGame = game
-                            selectedTab = .characters
-                        }
-                        .contextMenu {
-                            Button("Edit Game", action: {
-                                editGame(game: game)
-                            })
-                            Divider()
-                            Button("Delete Game", role: .destructive, action: {
-                                confirmDelete(game: game)
-                            })
-                        }
-                    }
-                    .onDelete(perform: deleteGames)
-                }
-                
-                Section("Archived Games") {
-                    ForEach(games.filter { $0.archived }) { game in
-                        GamesListItemView(game: game) {
-                            selectedGameURL = game.objectID.uriRepresentation()
-                            gameStore.selectedGame = game
-                            selectedTab = .characters
-                        }
-                        .contextMenu {
-                            Button("Edit Game", action: {
-                                editGame(game: game)
-                            })
-                            Divider()
-                            Button("Delete Game", role: .destructive, action: {
-                                confirmDelete(game: game)
-                            })
+            ScrollView {
+                VStack {
+                    LazyVGrid(columns: gameGrid, spacing: 15) {
+                        ForEach(games.filter { !$0.archived }) { game in
+                            GameListItemTileView(game: game) {
+                                selectedGameURL = game.objectID.uriRepresentation()
+                                gameStore.selectedGame = game
+                                selectedTab = .characters
+                            }
+                            .contextMenu {
+                                Button("Edit Game", action: {
+                                    editGame(game: game)
+                                })
+                                Divider()
+                                Button("Delete Game", role: .destructive, action: {
+                                    confirmDelete(game: game)
+                                })
+                            }
                         }
                     }
-                    .onDelete(perform: deleteGames)
+                    .padding(.top, 15)
+
+                    VStack {
+                        Section("Archived Games") {
+                            ForEach(games.filter { $0.archived }) { game in
+                                GamesListItemView(game: game) {
+                                    selectedGameURL = game.objectID.uriRepresentation()
+                                    gameStore.selectedGame = game
+                                    selectedTab = .characters
+                                }
+                                .contextMenu {
+                                    Button("Edit Game", action: {
+                                        editGame(game: game)
+                                    })
+                                    Divider()
+                                    Button("Delete Game", role: .destructive, action: {
+                                        confirmDelete(game: game)
+                                    })
+                                }
+                            }
+                            .onDelete(perform: deleteGames)
+                        }
+                    }
                 }
             }
-            
+                
             Button(action: { gameStore.showEditGameSheet.toggle() }) {
                 Label("Create a New Game", systemImage: "plus.circle")
             }
