@@ -8,15 +8,19 @@
 import SwiftUI
 
 struct EditCharacterView: View {
+    var character: Character?
     
+    @ObservedObject private var editCharacterModel: EditCharacterModel
+    
+    init(character: Character? = nil) {
+        self.editCharacterModel = EditCharacterModel(character: character)
+        self.character = character
+    }
     
     var body: some View {
-//        if let character = selectedCharacter {
-//            Text("something here")
-//        }
-//        else {
-            Text("No character selected")
-//        }
+        Form {
+            
+        }
     }
 }
 
