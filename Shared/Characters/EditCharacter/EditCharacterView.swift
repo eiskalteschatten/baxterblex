@@ -19,8 +19,9 @@ struct EditCharacterView: View {
     
     var body: some View {
         Form {
-            TextField("Name", text: $editCharacterModel.name)
-                .padding(.bottom, 15)
+            Section {
+                TextField("Name", text: $editCharacterModel.name)
+            }
         }
     }
 }

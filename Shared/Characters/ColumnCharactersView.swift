@@ -38,7 +38,9 @@ struct ColumnCharactersView: View {
             Group {
                 if showEditCharacterView {
                     EditCharacterView(character: gameStore.selectedCharacter)
+                        #if os(macOS)
                         .padding(15)
+                        #endif
                 }
                 else {
                     Text("No character selected")
