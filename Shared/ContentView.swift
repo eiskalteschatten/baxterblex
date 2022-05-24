@@ -35,6 +35,14 @@ struct ContentView: View {
         }
         else {
             VStack {
+                Text("Baxterblex")
+                    .font(.system(.title))
+                    .bold()
+                
+                Button(action: { showEditSheet.toggle() }) {
+                    Label("Create a New Game", systemImage: "plus.circle")
+                }
+                
                 List {
                     Section("Games") {
                         ForEach(games.filter { !$0.archived }) { game in
@@ -82,36 +90,12 @@ struct ContentView: View {
             .sheet(isPresented: $showEditSheet) {
                 EditGameSheet(game: gameToEdit)
             }
-            .toolbar {
-                #if os(iOS)
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: { showEditSheet.toggle() }) {
-                        Label("Create a New Game", systemImage: "plus.circle")
-                    }
-                    
-                    EditButton()
-                }
-                #else
-                ToolbarItemGroup {
-                    Button(action: toggleSidebar, label: {
-                        Image(systemName: "sidebar.leading")
-                    })
-                    
-                    Button(action: { showEditSheet.toggle() }) {
-                        Label("Create a New Game", systemImage: "plus.circle")
-                    }
-                    
-                    Spacer()
-                }
-                #endif
-            }
             .onChange(of: showEditSheet) { show in
                 if !show {
                     gameToEdit = nil
                 }
             }
             #if os(iOS)
-            .navigationBarTitle("Baxterblex")
             .alert("Are you sure you want to delete this game?", isPresented: $presentDeleteAlert, actions: {
                 Button("No", role: .cancel, action: {
                     gameToEdit = nil

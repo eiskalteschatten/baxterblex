@@ -9,6 +9,7 @@ import SwiftUI
 
 struct iOSCharactersView: View {
     @EnvironmentObject var gameStore: GameStore
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
     
     var game: Game
     
@@ -27,6 +28,20 @@ struct iOSCharactersView: View {
         NavigationView {
             List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
+            }
+            .toolbar {
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    if horizontalSizeClass == .compact {
+                        Button (action: { gameStore.createCharacter = true }) {
+                            Label("Create a Character", systemImage: "person.badge.plus")
+                        }
+                    }
+                    else {
+                        Button (action: { gameStore.createCharacter = true }) {
+                            Label("Create a Character", systemImage: "person.badge.plus")
+                        }
+                    }
+                }
             }
             
             Text("No character selected")

@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct iOSGameTabView: View {
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
-    
     // TODO: change default to .dashboard as soon as the dashboard is implemented
     @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .characters
     
@@ -44,9 +42,6 @@ struct iOSGameTabView: View {
                     Label("Sessions", systemImage: "rectangle.stack.fill")
                 }
                 .tag(GameViewTabs.sessions)
-        }
-        .toolbar {
-            GameViewToolbar(selectedTab: selectedTab, horizontalSizeClass: horizontalSizeClass)
         }
     }
 }
