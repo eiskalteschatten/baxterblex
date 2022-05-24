@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct MacGameTabView: View {
+    @EnvironmentObject var gameStore: GameStore
+    
     // TODO: change default to .dashboard as soon as the dashboard is implemented
     @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .characters
     
@@ -47,7 +49,30 @@ struct MacGameTabView: View {
                 .pickerStyle(SegmentedPickerStyle())
             }
             
-            GameViewToolbar(selectedTab: selectedTab)
+            ToolbarItemGroup {
+                Spacer()
+                
+                switch selectedTab {
+                case .dashboard:
+                    EmptyView()
+                case .characters:
+                    Button(action: { gameStore.createCharacter = true }) {
+                        Label("Create a Character", systemImage: "person.badge.plus")
+                    }
+                case .gear:
+                    Button(action: {  }) {
+                        Label("Add Gear", systemImage: "plus.circle")
+                    }
+                case .accounting:
+                    Button(action: {  }) {
+                        Label("Add an Account", systemImage: "plus.circle")
+                    }
+                case .sessions:
+                    Button(action: {  }) {
+                        Label("Add a Session", systemImage: "rectangle.stack.badge.plus")
+                    }
+                }
+            }
         }
     }
 }
