@@ -11,7 +11,7 @@ import CoreData
 final class EditGameModel: AbstractEditModel {
     private var game: Game?
     
-    @Published var name: String = ""
+    @Published var name: String = DEFAULT_GAME_NAME
     @Published var addStartDate: Bool = false
     @Published var startDate: Date = Date()
     @Published var addEndDate: Bool = false

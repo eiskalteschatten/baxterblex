@@ -33,12 +33,7 @@ struct ColumnCharactersView: View {
             Divider()
             
             Group {
-                if let character = selectedCharacter {
-                    Text("TODO: show edit character screen")
-                }
-                else {
-                    Text("No character selected")
-                }
+                EditCharacterView()
             }
             .frame(maxWidth: .infinity)
         }

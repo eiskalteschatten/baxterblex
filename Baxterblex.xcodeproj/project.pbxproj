@@ -40,6 +40,12 @@
 		93486593283CE719005497A1 /* ButtomOfListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486591283CE719005497A1 /* ButtomOfListButton.swift */; };
 		93486595283CECBA005497A1 /* GameViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486594283CECBA005497A1 /* GameViewToolbar.swift */; };
 		93486596283CECBA005497A1 /* GameViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486594283CECBA005497A1 /* GameViewToolbar.swift */; };
+		93486598283CF304005497A1 /* EditCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486597283CF304005497A1 /* EditCharacterView.swift */; };
+		93486599283CF304005497A1 /* EditCharacterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486597283CF304005497A1 /* EditCharacterView.swift */; };
+		9348659B283CF370005497A1 /* EditCharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348659A283CF370005497A1 /* EditCharacterModel.swift */; };
+		9348659C283CF370005497A1 /* EditCharacterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348659A283CF370005497A1 /* EditCharacterModel.swift */; };
+		9348659F283CF404005497A1 /* AbstractEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348659E283CF404005497A1 /* AbstractEditModel.swift */; };
+		934865A0283CF404005497A1 /* AbstractEditModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348659E283CF404005497A1 /* AbstractEditModel.swift */; };
 		93C526A1283B891800371B6A /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A0283B891800371B6A /* Tests_iOS.swift */; };
 		93C526A3283B891800371B6A /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A2283B891800371B6A /* Tests_iOSLaunchTests.swift */; };
 		93C526AD283B891800371B6A /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526AC283B891800371B6A /* Tests_macOS.swift */; };
@@ -93,6 +99,9 @@
 		9348658D283CE14C005497A1 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		93486591283CE719005497A1 /* ButtomOfListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtomOfListButton.swift; sourceTree = "<group>"; };
 		93486594283CECBA005497A1 /* GameViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewToolbar.swift; sourceTree = "<group>"; };
+		93486597283CF304005497A1 /* EditCharacterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterView.swift; sourceTree = "<group>"; };
+		9348659A283CF370005497A1 /* EditCharacterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterModel.swift; sourceTree = "<group>"; };
+		9348659E283CF404005497A1 /* AbstractEditModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractEditModel.swift; sourceTree = "<group>"; };
 		93C52686283B891600371B6A /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		93C52687283B891600371B6A /* BaxterblexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaxterblexApp.swift; sourceTree = "<group>"; };
 		93C52688283B891600371B6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -174,6 +183,8 @@
 				9348656E283BF7E9005497A1 /* CharactersView.swift */,
 				93486582283C2A01005497A1 /* iOSCompactCharactersView.swift */,
 				93486584283C2A61005497A1 /* ColumnCharactersView.swift */,
+				93486597283CF304005497A1 /* EditCharacterView.swift */,
+				9348659A283CF370005497A1 /* EditCharacterModel.swift */,
 			);
 			path = Characters;
 			sourceTree = "<group>";
@@ -230,6 +241,14 @@
 			path = Elements;
 			sourceTree = "<group>";
 		};
+		9348659D283CF3ED005497A1 /* Abstract */ = {
+			isa = PBXGroup;
+			children = (
+				9348659E283CF404005497A1 /* AbstractEditModel.swift */,
+			);
+			path = Abstract;
+			sourceTree = "<group>";
+		};
 		93C5267F283B891600371B6A = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +275,7 @@
 				9348656A283BF762005497A1 /* Sessions */,
 				93486590283CE706005497A1 /* Elements */,
 				9348658C283CE138005497A1 /* Styles */,
+				9348659D283CF3ED005497A1 /* Abstract */,
 				933CE3D8283BC99B00ADBE50 /* Constants.swift */,
 				93C5268A283B891800371B6A /* Assets.xcassets */,
 				93C52685283B891600371B6A /* Baxterblex.xcdatamodeld */,
@@ -463,6 +483,7 @@
 				93486585283C2A61005497A1 /* ColumnCharactersView.swift in Sources */,
 				93486575283BF882005497A1 /* AccountingView.swift in Sources */,
 				93C526B6283B891800371B6A /* Persistence.swift in Sources */,
+				9348659F283CF404005497A1 /* AbstractEditModel.swift in Sources */,
 				933CE3CD283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
 				933CE3B2283BB67700ADBE50 /* EditGameSheet.swift in Sources */,
 				9348656F283BF7E9005497A1 /* CharactersView.swift in Sources */,
@@ -474,7 +495,9 @@
 				93486572283BF872005497A1 /* GearView.swift in Sources */,
 				93486580283C0BD8005497A1 /* GameStore.swift in Sources */,
 				93486578283BF894005497A1 /* SessionsView.swift in Sources */,
+				93486598283CF304005497A1 /* EditCharacterView.swift in Sources */,
 				93C526B4283B891800371B6A /* ContentView.swift in Sources */,
+				9348659B283CF370005497A1 /* EditCharacterModel.swift in Sources */,
 				9348656C283BF774005497A1 /* DashboardView.swift in Sources */,
 				933CE3D2283BC31400ADBE50 /* iOSEditGameForm.swift in Sources */,
 				933CE3D9283BC99B00ADBE50 /* Constants.swift in Sources */,
@@ -501,11 +524,14 @@
 				93486581283C0BD8005497A1 /* GameStore.swift in Sources */,
 				93486586283C2A61005497A1 /* ColumnCharactersView.swift in Sources */,
 				93C526B1283B891800371B6A /* Baxterblex.xcdatamodeld in Sources */,
+				934865A0283CF404005497A1 /* AbstractEditModel.swift in Sources */,
 				9348658F283CE14C005497A1 /* ButtonStyles.swift in Sources */,
 				9348656D283BF774005497A1 /* DashboardView.swift in Sources */,
 				9348657E283C0072005497A1 /* MacGameTabView.swift in Sources */,
 				93C526B5283B891800371B6A /* ContentView.swift in Sources */,
+				93486599283CF304005497A1 /* EditCharacterView.swift in Sources */,
 				933CE3DA283BC99B00ADBE50 /* Constants.swift in Sources */,
+				9348659C283CF370005497A1 /* EditCharacterModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
