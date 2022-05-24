@@ -87,9 +87,9 @@ struct ContentView: View {
                     Button {
                         showEditSheet.toggle()
                     } label: {
-                        Label("Create a New Game", systemImage: "plus")
+                        Label("Create a New Game", systemImage: "plus.circle")
                     }
-                    .buttonStyle(.plain)
+                    .buttonStyle(.borderless)
                     .padding(.bottom, 10)
                 }
                 #endif
@@ -101,7 +101,7 @@ struct ContentView: View {
                 }
                 ToolbarItem {
                     Button(action: { showEditSheet.toggle() }) {
-                        Label("Create a New Game", systemImage: "plus")
+                        Label("Create a New Game", systemImage: "plus.circle")
                     }
                 }
                 #else
