@@ -11,10 +11,11 @@ struct MacEditGameForm: View {
     @Environment(\.dismiss) var dismiss
     
     @ObservedObject var editGameModel: EditGameModel
+    var isEditing: Bool
     
     var body: some View {
         VStack {
-            Text("Create a New Game")
+            Text(isEditing ? "Edit Game" : "Create a New Game")
                 .font(.system(.title))
             
             Form {
@@ -70,6 +71,6 @@ struct MacEditGameForm_Previews: PreviewProvider {
     @StateObject static var editGameModel = EditGameModel()
     
     static var previews: some View {
-        MacEditGameForm(editGameModel: editGameModel)
+        MacEditGameForm(editGameModel: editGameModel, isEditing: false)
     }
 }

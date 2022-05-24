@@ -11,6 +11,7 @@ struct iOSEditGameForm: View {
     @Environment(\.dismiss) var dismiss
     
     @ObservedObject var editGameModel: EditGameModel
+    var isEditing: Bool
     
     var body: some View {
         NavigationView {
@@ -41,7 +42,7 @@ struct iOSEditGameForm: View {
                     Toggle("Archive Game", isOn: $editGameModel.archived)
                 }
             }
-            .navigationBarTitle(Text("Create a New Game"), displayMode: .inline)
+            .navigationBarTitle(Text(isEditing ? "Edit Game" : "Create a New Game"), displayMode: .inline)
                 .navigationBarItems(
                     leading: Button(action: {
                         dismiss()
@@ -63,6 +64,6 @@ struct iOSEditGameForm_Previews: PreviewProvider {
     @StateObject static var editGameModel = EditGameModel()
     
     static var previews: some View {
-        iOSEditGameForm(editGameModel: editGameModel)
+        iOSEditGameForm(editGameModel: editGameModel, isEditing: false)
     }
 }

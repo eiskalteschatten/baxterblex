@@ -9,18 +9,20 @@ import SwiftUI
 
 struct EditGameSheet: View {
     var game: Game?
+    private var isEditing: Bool
     
     @ObservedObject private var editGameModel: EditGameModel
     
     init(game: Game? = nil) {
         editGameModel = EditGameModel(game: game)
+        isEditing = game != nil
     }
     
     var body: some View {
         #if os(macOS)
-        MacEditGameForm(editGameModel: editGameModel)
+        MacEditGameForm(editGameModel: editGameModel, isEditing: isEditing)
         #else
-        iOSEditGameForm(editGameModel: editGameModel)
+        iOSEditGameForm(editGameModel: editGameModel, isEditing: isEditing)
         #endif
     }
 }
