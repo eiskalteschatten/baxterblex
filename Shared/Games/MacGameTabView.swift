@@ -29,11 +29,6 @@ struct MacGameTabView: View {
                 SessionsView()
             }
         }
-        .onAppear {
-            if gameStore.selectedGame == nil {
-                selectedTab = .games
-            }
-        }
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $selectedTab) {
@@ -72,18 +67,22 @@ struct MacGameTabView: View {
                     Button(action: { gameStore.createCharacter = true }) {
                         Label("Create a Character", systemImage: "person.badge.plus")
                     }
+                    .disabled(gameStore.selectedGame == nil)
                 case .gear:
                     Button(action: {  }) {
                         Label("Add Gear", systemImage: "plus.circle")
                     }
+                    .disabled(gameStore.selectedGame == nil)
                 case .accounting:
                     Button(action: {  }) {
                         Label("Add an Account", systemImage: "plus.circle")
                     }
+                    .disabled(gameStore.selectedGame == nil)
                 case .sessions:
                     Button(action: {  }) {
                         Label("Add a Session", systemImage: "rectangle.stack.badge.plus")
                     }
+                    .disabled(gameStore.selectedGame == nil)
                 }
             }
         }
