@@ -19,7 +19,7 @@ struct SessionsView: View {
             #endif
         }
         else {
-            Text("No game selected.")
+            Text("No game selected")
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
