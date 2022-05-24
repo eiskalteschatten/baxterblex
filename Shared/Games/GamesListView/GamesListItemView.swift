@@ -19,11 +19,10 @@ struct GamesListItemView: View {
                 
                 Spacer()
                 
-                VStack(alignment: .leading) {
+                VStack(alignment: .trailing) {
                     if let startDate = game.startDate {
                         Text("Starts on \(formatDateLong(startDate))")
                             .font(.caption)
-                            .padding(.trailing, 20)
                     }
                     
                     if let endDate = game.endDate {
