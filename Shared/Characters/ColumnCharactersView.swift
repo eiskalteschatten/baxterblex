@@ -24,12 +24,26 @@ struct ColumnCharactersView: View {
     
     var body: some View {
         HStack {
-            List(characters, id: \.self, selection: $selectedCharacter) { character in
-                Text(character.name ?? DEFAULT_CHARACTER_NAME)
+            ZStack {
+                List(characters, id: \.self, selection: $selectedCharacter) { character in
+                    Text(character.name ?? DEFAULT_CHARACTER_NAME)
+                }
+                .listStyle(.plain)
+                
+                VStack(alignment: .center) {
+                    Spacer()
+
+                    Button {
+                        // TODO
+                    } label : {
+                        Label("Create a Character", systemImage: "person.badge.plus")
+                    }
+                    .buttonStyle(.plain)
+                    .padding(.bottom, 10)
+                }
             }
-            .listStyle(.plain)
             .frame(width: 300)
-            
+                
             Divider()
             
             Group {
