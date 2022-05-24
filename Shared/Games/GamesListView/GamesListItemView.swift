@@ -15,18 +15,20 @@ struct GamesListItemView: View {
         Button(action: action) {
             HStack {
                 Text(game.name ?? DEFAULT_GAME_NAME)
+                    #if os(macOS)
                     .bold()
+                    #endif
                 
                 Spacer()
                 
                 VStack(alignment: .trailing) {
                     if let startDate = game.startDate {
-                        Text("Starts on \(formatDateLong(startDate))")
+                        Text("Starts: \(formatDateLong(startDate))")
                             .font(.caption)
                     }
                     
                     if let endDate = game.endDate {
-                        Text("Ends on \(formatDateLong(endDate))")
+                        Text("Ends: \(formatDateLong(endDate))")
                             .font(.caption)
                     }
                 }
