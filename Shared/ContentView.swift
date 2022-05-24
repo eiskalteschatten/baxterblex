@@ -106,6 +106,12 @@ struct ContentView: View {
             }, message: {
                 Text("Everything within the game will be deleted.")
             })
+            #else
+            .toolbar {
+                Button(action: { showEditSheet.toggle() }) {
+                    Label("Create a New Game", systemImage: "plus.circle")
+                }
+            }
             #endif
         }
     }
