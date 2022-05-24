@@ -13,6 +13,12 @@ struct iOSGameTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
+            GamesListView()
+                .tabItem {
+                    Label("Games", systemImage: "dice.fill")
+                }
+                .tag(GameViewTabs.games)
+            
 //                DashboardView()
 //                    .tabItem {
 //                        Label("Dashboard", systemImage: "square.grid.3x3.square")
