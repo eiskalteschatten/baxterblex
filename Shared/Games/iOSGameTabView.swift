@@ -9,44 +9,41 @@ import SwiftUI
 
 struct iOSGameTabView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
-    @EnvironmentObject var gameStore: GameStore
     
     // TODO: change default to .dashboard as soon as the dashboard is implemented
     @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .characters
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            if let game = gameStore.selectedGame {
-    //                DashboardView()
-    //                    .tabItem {
-    //                        Label("Dashboard", systemImage: "square.grid.3x3.square")
-    //                    }
-    //                    .tag(GameViewTabs.dashboard)
-                
-                CharactersView(game: game)
-                    .tabItem {
-                        Label("Characters", systemImage: "person.3.fill")
-                    }
-                    .tag(GameViewTabs.characters)
-                
-                GearView()
-                    .tabItem {
-                        Label("Gear", systemImage: "wrench.and.screwdriver.fill")
-                    }
-                    .tag(GameViewTabs.gear)
-                
-                AccountingView()
-                    .tabItem {
-                        Label("Accounting", systemImage: "dollarsign.square")
-                    }
-                    .tag(GameViewTabs.accounting)
-                
-                SessionsView()
-                    .tabItem {
-                        Label("Sessions", systemImage: "rectangle.stack.fill")
-                    }
-                    .tag(GameViewTabs.sessions)
-            }
+//                DashboardView()
+//                    .tabItem {
+//                        Label("Dashboard", systemImage: "square.grid.3x3.square")
+//                    }
+//                    .tag(GameViewTabs.dashboard)
+            
+            CharactersView()
+                .tabItem {
+                    Label("Characters", systemImage: "person.3.fill")
+                }
+                .tag(GameViewTabs.characters)
+            
+            GearView()
+                .tabItem {
+                    Label("Gear", systemImage: "wrench.and.screwdriver.fill")
+                }
+                .tag(GameViewTabs.gear)
+            
+            AccountingView()
+                .tabItem {
+                    Label("Accounting", systemImage: "dollarsign.square")
+                }
+                .tag(GameViewTabs.accounting)
+            
+            SessionsView()
+                .tabItem {
+                    Label("Sessions", systemImage: "rectangle.stack.fill")
+                }
+                .tag(GameViewTabs.sessions)
         }
         .toolbar {
             GameViewToolbar(selectedTab: selectedTab, horizontalSizeClass: horizontalSizeClass)

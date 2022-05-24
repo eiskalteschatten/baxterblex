@@ -8,26 +8,22 @@
 import SwiftUI
 
 struct MacGameTabView: View {
-    @EnvironmentObject var gameStore: GameStore
-    
     // TODO: change default to .dashboard as soon as the dashboard is implemented
     @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .characters
     
     var body: some View {
         VStack {
-            if let game = gameStore.selectedGame {
-                switch selectedTab {
-                case .dashboard:
-                    DashboardView()
-                case .characters:
-                    CharactersView(game: game)
-                case .gear:
-                    GearView()
-                case .accounting:
-                    AccountingView()
-                case .sessions:
-                    SessionsView()
-                }
+            switch selectedTab {
+            case .dashboard:
+                DashboardView()
+            case .characters:
+                CharactersView()
+            case .gear:
+                GearView()
+            case .accounting:
+                AccountingView()
+            case .sessions:
+                SessionsView()
             }
         }
         .toolbar {

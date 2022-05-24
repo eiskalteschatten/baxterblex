@@ -1,5 +1,5 @@
 //
-//  iOSCompactCharactersView.swift
+//  iOSCharactersView.swift
 //  Baxterblex (iOS)
 //
 //  Created by Alex Seifert on 23.05.22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct iOSCompactCharactersView: View {
+struct iOSCharactersView: View {
     @EnvironmentObject var gameStore: GameStore
     
     var game: Game
@@ -24,28 +24,21 @@ struct iOSCompactCharactersView: View {
     }
     
     var body: some View {
-        let showEditCharacterView = gameStore.createCharacter || gameStore.selectedCharacter != nil
-        
-        if showEditCharacterView {
-            EditCharacterView(character: gameStore.selectedCharacter)
-                .transition(.slide)
-        }
-        else {
-            // TODO: simulate a stacked navigation view
+        NavigationView {
             List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
-            .listStyle(.plain)
-            .transition(.slide)
+            
+            Text("No character selected")
         }
     }
 }
 
-struct iOSCompactCharactersView_Previews: PreviewProvider {
+struct iOSCharactersView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let game = context.registeredObjects.first(where: { $0 is Game }) as! Game
         
-        iOSCompactCharactersView(game: game)
+        iOSCharactersView(game: game)
     }
 }
