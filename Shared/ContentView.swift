@@ -34,58 +34,60 @@ struct ContentView: View {
                 .environmentObject(gameStore)
         }
         else {
-            VStack {
+            VStack(spacing: 15) {
+                #if os(iOS)
                 Text("Baxterblex")
                     .font(.system(.title))
                     .bold()
+                #endif
                 
-                Button(action: { showEditSheet.toggle() }) {
-                    Label("Create a New Game", systemImage: "plus.circle")
-                }
-                
-                List {
+                List(selection: $selectedGameURL) {
                     Section("Games") {
                         ForEach(games.filter { !$0.archived }) { game in
-                            Button {
-                                selectedGameURL = game.objectID.uriRepresentation()
-                                gameStore.selectedGame = game
-                            } label: {
-                                Text(game.name ?? DEFAULT_GAME_NAME)
-                            }
-                            .contextMenu {
-                                Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
-                                    editGame(game: game)
-                                })
-                                Divider()
-                                Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
-                                    confirmDelete(game: game)
-                                })
-                            }
+                            ListLabelView(text: game.name ?? DEFAULT_GAME_NAME)
+                                .onTapGesture {
+                                    selectedGameURL = game.objectID.uriRepresentation()
+                                    gameStore.selectedGame = game
+                                }
+                                .contextMenu {
+                                    Button("Edit Game", action: {
+                                        editGame(game: game)
+                                    })
+                                    Divider()
+                                    Button("Delete Game", role: .destructive, action: {
+                                        confirmDelete(game: game)
+                                    })
+                                }
                         }
                         .onDelete(perform: deleteGames)
                     }
                     
                     Section("Archived Games") {
                         ForEach(games.filter { $0.archived }) { game in
-                            Button {
-                                selectedGameURL = game.objectID.uriRepresentation()
-                                gameStore.selectedGame = game
-                            } label: {
-                                Text(game.name ?? DEFAULT_GAME_NAME)
-                            }
-                            .contextMenu {
-                                Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
-                                    editGame(game: game)
-                                })
-                                Divider()
-                                Button("Delete \"\(game.name ?? DEFAULT_GAME_NAME)\"", role: .destructive, action: {
-                                    confirmDelete(game: game)
-                                })
-                            }
+                            ListLabelView(text: game.name ?? DEFAULT_GAME_NAME)
+                                .onTapGesture {
+                                    selectedGameURL = game.objectID.uriRepresentation()
+                                    gameStore.selectedGame = game
+                                }
+                                .contextMenu {
+                                    Button("Edit Game", action: {
+                                        editGame(game: game)
+                                    })
+                                    Divider()
+                                    Button("Delete Game", role: .destructive, action: {
+                                        confirmDelete(game: game)
+                                    })
+                                }
                         }
                         .onDelete(perform: deleteGames)
                     }
                 }
+                
+                Button(action: { showEditSheet.toggle() }) {
+                    Label("Create a New Game", systemImage: "plus.circle")
+                }
+                .buttonStyle(BottomOfListButtonStyle())
+                .padding(.bottom, 15)
             }
             .sheet(isPresented: $showEditSheet) {
                 EditGameSheet(game: gameToEdit)
@@ -104,8 +106,6 @@ struct ContentView: View {
             }, message: {
                 Text("Everything within the game will be deleted.")
             })
-            #else
-            .frame(minWidth: 175)
             #endif
         }
     }
@@ -190,6 +190,20 @@ extension UISplitViewController {
     }
 }
 #endif
+
+fileprivate struct ListLabelView: View {
+    var text: String
+    
+    var body: some View {
+        HStack {
+            Text(text)
+            Spacer()
+            Image(systemName: "chevron.right")
+                .font(.system(size: 13, weight: .semibold))
+                .opacity(0.3)
+        }
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
