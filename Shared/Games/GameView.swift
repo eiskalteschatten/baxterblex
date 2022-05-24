@@ -20,7 +20,7 @@ struct GameView: View {
             iOSGameTabView()
             #else
             MacGameTabView()
-                .navigationTitle(game.name ?? DEFAULT_GAME_NAME)
+                .navigationTitle(gameStore.selectedGame?.name ?? "Baxterblex")
             #endif
         }
     }
