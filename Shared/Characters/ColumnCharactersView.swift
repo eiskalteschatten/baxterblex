@@ -31,16 +31,12 @@ struct ColumnCharactersView: View {
                 .listStyle(.plain)
                 
                 #if os(macOS)
-                VStack(alignment: .center) {
-                    Spacer()
-
+                ButtomOfListButton {
                     Button {
                         // TODO
                     } label : {
                         Label("Create a Character", systemImage: "person.badge.plus")
                     }
-                    .buttonStyle(.borderless)
-                    .padding(.bottom, 10)
                 }
                 #endif
             }

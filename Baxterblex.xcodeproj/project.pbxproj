@@ -34,6 +34,10 @@
 		93486583283C2A01005497A1 /* iOSCompactCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486582283C2A01005497A1 /* iOSCompactCharactersView.swift */; };
 		93486585283C2A61005497A1 /* ColumnCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486584283C2A61005497A1 /* ColumnCharactersView.swift */; };
 		93486586283C2A61005497A1 /* ColumnCharactersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486584283C2A61005497A1 /* ColumnCharactersView.swift */; };
+		9348658E283CE14C005497A1 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348658D283CE14C005497A1 /* ButtonStyles.swift */; };
+		9348658F283CE14C005497A1 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348658D283CE14C005497A1 /* ButtonStyles.swift */; };
+		93486592283CE719005497A1 /* ButtomOfListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486591283CE719005497A1 /* ButtomOfListButton.swift */; };
+		93486593283CE719005497A1 /* ButtomOfListButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486591283CE719005497A1 /* ButtomOfListButton.swift */; };
 		93C526A1283B891800371B6A /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A0283B891800371B6A /* Tests_iOS.swift */; };
 		93C526A3283B891800371B6A /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A2283B891800371B6A /* Tests_iOSLaunchTests.swift */; };
 		93C526AD283B891800371B6A /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526AC283B891800371B6A /* Tests_macOS.swift */; };
@@ -84,6 +88,8 @@
 		9348657F283C0BD8005497A1 /* GameStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStore.swift; sourceTree = "<group>"; };
 		93486582283C2A01005497A1 /* iOSCompactCharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSCompactCharactersView.swift; sourceTree = "<group>"; };
 		93486584283C2A61005497A1 /* ColumnCharactersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnCharactersView.swift; sourceTree = "<group>"; };
+		9348658D283CE14C005497A1 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		93486591283CE719005497A1 /* ButtomOfListButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtomOfListButton.swift; sourceTree = "<group>"; };
 		93C52686283B891600371B6A /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		93C52687283B891600371B6A /* BaxterblexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaxterblexApp.swift; sourceTree = "<group>"; };
 		93C52688283B891600371B6A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -204,6 +210,22 @@
 			path = GameView;
 			sourceTree = "<group>";
 		};
+		9348658C283CE138005497A1 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				9348658D283CE14C005497A1 /* ButtonStyles.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		93486590283CE706005497A1 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				93486591283CE719005497A1 /* ButtomOfListButton.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
 		93C5267F283B891600371B6A = {
 			isa = PBXGroup;
 			children = (
@@ -228,6 +250,8 @@
 				93486568283BF750005497A1 /* Gear */,
 				93486569283BF75B005497A1 /* Accounting */,
 				9348656A283BF762005497A1 /* Sessions */,
+				93486590283CE706005497A1 /* Elements */,
+				9348658C283CE138005497A1 /* Styles */,
 				933CE3D8283BC99B00ADBE50 /* Constants.swift */,
 				93C5268A283B891800371B6A /* Assets.xcassets */,
 				93C52685283B891600371B6A /* Baxterblex.xcdatamodeld */,
@@ -441,6 +465,7 @@
 				93486564283BF6F7005497A1 /* GameView.swift in Sources */,
 				93486583283C2A01005497A1 /* iOSCompactCharactersView.swift in Sources */,
 				93C526B0283B891800371B6A /* Baxterblex.xcdatamodeld in Sources */,
+				9348658E283CE14C005497A1 /* ButtonStyles.swift in Sources */,
 				93486572283BF872005497A1 /* GearView.swift in Sources */,
 				93486580283C0BD8005497A1 /* GameStore.swift in Sources */,
 				93486578283BF894005497A1 /* SessionsView.swift in Sources */,
@@ -448,6 +473,7 @@
 				9348656C283BF774005497A1 /* DashboardView.swift in Sources */,
 				933CE3D2283BC31400ADBE50 /* iOSEditGameForm.swift in Sources */,
 				933CE3D9283BC99B00ADBE50 /* Constants.swift in Sources */,
+				93486592283CE719005497A1 /* ButtomOfListButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,6 +482,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				93C526B3283B891800371B6A /* BaxterblexApp.swift in Sources */,
+				93486593283CE719005497A1 /* ButtomOfListButton.swift in Sources */,
 				93486576283BF882005497A1 /* AccountingView.swift in Sources */,
 				93C526B7283B891800371B6A /* Persistence.swift in Sources */,
 				933CE3CE283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
@@ -468,6 +495,7 @@
 				93486581283C0BD8005497A1 /* GameStore.swift in Sources */,
 				93486586283C2A61005497A1 /* ColumnCharactersView.swift in Sources */,
 				93C526B1283B891800371B6A /* Baxterblex.xcdatamodeld in Sources */,
+				9348658F283CE14C005497A1 /* ButtonStyles.swift in Sources */,
 				9348656D283BF774005497A1 /* DashboardView.swift in Sources */,
 				9348657E283C0072005497A1 /* MacGameTabView.swift in Sources */,
 				93C526B5283B891800371B6A /* ContentView.swift in Sources */,

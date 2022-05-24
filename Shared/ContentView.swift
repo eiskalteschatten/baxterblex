@@ -81,16 +81,12 @@ struct ContentView: View {
                 .padding(.bottom, 35)
                 
                 #if os(macOS)
-                VStack(alignment: .center) {
-                    Spacer()
-
+                ButtomOfListButton {
                     Button {
                         showEditSheet.toggle()
                     } label: {
                         Label("Create a New Game", systemImage: "plus.circle")
                     }
-                    .buttonStyle(.borderless)
-                    .padding(.bottom, 10)
                 }
                 #endif
             }
