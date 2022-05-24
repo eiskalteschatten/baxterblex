@@ -50,6 +50,31 @@ struct MacGameTabView: View {
                 }
                 .pickerStyle(SegmentedPickerStyle())
             }
+            
+            ToolbarItemGroup {
+                Spacer()
+                
+                switch selectedTab {
+                case .dashboard:
+                    EmptyView()
+                case .characters:
+                    Button(action: {  }) {
+                        Label("Create a Character", systemImage: "person.badge.plus")
+                    }
+                case .gear:
+                    Button(action: {  }) {
+                        Label("Add Gear", systemImage: "plus.circle")
+                    }
+                case .accounting:
+                    Button(action: {  }) {
+                        Label("Add an Account", systemImage: "plus.circle")
+                    }
+                case .sessions:
+                    Button(action: {  }) {
+                        Label("Add a Session", systemImage: "rectangle.stack.badge.plus")
+                    }
+                }
+            }
         }
     }
 }
