@@ -15,6 +15,7 @@ struct ContentView: View {
     
     @State private var showEditSheet = false
     @State private var gameToEdit: Game?
+    @State private var tempSelectedGame: Game?
     
     #if os(iOS)
     @State private var presentDeleteAlert = false
@@ -27,18 +28,20 @@ struct ContentView: View {
     private var games: FetchedResults<Game>
 
     var body: some View {
-        NavigationView {
+        if let game = tempSelectedGame {
+            GameView(game: game)
+        }
+        else {
             VStack {
                 List {
                     Section("Games") {
                         ForEach(games.filter { !$0.archived }) { game in
-                            NavigationLink(
-                                destination: GameView(game: game),
-                                tag: game.objectID.uriRepresentation(),
-                                selection: $selectedGameURL,
-                                // TODO: add icon or color or something else
-                                label: { Text(game.name ?? DEFAULT_GAME_NAME) }
-                            )
+                            Button {
+                                selectedGameURL = game.objectID.uriRepresentation()
+                                tempSelectedGame = game
+                            } label: {
+                                Text(game.name ?? DEFAULT_GAME_NAME)
+                            }
                             .contextMenu {
                                 Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
                                     editGame(game: game)
@@ -54,13 +57,12 @@ struct ContentView: View {
                     
                     Section("Archived Games") {
                         ForEach(games.filter { $0.archived }) { game in
-                            NavigationLink(
-                                destination: GameView(game: game),
-                                tag: game.objectID.uriRepresentation(),
-                                selection: $selectedGameURL,
-                                // TODO: add icon or color or something else
-                                label: { Text(game.name ?? DEFAULT_GAME_NAME) }
-                            )
+                            Button {
+                                selectedGameURL = game.objectID.uriRepresentation()
+                                tempSelectedGame = game
+                            } label: {
+                                Text(game.name ?? DEFAULT_GAME_NAME)
+                            }
                             .contextMenu {
                                 Button("Edit \"\(game.name ?? DEFAULT_GAME_NAME)\"", action: {
                                     editGame(game: game)
@@ -74,6 +76,9 @@ struct ContentView: View {
                         .onDelete(perform: deleteGames)
                     }
                 }
+            }
+            .sheet(isPresented: $showEditSheet) {
+                EditGameSheet(game: gameToEdit)
             }
             .toolbar {
                 #if os(iOS)
@@ -116,15 +121,9 @@ struct ContentView: View {
             #else
             .frame(minWidth: 175)
             #endif
-            
-            // TODO: show monchrome icon
-            Text("TODO: show monochrome icon")
-        }
-        .sheet(isPresented: $showEditSheet) {
-            EditGameSheet(game: gameToEdit)
         }
     }
-    
+        
     private func editGame(game: Game) {
         gameToEdit = game
         showEditSheet.toggle()
