@@ -10,28 +10,35 @@ import SwiftUI
 struct CharactersView: View {
     @EnvironmentObject var gameStore: GameStore
     
-    #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
-    #endif
+    var game: Game
+    
+    @FetchRequest private var characters: FetchedResults<Character>
+    
+    init(game: Game) {
+        self._characters = FetchRequest<Character>(
+            sortDescriptors: [SortDescriptor(\Character.name, order: .forward)],
+            predicate: NSPredicate(format: "ANY game == %@", game),
+            animation: .default
+        )
+        self.game = game
+    }
     
     var body: some View {
-        if let game = gameStore.selectedGame {
-            #if os(iOS)
-            if horizontalSizeClass == .compact {
-                iOSCompactCharactersView(game: game)
+        NavigationView {
+            List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
+                Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
-            else {
-                ColumnCharactersView(game: game)
-            }
-            #else
-            ColumnCharactersView(game: game)
-            #endif
+            
+            Text("No character selected")
         }
     }
 }
 
 struct CharactersView_Previews: PreviewProvider {
     static var previews: some View {
-        CharactersView()
+        let context = PersistenceController.preview.container.viewContext
+        let game = context.registeredObjects.first(where: { $0 is Game }) as! Game
+        
+        CharactersView(game: game)
     }
 }
