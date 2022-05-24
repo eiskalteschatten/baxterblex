@@ -14,7 +14,7 @@ enum GameViewTabs: Int {
 struct GameView: View {
     var game: Game
     
-    @ObservedObject private var gameStore = GameStore()
+    @StateObject private var gameStore = GameStore()
     
     var body: some View {
         Group {

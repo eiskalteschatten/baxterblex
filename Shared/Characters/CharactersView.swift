@@ -10,6 +10,8 @@ import SwiftUI
 struct CharactersView: View {
     @EnvironmentObject var gameStore: GameStore
     
+    @StateObject private var characterStore = CharacterStore()
+    
     #if os(iOS)
     @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
     #endif
@@ -19,12 +21,15 @@ struct CharactersView: View {
             #if os(iOS)
             if horizontalSizeClass == .compact {
                 iOSCompactCharactersView(game: game)
+                    .environmentObject(characterStore)
             }
             else {
                 ColumnCharactersView(game: game)
+                    .environmentObject(characterStore)
             }
             #else
             ColumnCharactersView(game: game)
+                .environmentObject(characterStore)
             #endif
         }
     }

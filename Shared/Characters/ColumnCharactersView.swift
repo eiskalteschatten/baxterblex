@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ColumnCharactersView: View {
+    @EnvironmentObject var characterStore: CharacterStore
+    
     var game: Game
     
-    @State private var selectedCharacter: Character?
     @FetchRequest private var characters: FetchedResults<Character>
     
     init(game: Game) {
@@ -24,7 +25,7 @@ struct ColumnCharactersView: View {
     
     var body: some View {
         HStack {
-            List(characters, id: \.self, selection: $selectedCharacter) { character in
+            List(characters, id: \.self, selection: $characterStore.selectedCharacter) { character in
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
             .listStyle(.plain)
@@ -33,7 +34,7 @@ struct ColumnCharactersView: View {
             Divider()
             
             Group {
-                if let character = selectedCharacter {
+                if let character = characterStore.selectedCharacter {
                     EditCharacterView(character: character)
                 }
                 else {
