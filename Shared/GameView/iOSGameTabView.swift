@@ -43,7 +43,7 @@ struct iOSGameTabView: View {
             
             SessionsView()
                 .tabItem {
-                    Label("Sessions", systemImage: "doc.on.doc")
+                    Label("Sessions", systemImage: "rectangle.stack.fill")
                 }
                 .tag(Tabs.sessions)
         }
@@ -70,7 +70,7 @@ struct iOSGameTabView: View {
                 }
             case .sessions:
                 Button(action: {  }) {
-                    Label("Add a Session", systemImage: "doc.badge.plus")
+                    Label("Add a Session", systemImage: "rectangle.stack.badge.plus")
                 }
             }
         }
