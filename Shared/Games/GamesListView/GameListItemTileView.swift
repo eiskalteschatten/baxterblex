@@ -33,7 +33,7 @@ struct GameListItemTileView: View {
             }
             .frame(height: 80)
         }
-        .buttonStyle(RoundedFlatButtonStyle())
+        .buttonStyle(RoundedFlatTileButtonStyle())
     }
 }
 
