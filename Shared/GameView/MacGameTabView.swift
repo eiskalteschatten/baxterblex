@@ -72,10 +72,7 @@ struct MacGameTabView: View {
                 switch selectedTab {
                 case .game:
                     Button(action: {  }) {
-                        Label("Create a New Game", systemImage: "plus.circle")
-                    }
-                    Button(action: {  }) {
-                        Label("Edit Game", systemImage: "pencil.circle")
+                        Label("Edit Game", systemImage: "pencil")
                     }
                 case .dashboard:
                     EmptyView()
