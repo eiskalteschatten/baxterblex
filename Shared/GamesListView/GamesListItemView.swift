@@ -15,27 +15,40 @@ struct GamesListItemView: View {
         Button(action: action) {
             HStack {
                 // TODO: add game picture
+                Image(systemName: "dice")
+                    .font(.system(size: 25))
+                    .padding(.trailing, 10)
+                
                 Text(game.name ?? DEFAULT_GAME_NAME)
-                    #if os(macOS)
                     .bold()
+                    #if os(macOS)
+                    .font(.system(size: 14))
                     #endif
                 
                 Spacer()
                 
                 VStack(alignment: .trailing) {
                     if let startDate = game.startDate {
-                        Text("Starts: \(formatDateLong(startDate))")
-                            .font(.caption)
+                        HStack {
+                            Text("Starts:")
+                                .font(.system(size: 12, weight: .semibold))
+                            Text(formatDateLong(startDate))
+                                .font(.system(size: 12))
+                        }
                     }
                     
                     if let endDate = game.endDate {
-                        Text("Ends: \(formatDateLong(endDate))")
-                            .font(.caption)
+                        HStack {
+                            Text("Ends:")
+                                .font(.system(size: 12, weight: .semibold))
+                            Text(formatDateLong(endDate))
+                                .font(.system(size: 12))
+                        }
                     }
                 }
                 .opacity(0.7)
             }
-            .frame(height: 35)
+            .frame(height: 40)
         }
         .buttonStyle(RoundedFlatButtonStyle())
     }

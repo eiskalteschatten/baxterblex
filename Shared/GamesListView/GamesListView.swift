@@ -56,7 +56,6 @@ struct GamesListView: View {
                             }
                         }
                     }
-                    .padding(25)
 
                     VStack {
                         Section("Archived Games") {
@@ -80,6 +79,7 @@ struct GamesListView: View {
                         }
                     }
                 }
+                .padding(25)
             }
                 
             Button(action: { showEditGameSheet.toggle() }) {
