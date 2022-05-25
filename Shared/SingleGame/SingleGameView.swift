@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct SingleGameView: View {
+    @EnvironmentObject var gameStore: GameStore
+    
     var body: some View {
-        #if os(iOS)
-        iOSSingleGameView()
-        #else
-        MacSingleGameView()
-        #endif
+        Group {
+            #if os(iOS)
+            iOSSingleGameView()
+            #else
+            MacSingleGameView()
+            #endif
+        }
+        .sheet(isPresented: $gameStore.showEditGameSheet) {
+            EditGameSheet(game: gameStore.selectedGame)
+        }
     }
 }
 

@@ -29,7 +29,7 @@ struct iOSSingleGameView: View {
                     }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(action: {  }) {
+                        Button(action: { gameStore.showEditGameSheet = true }) {
                             Label("Edit Game", systemImage: "pencil")
                         }
                     }

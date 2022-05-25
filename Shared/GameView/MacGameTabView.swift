@@ -71,7 +71,7 @@ struct MacGameTabView: View {
                 
                 switch selectedTab {
                 case .game:
-                    Button(action: {  }) {
+                    Button(action: { gameStore.showEditGameSheet = true }) {
                         Label("Edit Game", systemImage: "pencil")
                     }
                 case .dashboard:

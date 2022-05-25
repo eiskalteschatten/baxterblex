@@ -11,6 +11,7 @@ import CoreData
 final class GameStore: ObservableObject {
     // Games
     @Published var selectedGame: Game?
+    @Published var showEditGameSheet = false
     
     func setSelectedGameFromURL(url: URL, viewContext: NSManagedObjectContext) {
         if let objectID = viewContext.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: url),
