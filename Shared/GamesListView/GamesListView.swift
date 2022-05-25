@@ -38,17 +38,16 @@ struct GamesListView: View {
             
             ScrollView {
                 VStack {
+                    #if os(iOS)
+                    Button(action: { showEditGameSheet.toggle() }) {
+                        Label("Create a New Game", systemImage: "plus.circle")
+                    }
+                    .padding(.bottom, 30)
+                    #endif
+                    
                     let notArchivedGames = games.filter { !$0.archived }
                     
-                    if notArchivedGames.count == 0 {
-                        Button(action: { showEditGameSheet.toggle() }) {
-                            Label("Create a New Game", systemImage: "plus.circle")
-                                .font(.system(size: 16))
-                        }
-                        .buttonStyle(RoundedFlatButtonStyle())
-                        .padding(.bottom, 30)
-                    }
-                    else {
+                    if notArchivedGames.count > 0 {
                         LazyVGrid(columns: gameGrid, alignment: .center, spacing: 15) {
                             ForEach(notArchivedGames) { game in
                                 GameListItemTileView(game: game) {
@@ -67,6 +66,16 @@ struct GamesListView: View {
                                 }
                             }
                         }
+                    }
+                    else {
+                        #if os(macOS)
+                        Button(action: { showEditGameSheet.toggle() }) {
+                            Label("Create a New Game", systemImage: "plus.circle")
+                                .font(.system(size: 16))
+                        }
+                        .buttonStyle(RoundedFlatButtonStyle())
+                        .padding(.bottom, 30)
+                        #endif
                     }
                     
                     let archivedGames = games.filter { $0.archived }
@@ -101,12 +110,6 @@ struct GamesListView: View {
                 .padding(25)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-                
-            Button(action: { showEditGameSheet.toggle() }) {
-                Label("Create a New Game", systemImage: "plus.circle")
-            }
-            .buttonStyle(RoundedFlatButtonStyle())
-            .padding(.bottom, 15)
         }
         .sheet(isPresented: $showEditGameSheet) {
             EditGameSheet(game: gameToEdit)
@@ -114,6 +117,11 @@ struct GamesListView: View {
         .onChange(of: showEditGameSheet) { show in
             if !show {
                 gameToEdit = nil
+            }
+        }
+        .toolbar {
+            Button(action: { showEditGameSheet.toggle() }) {
+                Label("Create a New Game", systemImage: "plus.circle")
             }
         }
         #if os(iOS)

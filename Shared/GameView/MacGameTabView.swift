@@ -74,6 +74,7 @@ struct MacGameTabView: View {
                     Button(action: { gameStore.showEditGameSheet = true }) {
                         Label("Edit Game", systemImage: "pencil")
                     }
+                    .disabled(gameStore.selectedGame == nil)
                 case .dashboard:
                     EmptyView()
                 case .characters:
