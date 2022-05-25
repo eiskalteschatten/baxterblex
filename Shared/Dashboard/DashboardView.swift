@@ -9,9 +9,7 @@ import SwiftUI
 
 struct DashboardView: View {
     var body: some View {
-        Text("Dashboard")
-            // Temp fix until this view is done
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        ResizableText("Dashboard")
     }
 }
 

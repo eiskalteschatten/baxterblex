@@ -59,6 +59,8 @@
 		93486601283E6DC1005497A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 934865FF283E6DC1005497A1 /* ContentView.swift */; };
 		93486604283E729D005497A1 /* SingleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486603283E729D005497A1 /* SingleGameView.swift */; };
 		93486605283E729D005497A1 /* SingleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486603283E729D005497A1 /* SingleGameView.swift */; };
+		93486608283E749B005497A1 /* ResizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486607283E749B005497A1 /* ResizableText.swift */; };
+		93486609283E749B005497A1 /* ResizableText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486607283E749B005497A1 /* ResizableText.swift */; };
 		93C526A1283B891800371B6A /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A0283B891800371B6A /* Tests_iOS.swift */; };
 		93C526A3283B891800371B6A /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A2283B891800371B6A /* Tests_iOSLaunchTests.swift */; };
 		93C526AD283B891800371B6A /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526AC283B891800371B6A /* Tests_macOS.swift */; };
@@ -123,6 +125,7 @@
 		934865C2283D7ECA005497A1 /* GameListItemTileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameListItemTileView.swift; sourceTree = "<group>"; };
 		934865FF283E6DC1005497A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		93486603283E729D005497A1 /* SingleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGameView.swift; sourceTree = "<group>"; };
+		93486607283E749B005497A1 /* ResizableText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResizableText.swift; sourceTree = "<group>"; };
 		93C52686283B891600371B6A /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		93C52687283B891600371B6A /* BaxterblexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaxterblexApp.swift; sourceTree = "<group>"; };
 		93C52689283B891600371B6A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -248,13 +251,6 @@
 			path = Styles;
 			sourceTree = "<group>";
 		};
-		93486590283CE706005497A1 /* Elements */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Elements;
-			sourceTree = "<group>";
-		};
 		9348659D283CF3ED005497A1 /* Abstract */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,6 +296,14 @@
 			path = SingleGame;
 			sourceTree = "<group>";
 		};
+		93486606283E7485005497A1 /* Elements */ = {
+			isa = PBXGroup;
+			children = (
+				93486607283E749B005497A1 /* ResizableText.swift */,
+			);
+			path = Elements;
+			sourceTree = "<group>";
+		};
 		93C5267F283B891600371B6A = {
 			isa = PBXGroup;
 			children = (
@@ -325,7 +329,7 @@
 				93486568283BF750005497A1 /* Gear */,
 				93486569283BF75B005497A1 /* Accounting */,
 				9348656A283BF762005497A1 /* Sessions */,
-				93486590283CE706005497A1 /* Elements */,
+				93486606283E7485005497A1 /* Elements */,
 				9348658C283CE138005497A1 /* Styles */,
 				934865BE283D397D005497A1 /* Lib */,
 				9348659D283CF3ED005497A1 /* Abstract */,
@@ -560,6 +564,7 @@
 				933CE3D9283BC99B00ADBE50 /* Constants.swift in Sources */,
 				934865C3283D7ECB005497A1 /* GameListItemTileView.swift in Sources */,
 				934865B8283D29AD005497A1 /* GamesListView.swift in Sources */,
+				93486608283E749B005497A1 /* ResizableText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +601,7 @@
 				934865B9283D29AD005497A1 /* GamesListView.swift in Sources */,
 				934865C4283D7ECB005497A1 /* GameListItemTileView.swift in Sources */,
 				9348659C283CF370005497A1 /* EditCharacterModel.swift in Sources */,
+				93486609283E749B005497A1 /* ResizableText.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -19,8 +19,7 @@ struct CharactersView: View {
             #endif
         }
         else {
-            Text("No game selected")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            ResizableText("No game selected")
         }
     }
 }
