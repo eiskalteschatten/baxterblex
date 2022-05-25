@@ -22,7 +22,14 @@ struct SingleGameViewContents: View {
                     Text(game.name ?? DEFAULT_GAME_NAME)
                         .font(.title)
                         .bold()
-                        .padding(.bottom, 20)
+                    
+                    if game.archived {
+                        Text("Archived")
+                            .italic()
+                    }
+                    
+                    Spacer()
+                        .frame(height: 20)
                     
                     if let startDate = game.startDate {
                         HStack {
