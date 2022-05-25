@@ -73,25 +73,28 @@ struct GamesListView: View {
 
                     if archivedGames.count > 0 {
                         VStack {
-                            Section("Archived Games") {
-                                ForEach(archivedGames) { game in
-                                    GamesListItemView(game: game) {
-                                        withAnimation {
-                                            selectedGameURL = game.objectID.uriRepresentation()
-                                        }
-                                    }
-                                    .contextMenu {
-                                        Button("Edit Game", action: {
-                                            editGame(game: game)
-                                        })
-                                        Divider()
-                                        Button("Delete Game", role: .destructive, action: {
-                                            confirmDelete(game: game)
-                                        })
+                            Text("Archived Games")
+                                .font(.system(size: 18, weight: .bold))
+                                .padding(.top, 50)
+                                .padding(.bottom, 15)
+                            
+                            ForEach(archivedGames) { game in
+                                GamesListItemView(game: game) {
+                                    withAnimation {
+                                        selectedGameURL = game.objectID.uriRepresentation()
                                     }
                                 }
-                                .onDelete(perform: deleteGames)
+                                .contextMenu {
+                                    Button("Edit Game", action: {
+                                        editGame(game: game)
+                                    })
+                                    Divider()
+                                    Button("Delete Game", role: .destructive, action: {
+                                        confirmDelete(game: game)
+                                    })
+                                }
                             }
+                            .onDelete(perform: deleteGames)
                         }
                     }
                 }
