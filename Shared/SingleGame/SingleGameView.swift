@@ -14,17 +14,29 @@ struct SingleGameView: View {
         if let game = gameStore.selectedGame {
             VStack(spacing: 15) {
                 // TODO: add game picture
+                Image(systemName: "dice")
+                    .font(.system(size: 100))
+                    .padding(.bottom, 20)
                 
                 Text(game.name ?? DEFAULT_GAME_NAME)
                     .font(.title)
                     .bold()
+                    .padding(.bottom, 20)
                 
                 if let startDate = game.startDate {
-                    Text("Starts: \(formatDateLong(startDate))")
+                    HStack {
+                        Text("Starts:")
+                            .bold()
+                        Text(formatDateLong(startDate))
+                    }
                 }
                 
                 if let endDate = game.endDate {
-                    Text("Ends: \(formatDateLong(endDate))")
+                    HStack {
+                        Text("Ends:")
+                            .bold()
+                        Text(formatDateLong(endDate))
+                    }
                 }
                 
                 Spacer()
