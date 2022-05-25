@@ -9,7 +9,11 @@ import SwiftUI
 
 struct GearView: View {
     var body: some View {
-        Text("Gear")
+        #if os(iOS)
+        iOSGearView()
+        #else
+        MacGearView()
+        #endif
     }
 }
 

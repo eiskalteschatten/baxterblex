@@ -10,22 +10,16 @@ import SwiftUI
 struct CharactersView: View {
     @EnvironmentObject var gameStore: GameStore
     
-    #if os(iOS)
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
-    #endif
-    
     var body: some View {
         if let game = gameStore.selectedGame {
             #if os(iOS)
-            if horizontalSizeClass == .compact {
-                iOSCompactCharactersView(game: game)
-            }
-            else {
-                ColumnCharactersView(game: game)
-            }
+            iOSCharactersView(game: game)
             #else
-            ColumnCharactersView(game: game)
+            MacCharactersView(game: game)
             #endif
+        }
+        else {
+            NoGameSelected()
         }
     }
 }

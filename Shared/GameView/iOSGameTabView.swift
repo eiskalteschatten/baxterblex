@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct iOSGameTabView: View {
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass: UserInterfaceSizeClass?
+    @EnvironmentObject private var gameStore: GameStore
     
-    // TODO: change default to .dashboard as soon as the dashboard is implemented
-    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .characters
+    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .game
     
     var body: some View {
         TabView(selection: $selectedTab) {
+            SingleGameView()
+                .tabItem {
+                    Label("Game", systemImage: "dice.fill")
+                }
+                .tag(GameViewTabs.game)
+            
 //                DashboardView()
 //                    .tabItem {
 //                        Label("Dashboard", systemImage: "square.grid.3x3.square")
@@ -44,9 +49,6 @@ struct iOSGameTabView: View {
                     Label("Sessions", systemImage: "rectangle.stack.fill")
                 }
                 .tag(GameViewTabs.sessions)
-        }
-        .toolbar {
-            GameViewToolbar(selectedTab: selectedTab, horizontalSizeClass: horizontalSizeClass)
         }
     }
 }

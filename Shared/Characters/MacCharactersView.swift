@@ -1,13 +1,13 @@
 //
-//  ColumnCharactersView.swift
-//  Baxterblex
+//  MacCharactersView.swift
+//  Baxterblex (macOS)
 //
 //  Created by Alex Seifert on 23.05.22.
 //
 
 import SwiftUI
 
-struct ColumnCharactersView: View {
+struct MacCharactersView: View {
     @EnvironmentObject var gameStore: GameStore
     
     var game: Game
@@ -55,11 +55,11 @@ struct ColumnCharactersView: View {
     }
 }
 
-struct ColumnCharactersView_Previews: PreviewProvider {
+struct MacCharactersView_Previews: PreviewProvider {
     static var previews: some View {
         let context = PersistenceController.preview.container.viewContext
         let game = context.registeredObjects.first(where: { $0 is Game }) as! Game
         
-        ColumnCharactersView(game: game)
+        MacCharactersView(game: game)
     }
 }

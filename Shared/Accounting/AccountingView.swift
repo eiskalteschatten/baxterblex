@@ -9,7 +9,11 @@ import SwiftUI
 
 struct AccountingView: View {
     var body: some View {
-        Text("Accounting")
+        #if os(iOS)
+        iOSAccountingView()
+        #else
+        MacAccountingView()
+        #endif
     }
 }
 

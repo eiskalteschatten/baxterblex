@@ -11,8 +11,8 @@
         <attribute name="archived" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="icon" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" spotlightIndexingEnabled="YES"/>
         <attribute name="name" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
+        <attribute name="picture" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" spotlightIndexingEnabled="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="characters" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Character" inverseName="game" inverseEntity="Character" spotlightIndexingEnabled="YES"/>

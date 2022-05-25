@@ -18,6 +18,7 @@ struct PersistenceController {
             newGame.createdAt = Date()
             newGame.updatedAt = Date()
             
+            newGame.picture = Data()
             newGame.name = "My Game \(index)"
             newGame.startDate = Date()
             newGame.endDate = Date()
