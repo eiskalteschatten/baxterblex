@@ -8,20 +8,36 @@
 import SwiftUI
 
 enum GameViewTabs: Int {
-    case games, dashboard, characters, gear, accounting, sessions
+    case game, dashboard, characters, gear, accounting, sessions
 }
 
 struct GameView: View {
-    @EnvironmentObject private var gameStore: GameStore
+    @Environment(\.managedObjectContext) private var viewContext
+    
+    @SceneStorage("selectedGameURL") private var selectedGameURL: URL?
+    
+    @StateObject private var gameStore = GameStore()
     
     var body: some View {
         Group {
             #if os(iOS)
             iOSGameTabView()
+                .environmentObject(gameStore)
             #else
             MacGameTabView()
+                .environmentObject(gameStore)
                 .navigationTitle(gameStore.selectedGame?.name ?? "Baxterblex")
             #endif
+        }
+        .onChange(of: selectedGameURL) { gameURL in
+            if let url = gameURL {
+                gameStore.setSelectedGameFromURL(url: url, viewContext: viewContext)
+            }
+        }
+        .onAppear {
+            if let url = selectedGameURL {
+                gameStore.setSelectedGameFromURL(url: url, viewContext: viewContext)
+            }
         }
     }
 }

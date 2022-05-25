@@ -10,13 +10,14 @@ import SwiftUI
 struct MacGameTabView: View {
     @EnvironmentObject var gameStore: GameStore
     
-    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .games
+    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .game
     
     var body: some View {
         VStack {
             switch selectedTab {
-            case .games:
-                GamesListView()
+            case .game:
+//                SingleGameView()
+                DashboardView()
             case .dashboard:
                 DashboardView()
             case .characters:
@@ -32,8 +33,8 @@ struct MacGameTabView: View {
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $selectedTab) {
-                    Text("Games")
-                        .tag(GameViewTabs.games)
+                    Text("Game")
+                        .tag(GameViewTabs.game)
                     
 //                    Text("Dashboard")
 //                        .tag(GameViewTabs.dashboard)
@@ -57,8 +58,8 @@ struct MacGameTabView: View {
                 Spacer()
                 
                 switch selectedTab {
-                case .games:
-                    Button(action: { gameStore.showEditGameSheet.toggle() }) {
+                case .game:
+                    Button(action: {  }) {
                         Label("Create a New Game", systemImage: "plus.circle")
                     }
                 case .dashboard:

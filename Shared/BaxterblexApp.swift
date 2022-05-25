@@ -11,13 +11,10 @@ import SwiftUI
 struct BaxterblexApp: App {
     let persistenceController = PersistenceController.shared
     
-    @StateObject private var gameStore = GameStore()
-
     var body: some Scene {
         WindowGroup {
-            GameView()
+            ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
-                .environmentObject(gameStore)
         }
         #if os(macOS)
         .commands {

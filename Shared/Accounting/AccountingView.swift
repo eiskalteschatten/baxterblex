@@ -8,20 +8,12 @@
 import SwiftUI
 
 struct AccountingView: View {
-    @EnvironmentObject var gameStore: GameStore
-    
     var body: some View {
-        if let game = gameStore.selectedGame {
-            #if os(iOS)
-            iOSAccountingView()
-            #else
-            MacAccountingView()
-            #endif
-        }
-        else {
-            Text("No game selected")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
+        #if os(iOS)
+        iOSAccountingView()
+        #else
+        MacAccountingView()
+        #endif
     }
 }
 

@@ -10,7 +10,13 @@ import SwiftUI
 final class GameStore: ObservableObject {
     // Games
     @Published var selectedGame: Game?
-    @Published var showEditGameSheet: Bool = false
+    
+    func setSelectedGameFromURL(url: URL, viewContext: NSManagedObjectContext) {
+        if let objectID = viewContext.persistentStoreCoordinator!.managedObjectID(forURIRepresentation: url),
+           let game = try? viewContext.existingObject(with: objectID) as? Game {
+            selectedGame = game
+        }
+    }
     
     // Characters
     @Published var selectedCharacter: Character?

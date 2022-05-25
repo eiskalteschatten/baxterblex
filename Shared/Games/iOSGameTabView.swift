@@ -10,15 +10,15 @@ import SwiftUI
 struct iOSGameTabView: View {
     @EnvironmentObject private var gameStore: GameStore
     
-    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .games
+    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .game
     
     var body: some View {
         TabView(selection: $selectedTab) {
-            GamesListView()
-                .tabItem {
-                    Label("Games", systemImage: "dice.fill")
-                }
-                .tag(GameViewTabs.games)
+//            SingleGameView()
+//                .tabItem {
+//                    Label("Game", systemImage: "dice.fill")
+//                }
+//                .tag(GameViewTabs.game)
             
 //                DashboardView()
 //                    .tabItem {
@@ -49,11 +49,6 @@ struct iOSGameTabView: View {
                     Label("Sessions", systemImage: "rectangle.stack.fill")
                 }
                 .tag(GameViewTabs.sessions)
-        }
-        .onAppear {
-            if gameStore.selectedGame == nil {
-                selectedTab = .games
-            }
         }
     }
 }

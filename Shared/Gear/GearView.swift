@@ -8,20 +8,12 @@
 import SwiftUI
 
 struct GearView: View {
-    @EnvironmentObject var gameStore: GameStore
-    
     var body: some View {
-        if let game = gameStore.selectedGame {
-            #if os(iOS)
-            iOSGearView()
-            #else
-            MacGearView()
-            #endif
-        }
-        else {
-            Text("No game selected")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-        }
+        #if os(iOS)
+        iOSGearView()
+        #else
+        MacGearView()
+        #endif
     }
 }
 

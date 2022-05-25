@@ -9,11 +9,10 @@ import SwiftUI
 
 struct GamesListView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @EnvironmentObject private var gameStore: GameStore
     
     @SceneStorage("selectedGameURL") private var selectedGameURL: URL?
-    @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .games
     
+    @State private var showEditGameSheet = false
     @State private var gameToEdit: Game?
     
     #if os(iOS)
@@ -46,8 +45,6 @@ struct GamesListView: View {
                         ForEach(games.filter { !$0.archived }) { game in
                             GameListItemTileView(game: game) {
                                 selectedGameURL = game.objectID.uriRepresentation()
-                                gameStore.selectedGame = game
-                                selectedTab = .characters
                             }
                             .contextMenu {
                                 Button("Edit Game", action: {
@@ -67,8 +64,6 @@ struct GamesListView: View {
                             ForEach(games.filter { $0.archived }) { game in
                                 GamesListItemView(game: game) {
                                     selectedGameURL = game.objectID.uriRepresentation()
-                                    gameStore.selectedGame = game
-                                    selectedTab = .characters
                                 }
                                 .contextMenu {
                                     Button("Edit Game", action: {
@@ -86,16 +81,16 @@ struct GamesListView: View {
                 }
             }
                 
-            Button(action: { gameStore.showEditGameSheet.toggle() }) {
+            Button(action: { showEditGameSheet.toggle() }) {
                 Label("Create a New Game", systemImage: "plus.circle")
             }
             .buttonStyle(RoundedFlatButtonStyle())
             .padding(.bottom, 15)
         }
-        .sheet(isPresented: $gameStore.showEditGameSheet) {
+        .sheet(isPresented: $showEditGameSheet) {
             EditGameSheet(game: gameToEdit)
         }
-        .onChange(of: gameStore.showEditGameSheet) { show in
+        .onChange(of: showEditGameSheet) { show in
             if !show {
                 gameToEdit = nil
             }
@@ -114,7 +109,7 @@ struct GamesListView: View {
     
     private func editGame(game: Game) {
         gameToEdit = game
-        gameStore.showEditGameSheet.toggle()
+        showEditGameSheet.toggle()
     }
     
     private func confirmDelete(game: Game) {
