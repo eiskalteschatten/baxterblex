@@ -11,6 +11,7 @@ import CoreData
 final class EditGameModel: AbstractEditModel {
     private var game: Game?
     
+    @Published var picture: Data?
     @Published var name: String = ""
     @Published var addStartDate: Bool = false
     @Published var startDate: Date = Date()
@@ -26,6 +27,7 @@ final class EditGameModel: AbstractEditModel {
     
     override func initVariables() {
         if let unwrapped = game {
+            picture = unwrapped.picture ?? picture
             name = unwrapped.name ?? name
             addStartDate = unwrapped.startDate != nil
             startDate = unwrapped.startDate ?? startDate
@@ -42,6 +44,7 @@ final class EditGameModel: AbstractEditModel {
             game!.createdAt = Date()
             game!.updatedAt = Date()
             
+            game!.picture = picture
             game!.name = name
             game!.startDate = addStartDate ? startDate : nil
             game!.endDate = addEndDate ? endDate : nil

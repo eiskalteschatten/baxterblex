@@ -14,6 +14,8 @@ struct GameListItemTileView: View {
     var body: some View {
         Button(action: action) {
             VStack {
+                // TODO: add game picture
+                
                 Text(game.name ?? DEFAULT_GAME_NAME)
                     .bold()
                     .padding(.bottom, 5)

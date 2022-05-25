@@ -29,6 +29,7 @@ struct MacGameTabView: View {
                 SessionsView()
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $selectedTab) {
@@ -60,6 +61,9 @@ struct MacGameTabView: View {
                 case .game:
                     Button(action: {  }) {
                         Label("Create a New Game", systemImage: "plus.circle")
+                    }
+                    Button(action: {  }) {
+                        Label("Edit Game", systemImage: "pencil.circle")
                     }
                 case .dashboard:
                     EmptyView()

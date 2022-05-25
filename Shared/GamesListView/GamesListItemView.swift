@@ -14,6 +14,8 @@ struct GamesListItemView: View {
     var body: some View {
         Button(action: action) {
             HStack {
+                // TODO: add game picture
+                
                 Text(game.name ?? DEFAULT_GAME_NAME)
                     #if os(macOS)
                     .bold()

@@ -16,6 +16,8 @@ struct iOSEditGameForm: View {
     var body: some View {
         NavigationView {
             Form {
+                // TODO: add game picture
+                
                 TextField("Name", text: $editGameModel.name)
                 
                 Section {

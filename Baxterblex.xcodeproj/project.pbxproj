@@ -187,6 +187,7 @@
 		933CE3CB283BBF5C00ADBE50 /* EditGameSheet */ = {
 			isa = PBXGroup;
 			children = (
+				933CE3CC283BC06F00ADBE50 /* EditGameModel.swift */,
 				933CE3B1283BB67700ADBE50 /* EditGameSheet.swift */,
 				933CE3CF283BC24F00ADBE50 /* MacEditGameForm.swift */,
 				933CE3D1283BC31400ADBE50 /* iOSEditGameForm.swift */,
@@ -262,8 +263,8 @@
 		934865A4283CF9A5005497A1 /* EditCharacter */ = {
 			isa = PBXGroup;
 			children = (
-				93486597283CF304005497A1 /* EditCharacterView.swift */,
 				9348659A283CF370005497A1 /* EditCharacterModel.swift */,
+				93486597283CF304005497A1 /* EditCharacterView.swift */,
 			);
 			path = EditCharacter;
 			sourceTree = "<group>";
@@ -274,7 +275,6 @@
 				934865B7283D29AD005497A1 /* GamesListView.swift */,
 				934865BB283D3800005497A1 /* GamesListItemView.swift */,
 				934865C2283D7ECA005497A1 /* GameListItemTileView.swift */,
-				933CE3CB283BBF5C00ADBE50 /* EditGameSheet */,
 			);
 			path = GamesListView;
 			sourceTree = "<group>";
@@ -291,7 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				93486603283E729D005497A1 /* SingleGameView.swift */,
-				933CE3CC283BC06F00ADBE50 /* EditGameModel.swift */,
 			);
 			path = SingleGame;
 			sourceTree = "<group>";
@@ -324,6 +323,7 @@
 				934865BA283D37EA005497A1 /* GamesListView */,
 				933CE3B0283BB66200ADBE50 /* GameView */,
 				93486602283E7279005497A1 /* SingleGame */,
+				933CE3CB283BBF5C00ADBE50 /* EditGameSheet */,
 				93486566283BF73B005497A1 /* Dashboard */,
 				93486567283BF742005497A1 /* Characters */,
 				93486568283BF750005497A1 /* Gear */,
