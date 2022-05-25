@@ -38,29 +38,20 @@ struct GamesListView: View {
             
             ScrollView {
                 VStack {
-                    LazyVGrid(columns: gameGrid, alignment: .center, spacing: 15) {
-                        ForEach(games.filter { !$0.archived }) { game in
-                            GameListItemTileView(game: game) {
-                                withAnimation {
-                                    selectedGameURL = game.objectID.uriRepresentation()
-                                }
-                            }
-                            .contextMenu {
-                                Button("Edit Game", action: {
-                                    editGame(game: game)
-                                })
-                                Divider()
-                                Button("Delete Game", role: .destructive, action: {
-                                    confirmDelete(game: game)
-                                })
-                            }
+                    let notArchivedGames = games.filter { !$0.archived }
+                    
+                    if notArchivedGames.count == 0 {
+                        Button(action: { showEditGameSheet.toggle() }) {
+                            Label("Create a New Game", systemImage: "plus.circle")
+                                .font(.system(size: 16))
                         }
+                        .buttonStyle(RoundedFlatButtonStyle())
+                        .padding(.bottom, 30)
                     }
-
-                    VStack {
-                        Section("Archived Games") {
-                            ForEach(games.filter { $0.archived }) { game in
-                                GamesListItemView(game: game) {
+                    else {
+                        LazyVGrid(columns: gameGrid, alignment: .center, spacing: 15) {
+                            ForEach(notArchivedGames) { game in
+                                GameListItemTileView(game: game) {
                                     withAnimation {
                                         selectedGameURL = game.objectID.uriRepresentation()
                                     }
@@ -75,7 +66,32 @@ struct GamesListView: View {
                                     })
                                 }
                             }
-                            .onDelete(perform: deleteGames)
+                        }
+                    }
+                    
+                    let archivedGames = games.filter { $0.archived }
+
+                    if archivedGames.count > 0 {
+                        VStack {
+                            Section("Archived Games") {
+                                ForEach(archivedGames) { game in
+                                    GamesListItemView(game: game) {
+                                        withAnimation {
+                                            selectedGameURL = game.objectID.uriRepresentation()
+                                        }
+                                    }
+                                    .contextMenu {
+                                        Button("Edit Game", action: {
+                                            editGame(game: game)
+                                        })
+                                        Divider()
+                                        Button("Delete Game", role: .destructive, action: {
+                                            confirmDelete(game: game)
+                                        })
+                                    }
+                                }
+                                .onDelete(perform: deleteGames)
+                            }
                         }
                     }
                 }
