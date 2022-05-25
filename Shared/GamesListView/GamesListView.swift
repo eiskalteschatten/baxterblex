@@ -47,6 +47,7 @@ struct GamesListView: View {
                         }
                         .buttonStyle(RoundedFlatButtonStyle())
                         .padding(.bottom, 30)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     else {
                         LazyVGrid(columns: gameGrid, alignment: .center, spacing: 15) {
