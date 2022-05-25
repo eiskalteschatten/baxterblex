@@ -11,6 +11,7 @@ struct MacGameTabView: View {
     @EnvironmentObject var gameStore: GameStore
     
     @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .game
+    @SceneStorage("selectedGameURL") private var selectedGameURL: URL?
     
     var body: some View {
         VStack {
@@ -31,6 +32,15 @@ struct MacGameTabView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar {
+            ToolbarItem(placement: .navigation) {
+                Button(action: {
+                    gameStore.selectedGame = nil
+                    selectedGameURL = nil
+                }) {
+                    Label("Open a Game", systemImage: "chevron.left")
+                }
+            }
+            
             ToolbarItem(placement: .principal) {
                 Picker("", selection: $selectedTab) {
                     Text("Game")
