@@ -170,7 +170,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		933CE3B0283BB66200ADBE50 /* Games */ = {
+		933CE3B0283BB66200ADBE50 /* GameView */ = {
 			isa = PBXGroup;
 			children = (
 				9348657F283C0BD8005497A1 /* GameStore.swift */,
@@ -178,7 +178,7 @@
 				9348657B283C001E005497A1 /* iOSGameTabView.swift */,
 				9348657D283C0072005497A1 /* MacGameTabView.swift */,
 			);
-			path = Games;
+			path = GameView;
 			sourceTree = "<group>";
 		};
 		933CE3CB283BBF5C00ADBE50 /* EditGameSheet */ = {
@@ -294,8 +294,8 @@
 		93486602283E7279005497A1 /* SingleGame */ = {
 			isa = PBXGroup;
 			children = (
-				933CE3CC283BC06F00ADBE50 /* EditGameModel.swift */,
 				93486603283E729D005497A1 /* SingleGameView.swift */,
+				933CE3CC283BC06F00ADBE50 /* EditGameModel.swift */,
 			);
 			path = SingleGame;
 			sourceTree = "<group>";
@@ -318,7 +318,7 @@
 				93C52687283B891600371B6A /* BaxterblexApp.swift */,
 				934865FF283E6DC1005497A1 /* ContentView.swift */,
 				934865BA283D37EA005497A1 /* GamesListView */,
-				933CE3B0283BB66200ADBE50 /* Games */,
+				933CE3B0283BB66200ADBE50 /* GameView */,
 				93486602283E7279005497A1 /* SingleGame */,
 				93486566283BF73B005497A1 /* Dashboard */,
 				93486567283BF742005497A1 /* Characters */,
