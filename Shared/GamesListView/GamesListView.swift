@@ -47,7 +47,6 @@ struct GamesListView: View {
                         }
                         .buttonStyle(RoundedFlatButtonStyle())
                         .padding(.bottom, 30)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
                     else {
                         LazyVGrid(columns: gameGrid, alignment: .center, spacing: 15) {
@@ -101,6 +100,7 @@ struct GamesListView: View {
                 }
                 .padding(25)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
             Button(action: { showEditGameSheet.toggle() }) {
                 Label("Create a New Game", systemImage: "plus.circle")
