@@ -65,7 +65,9 @@ struct GamesListView: View {
                         Section("Archived Games") {
                             ForEach(games.filter { $0.archived }) { game in
                                 GamesListItemView(game: game) {
-                                    selectedGameURL = game.objectID.uriRepresentation()
+                                    withAnimation {
+                                        selectedGameURL = game.objectID.uriRepresentation()
+                                    }
                                 }
                                 .contextMenu {
                                     Button("Edit Game", action: {
