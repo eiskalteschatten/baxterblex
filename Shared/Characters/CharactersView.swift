@@ -19,7 +19,7 @@ struct CharactersView: View {
             #endif
         }
         else {
-            ResizableText("No game selected")
+            NoGameSelected()
         }
     }
 }

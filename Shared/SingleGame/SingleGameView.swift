@@ -32,7 +32,7 @@ struct SingleGameView: View {
             .padding(15)
         }
         else {
-            ResizableText("No game selected")
+            NoGameSelected()
         }
     }
 }
