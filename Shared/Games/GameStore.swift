@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 final class GameStore: ObservableObject {
     // Games
