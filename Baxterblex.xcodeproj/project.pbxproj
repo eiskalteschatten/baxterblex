@@ -789,7 +789,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexseifert.Baxterblex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexseifert.Baxterblex.debug;
 				PRODUCT_NAME = Baxterblex;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -849,7 +849,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.3;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.alexseifert.Baxterblex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.alexseifert.Baxterblex.debug;
 				PRODUCT_NAME = Baxterblex;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
