@@ -12,36 +12,39 @@ struct SingleGameView: View {
     
     var body: some View {
         if let game = gameStore.selectedGame {
-            VStack(spacing: 15) {
-                // TODO: add game picture
-                Image(systemName: "dice")
-                    .font(.system(size: 100))
-                    .padding(.bottom, 20)
-                
-                Text(game.name ?? DEFAULT_GAME_NAME)
-                    .font(.title)
-                    .bold()
-                    .padding(.bottom, 20)
-                
-                if let startDate = game.startDate {
-                    HStack {
-                        Text("Starts:")
-                            .bold()
-                        Text(formatDateLong(startDate))
+            ScrollView {
+                VStack(spacing: 15) {
+                    // TODO: add game picture
+                    Image(systemName: "dice")
+                        .font(.system(size: 100))
+                        .padding(.bottom, 20)
+                    
+                    Text(game.name ?? DEFAULT_GAME_NAME)
+                        .font(.title)
+                        .bold()
+                        .padding(.bottom, 20)
+                    
+                    if let startDate = game.startDate {
+                        HStack {
+                            Text("Starts:")
+                                .bold()
+                            Text(formatDateLong(startDate))
+                        }
                     }
-                }
-                
-                if let endDate = game.endDate {
-                    HStack {
-                        Text("Ends:")
-                            .bold()
-                        Text(formatDateLong(endDate))
+                    
+                    if let endDate = game.endDate {
+                        HStack {
+                            Text("Ends:")
+                                .bold()
+                            Text(formatDateLong(endDate))
+                        }
                     }
+                    
+                    Spacer()
                 }
-                
-                Spacer()
+                .padding(15)
+                .frame(maxWidth: .infinity)
             }
-            .padding(15)
         }
         else {
             NoGameSelected()
