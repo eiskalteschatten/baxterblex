@@ -14,11 +14,11 @@ struct iOSGameTabView: View {
     
     var body: some View {
         TabView(selection: $selectedTab) {
-//            SingleGameView()
-//                .tabItem {
-//                    Label("Game", systemImage: "dice.fill")
-//                }
-//                .tag(GameViewTabs.game)
+            SingleGameView()
+                .tabItem {
+                    Label("Game", systemImage: "dice.fill")
+                }
+                .tag(GameViewTabs.game)
             
 //                DashboardView()
 //                    .tabItem {

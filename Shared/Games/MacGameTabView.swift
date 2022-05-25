@@ -16,8 +16,7 @@ struct MacGameTabView: View {
         VStack {
             switch selectedTab {
             case .game:
-//                SingleGameView()
-                DashboardView()
+                SingleGameView()
             case .dashboard:
                 DashboardView()
             case .characters:
