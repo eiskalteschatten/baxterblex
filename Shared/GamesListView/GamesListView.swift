@@ -25,11 +25,7 @@ struct GamesListView: View {
     )
     private var games: FetchedResults<Game>
     
-    #if os(macOS)
-    private var gameGrid = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
-    #else
     private var gameGrid = [GridItem(.flexible()), GridItem(.flexible())]
-    #endif
     
     var body: some View {
         VStack(spacing: 15) {
@@ -59,7 +55,7 @@ struct GamesListView: View {
                             }
                         }
                     }
-                    .padding(.vertical, 15)
+                    .padding(25)
 
                     VStack {
                         Section("Archived Games") {
@@ -108,6 +104,8 @@ struct GamesListView: View {
         }, message: {
             Text("Everything within the game will be deleted.")
         })
+        #else
+        .frame(minWidth: 600)
         #endif
     }
     

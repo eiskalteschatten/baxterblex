@@ -15,25 +15,36 @@ struct GameListItemTileView: View {
         Button(action: action) {
             VStack {
                 // TODO: add game picture
+                Image(systemName: "dice")
+                    .font(.system(size: 50))
+                    .padding(.bottom, 10)
                 
                 Text(game.name ?? DEFAULT_GAME_NAME)
                     .bold()
-                    .padding(.bottom, 5)
+                    .padding(.bottom, 10)
                 
                 Group {
                     if let startDate = game.startDate {
-                        Text("Starts: \(formatDateLong(startDate))")
-                            .font(.caption)
+                        HStack {
+                            Text("Starts:")
+                                .font(.system(size: 12, weight: .semibold))
+                            Text(formatDateLong(startDate))
+                                .font(.system(size: 12))
+                        }
                     }
                     
                     if let endDate = game.endDate {
-                        Text("Ends: \(formatDateLong(endDate))")
-                            .font(.caption)
+                        HStack {
+                            Text("Ends:")
+                                .font(.system(size: 12, weight: .semibold))
+                            Text(formatDateLong(endDate))
+                                .font(.system(size: 12))
+                        }
                     }
                 }
                 .opacity(0.7)
             }
-            .frame(height: 80)
+            .frame(width: 250, height: 175)
         }
         .buttonStyle(RoundedFlatTileButtonStyle())
     }
