@@ -44,7 +44,9 @@ struct GamesListView: View {
                     LazyVGrid(columns: gameGrid, spacing: 15) {
                         ForEach(games.filter { !$0.archived }) { game in
                             GameListItemTileView(game: game) {
-                                selectedGameURL = game.objectID.uriRepresentation()
+                                withAnimation {
+                                    selectedGameURL = game.objectID.uriRepresentation()
+                                }
                             }
                             .contextMenu {
                                 Button("Edit Game", action: {

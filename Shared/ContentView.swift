@@ -13,9 +13,17 @@ struct ContentView: View {
     var body: some View {
         if selectedGameURL == nil {
             GamesListView()
+                .transition(AnyTransition.asymmetric(
+                    insertion: .move(edge: .leading),
+                    removal: .move(edge: .trailing)
+                ))
         }
         else {
             GameView()
+                .transition(AnyTransition.asymmetric(
+                    insertion: .move(edge: .trailing),
+                    removal: .move(edge: .leading)
+                ))
         }
         
     }

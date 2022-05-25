@@ -34,8 +34,10 @@ struct MacGameTabView: View {
         .toolbar {
             ToolbarItem(placement: .navigation) {
                 Button(action: {
-                    gameStore.selectedGame = nil
-                    selectedGameURL = nil
+                    withAnimation {
+                        gameStore.selectedGame = nil
+                        selectedGameURL = nil
+                    }
                 }) {
                     Label("Open a Game", systemImage: "chevron.left")
                 }
