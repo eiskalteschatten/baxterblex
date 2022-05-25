@@ -25,7 +25,7 @@ struct GamesListView: View {
     )
     private var games: FetchedResults<Game>
     
-    private var gameGrid = [GridItem(.flexible()), GridItem(.flexible())]
+    private var gameGrid = [GridItem(.flexible(), spacing: 15), GridItem(.flexible(), spacing: 15)]
     
     var body: some View {
         VStack(spacing: 15) {
@@ -33,11 +33,12 @@ struct GamesListView: View {
             Text("Baxterblex")
                 .font(.system(.title))
                 .bold()
+                .padding(.top, 20)
             #endif
             
             ScrollView {
                 VStack {
-                    LazyVGrid(columns: gameGrid, spacing: 15) {
+                    LazyVGrid(columns: gameGrid, alignment: .center, spacing: 15) {
                         ForEach(games.filter { !$0.archived }) { game in
                             GameListItemTileView(game: game) {
                                 withAnimation {

@@ -10,7 +10,7 @@ import SwiftUI
 struct GameListItemTileView: View {
     var game: Game
     var action: () -> Void
-    
+
     var body: some View {
         Button(action: action) {
             VStack {
@@ -22,6 +22,9 @@ struct GameListItemTileView: View {
                 Text(game.name ?? DEFAULT_GAME_NAME)
                     .bold()
                     .padding(.bottom, 10)
+                    #if os(macOS)
+                    .font(.system(size: 15))
+                    #endif
                 
                 Group {
                     if let startDate = game.startDate {
@@ -32,6 +35,9 @@ struct GameListItemTileView: View {
                                 .font(.system(size: 12))
                         }
                     }
+                    else {
+                        DatePlaceholderSpacer()
+                    }
                     
                     if let endDate = game.endDate {
                         HStack {
@@ -41,12 +47,23 @@ struct GameListItemTileView: View {
                                 .font(.system(size: 12))
                         }
                     }
+                    else {
+                        DatePlaceholderSpacer()
+                    }
                 }
                 .opacity(0.7)
             }
-            .frame(width: 250, height: 175)
+            .frame(height: 175)
+            .frame(maxWidth: .infinity)
         }
         .buttonStyle(RoundedFlatTileButtonStyle())
+    }
+}
+
+fileprivate struct DatePlaceholderSpacer: View {
+    var body: some View {
+        Spacer()
+            .frame(height: 15)
     }
 }
 
