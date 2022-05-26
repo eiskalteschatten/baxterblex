@@ -24,36 +24,30 @@ struct MacCharactersView: View {
     }
     
     var body: some View {
-        HStack {
+        HSplitView() {
             List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
-            .listStyle(.plain)
-            .frame(width: 300)
+            .frame(minWidth: 300)
                 
-            Divider()
-            
-            Group {
-                if gameStore.selectedCharacter != nil {
-                    EditCharacterView(character: gameStore.selectedCharacter)
-                        .padding(15)
-                }
-                else {
-                    VStack(spacing: 25) {
-                        Text("No character selected")
-                        
-                        Button {
-                            gameStore.showCreateCharacterScreen = true
-                        } label : {
-                            Label("Create a Character", systemImage: "plus.circle")
-                        }
-                        .buttonStyle(RoundedFlatButtonStyle())
-                    }
-                }
+            if gameStore.selectedCharacter != nil {
+                EditCharacterView(character: gameStore.selectedCharacter)
+                    .padding(15)
             }
-            .frame(maxWidth: .infinity)
+            else {
+                VStack(spacing: 25) {
+                    Text("No character selected")
+                    
+                    Button {
+                        gameStore.showCreateCharacterScreen = true
+                    } label : {
+                        Label("Create a Character", systemImage: "plus.circle")
+                    }
+                    .buttonStyle(RoundedFlatButtonStyle())
+                }
+                .frame(minWidth: 300, maxWidth: .infinity, maxHeight: .infinity)
+            }
         }
-        .frame(maxWidth: .infinity)
         .onChange(of: gameStore.selectedCharacter) { _ in
             gameStore.showCreateCharacterScreen = false
         }
