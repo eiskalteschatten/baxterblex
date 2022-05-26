@@ -27,6 +27,7 @@ struct iOSSessionsView: View {
                         }
                     }
                 }
+                .navigationTitle("Sessions")
         }
         .navigationViewStyle(.stack)
     }

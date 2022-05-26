@@ -27,6 +27,7 @@ struct iOSAccountingView: View {
                         }
                     }
                 }
+                .navigationTitle("Accounting")
         }
         .navigationViewStyle(.stack)
     }
