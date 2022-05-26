@@ -14,7 +14,6 @@ struct iOSCharactersView: View {
     var game: Game
     
     @FetchRequest private var characters: FetchedResults<Character>
-    @State private var showCreateCharacterScreen: Bool? = false
     
     init(game: Game) {
         self._characters = FetchRequest<Character>(
@@ -29,16 +28,16 @@ struct iOSCharactersView: View {
         NavigationView {
             List {
                 NavigationLink(
-                    destination: EditCharacterView(),
+                    destination: EditCharacterView().navigationTitle("Create a Character"),
                     tag: true,
-                    selection: $showCreateCharacterScreen,
+                    selection: $gameStore.showCreateCharacterScreen,
                     label: { Label("Create a Character", systemImage: "plus.circle") }
                 )
                 
                 Section("Characters") {
                     ForEach(characters) { character in
                         NavigationLink(
-                            destination: EditCharacterView(character: character),
+                            destination: EditCharacterView(character: character).navigationTitle("Edit \(character.name ?? DEFAULT_CHARACTER_NAME)"),
                             tag: character,
                             selection: $gameStore.selectedCharacter,
                             label: { Text(character.name ?? DEFAULT_CHARACTER_NAME) }
@@ -48,17 +47,18 @@ struct iOSCharactersView: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button (action: { showCreateCharacterScreen = true }) {
+                    Button (action: { gameStore.showCreateCharacterScreen = true }) {
                         Label("Create a Character", systemImage: "person.badge.plus")
                     }
                 }
             }
+            .navigationTitle("Characters")
             
-            VStack(spacing: 15) {
+            VStack(spacing: 25) {
                 Text("No character selected")
                 
                 Button {
-                    showCreateCharacterScreen = true
+                    gameStore.showCreateCharacterScreen = true
                 } label : {
                     Label("Create a Character", systemImage: "plus.circle")
                 }
