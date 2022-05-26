@@ -11,7 +11,12 @@ struct EditCharacterOverview: View {
     @ObservedObject var editCharacterModel: EditCharacterModel
     
     var body: some View {
-        TextField("Name", text: $editCharacterModel.name)
+        VStack {
+            TextField("Name", text: $editCharacterModel.name)
+            
+            Text("Biography")
+            RichTextEditor(text: $editCharacterModel.biography)
+        }
     }
 }
 

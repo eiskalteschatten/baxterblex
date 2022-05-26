@@ -19,6 +19,8 @@ struct BaxterblexApp: App {
         #if os(macOS)
         .commands {
             SidebarCommands()
+            TextEditingCommands()
+            TextFormattingCommands()
         }
         #endif
     }

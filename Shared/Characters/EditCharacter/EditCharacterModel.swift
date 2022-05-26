@@ -13,11 +13,11 @@ final class EditCharacterModel: AbstractEditModel {
     @Published var name: String = ""
     @Published var picture: Data?
     @Published var age: Int16?
-    @Published var biography: String = ""
-    @Published var familyFriends: String = ""
-    @Published var hobbies: String = ""
-    @Published var notes: String = ""
-    @Published var occupation: String = ""
+    @Published var biography = NSAttributedString(string: "")
+    @Published var familyFriends = NSAttributedString(string: "")
+    @Published var hobbies = NSAttributedString(string: "")
+    @Published var notes = NSAttributedString(string: "")
+    @Published var occupation = NSAttributedString(string: "")
     
     init(character: Character? = nil) {
         super.init()
