@@ -12,6 +12,12 @@ final class EditCharacterModel: AbstractEditModel {
     
     @Published var name: String = ""
     @Published var picture: Data?
+    @Published var age: Int16?
+    @Published var biography: String = ""
+    @Published var familyFriends: String = ""
+    @Published var hobbies: String = ""
+    @Published var notes: String = ""
+    @Published var occupation: String = ""
     
     init(character: Character? = nil) {
         super.init()
@@ -23,6 +29,12 @@ final class EditCharacterModel: AbstractEditModel {
         if let unwrapped = character {
             name = unwrapped.name ?? name
             picture = unwrapped.picture
+            age = unwrapped.age
+            biography = unwrapped.biography ?? biography
+            familyFriends = unwrapped.familyFriends ?? familyFriends
+            hobbies = unwrapped.hobbies ?? hobbies
+            notes = unwrapped.notes ?? notes
+            occupation = unwrapped.occupation ?? occupation
         }
     }
     
@@ -35,6 +47,15 @@ final class EditCharacterModel: AbstractEditModel {
             
             character!.name = name
             character!.picture = picture
+            character!.biography = biography
+            character!.familyFriends = familyFriends
+            character!.hobbies = hobbies
+            character!.notes = notes
+            character!.occupation = occupation
+            
+            if let unwrappedAge = age {
+                character!.age = unwrappedAge
+            }
 
             do {
                 try viewContext!.save()
