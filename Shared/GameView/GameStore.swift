@@ -22,5 +22,5 @@ final class GameStore: ObservableObject {
     
     // Characters
     @Published var selectedCharacter: Character?
-    @Published var createCharacter: Bool = false
+    @Published var showCreateCharacterSheet: Bool = false
 }

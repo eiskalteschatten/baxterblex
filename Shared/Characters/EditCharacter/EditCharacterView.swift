@@ -19,10 +19,6 @@ struct EditCharacterView: View {
     
     var body: some View {
         VStack {
-            #if os(iOS)
-            CancelSaveButtons()
-            #endif
-            
             Form {
                 Section {
                     TextField("Name", text: $editCharacterModel.name)
@@ -42,7 +38,7 @@ fileprivate struct CancelSaveButtons: View {
     var body: some View {
         HStack {
             Button("Cancel") {
-                gameStore.createCharacter = false
+                gameStore.showCreateCharacterSheet = false
                 gameStore.selectedCharacter = nil
             }
             .keyboardShortcut(.cancelAction)

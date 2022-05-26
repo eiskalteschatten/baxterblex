@@ -26,25 +26,33 @@ struct iOSCharactersView: View {
     
     var body: some View {
         NavigationView {
-            List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
-                Text(character.name ?? DEFAULT_CHARACTER_NAME)
+            List {
+                ForEach(characters) { character in
+                    NavigationLink(
+                        destination: EditCharacterView(character: character),
+                        tag: character,
+                        selection: $gameStore.selectedCharacter,
+                        label: { Text(character.name ?? DEFAULT_CHARACTER_NAME) }
+                    )
+                }
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    if horizontalSizeClass == .compact {
-                        Button (action: { gameStore.createCharacter = true }) {
-                            Label("Create a Character", systemImage: "person.badge.plus")
-                        }
-                    }
-                    else {
-                        Button (action: { gameStore.createCharacter = true }) {
-                            Label("Create a Character", systemImage: "person.badge.plus")
-                        }
+                    Button (action: { gameStore.showCreateCharacterSheet = true }) {
+                        Label("Create a Character", systemImage: "person.badge.plus")
                     }
                 }
             }
             
-            Text("No character selected")
+            VStack(spacing: 15) {
+                Text("No character selected")
+                
+                Button {
+                    gameStore.showCreateCharacterSheet = true
+                } label : {
+                    Label("Create a Character", systemImage: "plus.circle")
+                }
+            }
         }
     }
 }
