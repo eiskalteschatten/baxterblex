@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct iOSRichTextEditor: UIViewRepresentable {
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self)
-    }
+    @Environment(\.colorScheme) var colorScheme
     
     var textView = UITextView()
     
     @Binding var text: NSAttributedString
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
     
     func makeUIView(context: Context) -> UITextView {
         textView.delegate = context.coordinator
@@ -35,6 +37,7 @@ struct iOSRichTextEditor: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UITextView, context: Context) {
+        uiView.backgroundColor = colorScheme == .dark ? UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.6) : UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 0.8)
         uiView.attributedText = text
     }
 
