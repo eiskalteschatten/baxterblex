@@ -22,8 +22,6 @@ struct MacGameTabView: View {
                 DashboardView()
             case .characters:
                 CharactersView()
-            case .gear:
-                GearView()
             case .accounting:
                 AccountingView()
             case .sessions:
@@ -54,9 +52,6 @@ struct MacGameTabView: View {
                     Text("Characters")
                         .tag(GameViewTabs.characters)
                     
-                    Text("Gear")
-                        .tag(GameViewTabs.gear)
-                    
                     Text("Accounting")
                         .tag(GameViewTabs.accounting)
                     
@@ -80,11 +75,6 @@ struct MacGameTabView: View {
                 case .characters:
                     Button(action: { gameStore.showCreateCharacterScreen = true }) {
                         Label("Create a Character", systemImage: "person.badge.plus")
-                    }
-                    .disabled(gameStore.selectedGame == nil)
-                case .gear:
-                    Button(action: {  }) {
-                        Label("Add Gear", systemImage: "plus.circle")
                     }
                     .disabled(gameStore.selectedGame == nil)
                 case .accounting:

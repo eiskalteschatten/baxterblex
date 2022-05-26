@@ -32,12 +32,6 @@ struct iOSGameTabView: View {
                 }
                 .tag(GameViewTabs.characters)
             
-            GearView()
-                .tabItem {
-                    Label("Gear", systemImage: "wrench.and.screwdriver.fill")
-                }
-                .tag(GameViewTabs.gear)
-            
             AccountingView()
                 .tabItem {
                     Label("Accounting", systemImage: "dollarsign.square")
