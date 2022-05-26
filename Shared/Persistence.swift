@@ -38,9 +38,11 @@ struct PersistenceController {
 
     init(inMemory: Bool = false) {
         container = NSPersistentCloudKitContainer(name: "Baxterblex")
+        
         if inMemory {
             container.persistentStoreDescriptions.first!.url = URL(fileURLWithPath: "/dev/null")
         }
+        
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
@@ -57,6 +59,16 @@ struct PersistenceController {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
+        
         container.viewContext.automaticallyMergesChangesFromParent = true
+        
+        #if DEBUG
+        if container.persistentStoreCoordinator.persistentStores.first?.url != nil {
+            print("sqlite path: ", container.persistentStoreCoordinator.persistentStores.first!.url!.absoluteString)
+        }
+        else {
+            print("sqlite path: Cannot determine!")
+        }
+        #endif
     }
 }
