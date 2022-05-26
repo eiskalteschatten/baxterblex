@@ -65,6 +65,10 @@
 		93486613283E7DB8005497A1 /* iOSSingleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486612283E7DB8005497A1 /* iOSSingleGameView.swift */; };
 		93B9CECD283FBF3B005EB7C6 /* EditCharacterOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */; };
 		93B9CECE283FBF3B005EB7C6 /* EditCharacterOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */; };
+		93B9CED1283FCAB2005EB7C6 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CED0283FCAB2005EB7C6 /* NotesView.swift */; };
+		93B9CED2283FCAB2005EB7C6 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CED0283FCAB2005EB7C6 /* NotesView.swift */; };
+		93B9CED4283FCACE005EB7C6 /* MacNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CED3283FCACE005EB7C6 /* MacNotesView.swift */; };
+		93B9CED6283FCAF6005EB7C6 /* iOSNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CED5283FCAF6005EB7C6 /* iOSNotesView.swift */; };
 		93C526A1283B891800371B6A /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A0283B891800371B6A /* Tests_iOS.swift */; };
 		93C526A3283B891800371B6A /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A2283B891800371B6A /* Tests_iOSLaunchTests.swift */; };
 		93C526AD283B891800371B6A /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526AC283B891800371B6A /* Tests_macOS.swift */; };
@@ -132,6 +136,9 @@
 		93486610283E7D67005497A1 /* MacSingleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSingleGameView.swift; sourceTree = "<group>"; };
 		93486612283E7DB8005497A1 /* iOSSingleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSingleGameView.swift; sourceTree = "<group>"; };
 		93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterOverview.swift; sourceTree = "<group>"; };
+		93B9CED0283FCAB2005EB7C6 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
+		93B9CED3283FCACE005EB7C6 /* MacNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNotesView.swift; sourceTree = "<group>"; };
+		93B9CED5283FCAF6005EB7C6 /* iOSNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSNotesView.swift; sourceTree = "<group>"; };
 		93C52686283B891600371B6A /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		93C52687283B891600371B6A /* BaxterblexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaxterblexApp.swift; sourceTree = "<group>"; };
 		93C52689283B891600371B6A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -304,6 +311,16 @@
 			path = Elements;
 			sourceTree = "<group>";
 		};
+		93B9CECF283FCA9B005EB7C6 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				93B9CED0283FCAB2005EB7C6 /* NotesView.swift */,
+				93B9CED3283FCACE005EB7C6 /* MacNotesView.swift */,
+				93B9CED5283FCAF6005EB7C6 /* iOSNotesView.swift */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
 		93C5267F283B891600371B6A = {
 			isa = PBXGroup;
 			children = (
@@ -329,6 +346,7 @@
 				93486567283BF742005497A1 /* Characters */,
 				93486569283BF75B005497A1 /* Accounting */,
 				9348656A283BF762005497A1 /* Sessions */,
+				93B9CECF283FCA9B005EB7C6 /* Notes */,
 				93486606283E7485005497A1 /* Elements */,
 				9348658C283CE138005497A1 /* Styles */,
 				934865BE283D397D005497A1 /* Lib */,
@@ -549,9 +567,11 @@
 				934865BC283D3800005497A1 /* GamesListItemView.swift in Sources */,
 				93486583283C2A01005497A1 /* iOSCharactersView.swift in Sources */,
 				93C526B0283B891800371B6A /* Baxterblex.xcdatamodeld in Sources */,
+				93B9CED6283FCAF6005EB7C6 /* iOSNotesView.swift in Sources */,
 				9348658E283CE14C005497A1 /* ButtonStyles.swift in Sources */,
 				93486580283C0BD8005497A1 /* GameStore.swift in Sources */,
 				93486598283CF304005497A1 /* EditCharacterView.swift in Sources */,
+				93B9CED1283FCAB2005EB7C6 /* NotesView.swift in Sources */,
 				9348660B283E7A8C005497A1 /* NoGameSelected.swift in Sources */,
 				93486604283E729D005497A1 /* SingleGameView.swift in Sources */,
 				934865B6283D221A005497A1 /* SessionsView.swift in Sources */,
@@ -576,6 +596,7 @@
 			files = (
 				93C526B3283B891800371B6A /* BaxterblexApp.swift in Sources */,
 				93486576283BF882005497A1 /* AccountingView.swift in Sources */,
+				93B9CED4283FCACE005EB7C6 /* MacNotesView.swift in Sources */,
 				93486601283E6DC1005497A1 /* ContentView.swift in Sources */,
 				93C526B7283B891800371B6A /* Persistence.swift in Sources */,
 				933CE3CE283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
@@ -591,6 +612,7 @@
 				934865A0283CF404005497A1 /* AbstractEditModel.swift in Sources */,
 				9348660C283E7A8C005497A1 /* NoGameSelected.swift in Sources */,
 				93486611283E7D67005497A1 /* MacSingleGameView.swift in Sources */,
+				93B9CED2283FCAB2005EB7C6 /* NotesView.swift in Sources */,
 				93486605283E729D005497A1 /* SingleGameView.swift in Sources */,
 				9348658F283CE14C005497A1 /* ButtonStyles.swift in Sources */,
 				9348656D283BF774005497A1 /* DashboardView.swift in Sources */,

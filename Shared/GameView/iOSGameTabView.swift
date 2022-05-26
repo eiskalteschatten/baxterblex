@@ -43,6 +43,12 @@ struct iOSGameTabView: View {
                     Label("Sessions", systemImage: "rectangle.stack.fill")
                 }
                 .tag(GameViewTabs.sessions)
+            
+            NotesView()
+                .tabItem {
+                    Label("Notes", systemImage: "note.text")
+                }
+                .tag(GameViewTabs.notes)
         }
     }
 }

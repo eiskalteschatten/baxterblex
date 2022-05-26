@@ -26,6 +26,8 @@ struct MacGameTabView: View {
                 AccountingView()
             case .sessions:
                 SessionsView()
+            case .notes:
+                NotesView()
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -57,6 +59,9 @@ struct MacGameTabView: View {
                     
                     Text("Sessions")
                         .tag(GameViewTabs.sessions)
+                    
+                    Text("Notes")
+                        .tag(GameViewTabs.notes)
                 }
                 .pickerStyle(.segmented)
             }
@@ -85,6 +90,11 @@ struct MacGameTabView: View {
                 case .sessions:
                     Button(action: {  }) {
                         Label("Add a Session", systemImage: "rectangle.stack.badge.plus")
+                    }
+                    .disabled(gameStore.selectedGame == nil)
+                case .notes:
+                    Button(action: {  }) {
+                        Label("Add a Note", systemImage: "square.and.pencil")
                     }
                     .disabled(gameStore.selectedGame == nil)
                 }
