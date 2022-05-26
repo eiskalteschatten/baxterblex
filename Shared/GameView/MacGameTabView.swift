@@ -78,7 +78,7 @@ struct MacGameTabView: View {
                 case .dashboard:
                     EmptyView()
                 case .characters:
-                    Button(action: { gameStore.createCharacter = true }) {
+                    Button(action: { gameStore.showCreateCharacterSheet = true }) {
                         Label("Create a Character", systemImage: "person.badge.plus")
                     }
                     .disabled(gameStore.selectedGame == nil)

@@ -24,9 +24,7 @@ struct MacCharactersView: View {
     }
     
     var body: some View {
-        let showEditCharacterView = gameStore.createCharacter || gameStore.selectedCharacter != nil
-        
-        HStack(alignment: showEditCharacterView ? .top : .center) {
+        HStack {
             List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
@@ -36,21 +34,30 @@ struct MacCharactersView: View {
             Divider()
             
             Group {
-                if showEditCharacterView {
+                if gameStore.selectedCharacter != nil {
                     EditCharacterView(character: gameStore.selectedCharacter)
                         #if os(macOS)
                         .padding(15)
                         #endif
                 }
                 else {
-                    Text("No character selected")
+                    VStack(spacing: 15) {
+                        Text("No character selected")
+                        
+                        Button {
+                            gameStore.showCreateCharacterSheet = true
+                        } label : {
+                            Label("Create a Character", systemImage: "plus.circle")
+                                .buttonStyle(RoundedFlatButtonStyle())
+                        }
+                    }
                 }
             }
             .frame(maxWidth: .infinity)
         }
         .frame(maxWidth: .infinity)
         .onChange(of: gameStore.selectedCharacter) { _ in
-            gameStore.createCharacter = false
+            gameStore.showCreateCharacterSheet = false
         }
     }
 }
