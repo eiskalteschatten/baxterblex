@@ -18,7 +18,6 @@ struct MacRichTextEditor: NSViewRepresentable {
     
     func makeNSView(context: Context) -> NSTextView {
         textView.delegate = context.coordinator
-//        textView.string = text
         textView.isRichText = true
         textView.allowsUndo = true
         textView.allowsImageEditing = false
