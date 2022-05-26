@@ -32,7 +32,7 @@ struct EditCharacterView: View {
                     .tag(EditCharacterViewTabs.gear)
             }
             .pickerStyle(.segmented)
-            .padding(.bottom, 25)
+            .padding(.bottom, 20)
             
             switch selectedTab {
             case .overview:
@@ -44,7 +44,7 @@ struct EditCharacterView: View {
             Spacer()
         }
         #if os(iOS)
-        .padding(20)
+        .padding(.horizontal, 20)
         #endif
     }
 }
