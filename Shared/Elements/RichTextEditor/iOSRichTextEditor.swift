@@ -24,13 +24,10 @@ struct iOSRichTextEditor: UIViewRepresentable {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: textView.frame.size.width, height: 44))
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
-        let cancelButton = UIBarButtonItem(title: "Cancel", image: nil, primaryAction: UIAction { action in
-            context.coordinator.cancelButtonTapped(action: action)
-        })
-        let clearButton = UIBarButtonItem(title: "Clear", image: nil, primaryAction: UIAction(handler: context.coordinator.clearButtonTapped(action:)))
+//        let boldButton = UIBarButtonItem(title: "Bold", image: UIImage(systemName: "bold"), primaryAction: context.coordinator.boldAction)
         let doneButton = UIBarButtonItem(title: "Done", image: nil, primaryAction: context.coordinator.doneAction)
 
-        toolbar.setItems([cancelButton, spacer, clearButton, spacer, doneButton], animated: true)
+        toolbar.setItems([/*boldButton,*/ spacer, doneButton], animated: true)
         textView.inputAccessoryView = toolbar
         
         return textView
@@ -44,6 +41,8 @@ struct iOSRichTextEditor: UIViewRepresentable {
     class Coordinator: NSObject, UITextViewDelegate {
         var parent: iOSRichTextEditor
         var affectedCharRange: NSRange?
+        
+//        lazy var boldAction = UIAction(handler: boldButtonTapped(action:))
         lazy var doneAction = UIAction(handler: doneButtonTapped(action:))
         
         init(_ parent: iOSRichTextEditor) {
@@ -62,13 +61,18 @@ struct iOSRichTextEditor: UIViewRepresentable {
             return true
         }
         
-        func cancelButtonTapped(action: UIAction) -> Void {
-           print("Cancel Button Tapped")
-        }
-
-        func clearButtonTapped(action: UIAction) -> Void {
-           print("Clear Button Tapped")
-        }
+//        private func boldButtonTapped(action: UIAction) -> Void {
+//            let textRange = self.parent.textView.selectedRange
+//            let attributes: [NSAttributedString.Key: Any] = [.font: UIFont.boldSystemFont(ofSize: 14)]
+//
+//            if textRange.length > 0 {
+//                let ass = NSAttributedString(string: self.parent.text.string, attributes: attributes)
+//                self.parent.text = ass
+//            }
+//            else {
+//                // TODO: bold all text that comes afterwards
+//            }
+//        }
 
         private func doneButtonTapped(action: UIAction) -> Void {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
