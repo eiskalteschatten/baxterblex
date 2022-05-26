@@ -13,6 +13,8 @@ struct RichTextEditor: View {
     var body: some View {
         #if os(macOS)
         MacRichTextEditor(text: $text)
+        #else
+        iOSRichTextEditor(text: $text)
         #endif
     }
 }

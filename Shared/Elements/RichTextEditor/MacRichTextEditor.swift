@@ -26,7 +26,7 @@ struct MacRichTextEditor: NSViewRepresentable {
     }
     
     func updateNSView(_ nsView: NSTextView, context: Context) {
-        nsView.textStorage?.setAttributedString(self.text)
+        nsView.textStorage?.setAttributedString(text)
     }
 
     class Coordinator: NSObject, NSTextViewDelegate{

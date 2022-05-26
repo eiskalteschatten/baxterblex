@@ -72,6 +72,7 @@
 		93B9CED8283FD1CE005EB7C6 /* RichTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CED7283FD1CE005EB7C6 /* RichTextEditor.swift */; };
 		93B9CED9283FD1CE005EB7C6 /* RichTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CED7283FD1CE005EB7C6 /* RichTextEditor.swift */; };
 		93B9CEDC283FD1EE005EB7C6 /* MacRichTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CEDB283FD1EE005EB7C6 /* MacRichTextEditor.swift */; };
+		93B9CEDE283FD805005EB7C6 /* iOSRichTextEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CEDD283FD805005EB7C6 /* iOSRichTextEditor.swift */; };
 		93C526A1283B891800371B6A /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A0283B891800371B6A /* Tests_iOS.swift */; };
 		93C526A3283B891800371B6A /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526A2283B891800371B6A /* Tests_iOSLaunchTests.swift */; };
 		93C526AD283B891800371B6A /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C526AC283B891800371B6A /* Tests_macOS.swift */; };
@@ -144,6 +145,7 @@
 		93B9CED5283FCAF6005EB7C6 /* iOSNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSNotesView.swift; sourceTree = "<group>"; };
 		93B9CED7283FD1CE005EB7C6 /* RichTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RichTextEditor.swift; sourceTree = "<group>"; };
 		93B9CEDB283FD1EE005EB7C6 /* MacRichTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacRichTextEditor.swift; sourceTree = "<group>"; };
+		93B9CEDD283FD805005EB7C6 /* iOSRichTextEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSRichTextEditor.swift; sourceTree = "<group>"; };
 		93C52686283B891600371B6A /* Shared.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Shared.xcdatamodel; sourceTree = "<group>"; };
 		93C52687283B891600371B6A /* BaxterblexApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaxterblexApp.swift; sourceTree = "<group>"; };
 		93C52689283B891600371B6A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 			children = (
 				93B9CED7283FD1CE005EB7C6 /* RichTextEditor.swift */,
 				93B9CEDB283FD1EE005EB7C6 /* MacRichTextEditor.swift */,
+				93B9CEDD283FD805005EB7C6 /* iOSRichTextEditor.swift */,
 			);
 			path = RichTextEditor;
 			sourceTree = "<group>";
@@ -603,6 +606,7 @@
 				934865C3283D7ECB005497A1 /* GameListItemTileView.swift in Sources */,
 				934865B8283D29AD005497A1 /* GamesListView.swift in Sources */,
 				93486608283E749B005497A1 /* ResizableText.swift in Sources */,
+				93B9CEDE283FD805005EB7C6 /* iOSRichTextEditor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
