@@ -7,10 +7,15 @@
 
 import SwiftUI
 
+enum EditCharacterViewTabs: Int {
+    case overview, gear
+}
+
 struct EditCharacterView: View {
     var character: Character?
     
     @ObservedObject private var editCharacterModel: EditCharacterModel
+    @SceneStorage("selectedEditCharacterTab") private var selectedTab: EditCharacterViewTabs = .overview
     
     init(character: Character? = nil) {
         self.editCharacterModel = EditCharacterModel(character: character)
@@ -19,17 +24,28 @@ struct EditCharacterView: View {
     
     var body: some View {
         VStack {
-            Form {
-                Section {
-                    TextField("Name", text: $editCharacterModel.name)
-                }
+            Picker("", selection: $selectedTab) {
+                Text("Overview")
+                    .tag(EditCharacterViewTabs.overview)
+                
+                Text("Gear")
+                    .tag(EditCharacterViewTabs.gear)
+            }
+            .pickerStyle(.segmented)
+            .padding(.bottom, 25)
+            
+            switch selectedTab {
+            case .overview:
+                EditCharacterOverview(editCharacterModel: editCharacterModel)
+            case .gear:
+                Text("Gear")
             }
             
-            #if os(macOS)
-            // Force the form to the top
             Spacer()
-            #endif
         }
+        #if os(iOS)
+        .padding(20)
+        #endif
     }
 }
 
