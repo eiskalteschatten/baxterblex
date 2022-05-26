@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum EditCharacterViewTabs: Int {
-    case overview, gear
+    case overview, gear, stats, health
 }
 
 struct EditCharacterView: View {
@@ -30,6 +30,12 @@ struct EditCharacterView: View {
                 
                 Text("Gear")
                     .tag(EditCharacterViewTabs.gear)
+                
+                Text("Stats")
+                    .tag(EditCharacterViewTabs.stats)
+                
+                Text("Health")
+                    .tag(EditCharacterViewTabs.health)
             }
             .pickerStyle(.segmented)
             .padding(.bottom, 20)
@@ -37,8 +43,12 @@ struct EditCharacterView: View {
             switch selectedTab {
             case .overview:
                 EditCharacterOverview(editCharacterModel: editCharacterModel)
+            case .stats:
+                Text("Stats")
             case .gear:
                 Text("Gear")
+            case .health:
+                Text("Health")
             }
             
             Spacer()
