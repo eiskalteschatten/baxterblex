@@ -24,29 +24,32 @@ struct MacCharactersView: View {
     }
     
     var body: some View {
-        HSplitView() {
+        HSplitView {
             List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
+            .listStyle(.sidebar)
             .frame(minWidth: 300)
                 
-            if gameStore.selectedCharacter != nil {
-                EditCharacterView(character: gameStore.selectedCharacter)
-                    .padding(15)
-            }
-            else {
-                VStack(spacing: 25) {
-                    Text("No character selected")
-                    
-                    Button {
-                        gameStore.showCreateCharacterScreen = true
-                    } label : {
-                        Label("Create a Character", systemImage: "plus.circle")
-                    }
-                    .buttonStyle(RoundedFlatButtonStyle())
+            Group {
+                if gameStore.showCreateCharacterScreen! || gameStore.selectedCharacter != nil {
+                    EditCharacterView(character: gameStore.selectedCharacter)
+                        .padding(15)
                 }
-                .frame(minWidth: 300, maxWidth: .infinity, maxHeight: .infinity)
+                else {
+                    VStack(spacing: 25) {
+                        Text("No character selected")
+                        
+                        Button {
+                            gameStore.showCreateCharacterScreen = true
+                        } label : {
+                            Label("Create a Character", systemImage: "plus.circle")
+                        }
+                        .buttonStyle(RoundedFlatButtonStyle())
+                    }
+                }
             }
+            .frame(minWidth: 300, maxWidth: .infinity, maxHeight: .infinity)
         }
         .onChange(of: gameStore.selectedCharacter) { _ in
             gameStore.showCreateCharacterScreen = false

@@ -24,6 +24,11 @@ struct EditCharacterView: View {
                     TextField("Name", text: $editCharacterModel.name)
                 }
             }
+            
+            #if os(macOS)
+            // Force the form to the top
+            Spacer()
+            #endif
         }
     }
 }
