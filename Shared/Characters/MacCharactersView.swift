@@ -31,7 +31,8 @@ struct MacCharactersView: View {
             .listStyle(.sidebar)
             .frame(minWidth: 300)
                 
-            Group {
+            // Use a VStack so that the HSplitView doesn't move when switching between the two views within
+            VStack {
                 if gameStore.showCreateCharacterScreen! || gameStore.selectedCharacter != nil {
                     EditCharacterView(character: gameStore.selectedCharacter)
                         .padding(15)
