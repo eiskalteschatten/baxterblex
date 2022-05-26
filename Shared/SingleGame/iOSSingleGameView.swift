@@ -23,8 +23,11 @@ struct iOSSingleGameView: View {
                                 selectedGameURL = nil
                             }
                         }) {
-                            Label("Open a Game", systemImage: "chevron.left")
-                                .font(.system(size: 17, weight: .semibold))
+                            HStack {
+                                Image(systemName: "chevron.left")
+                                    .font(.system(size: 17, weight: .semibold))
+                                Text("All Games")
+                            }
                         }
                     }
                     
