@@ -44,7 +44,7 @@ struct MacCharactersView: View {
                         Button {
                             gameStore.showCreateCharacterScreen = true
                         } label : {
-                            Label("Create a Character", systemImage: "plus.circle")
+                            Label("Create a Character", systemImage: "person.badge.plus")
                         }
                         .buttonStyle(RoundedFlatButtonStyle())
                     }

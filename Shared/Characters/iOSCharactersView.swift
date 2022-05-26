@@ -31,7 +31,7 @@ struct iOSCharactersView: View {
                     destination: EditCharacterView().navigationTitle("Create a Character"),
                     tag: true,
                     selection: $gameStore.showCreateCharacterScreen,
-                    label: { Label("Create a Character", systemImage: "plus.circle") }
+                    label: { Label("Create a Character", systemImage: "person.badge.plus") }
                 )
                 
                 Section("Characters") {
@@ -56,12 +56,6 @@ struct iOSCharactersView: View {
             
             VStack(spacing: 25) {
                 Text("No character selected")
-                
-                Button {
-                    gameStore.showCreateCharacterScreen = true
-                } label : {
-                    Label("Create a Character", systemImage: "plus.circle")
-                }
             }
         }
     }
