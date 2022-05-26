@@ -36,16 +36,14 @@ struct MacCharactersView: View {
             Group {
                 if gameStore.selectedCharacter != nil {
                     EditCharacterView(character: gameStore.selectedCharacter)
-                        #if os(macOS)
                         .padding(15)
-                        #endif
                 }
                 else {
-                    VStack(spacing: 15) {
+                    VStack(spacing: 25) {
                         Text("No character selected")
                         
                         Button {
-                            gameStore.showCreateCharacterSheet = true
+                            gameStore.showCreateCharacterScreen = true
                         } label : {
                             Label("Create a Character", systemImage: "plus.circle")
                         }
@@ -57,7 +55,7 @@ struct MacCharactersView: View {
         }
         .frame(maxWidth: .infinity)
         .onChange(of: gameStore.selectedCharacter) { _ in
-            gameStore.showCreateCharacterSheet = false
+            gameStore.showCreateCharacterScreen = false
         }
     }
 }
