@@ -29,7 +29,7 @@ struct MacRichTextEditor: NSViewRepresentable {
         nsView.textStorage?.setAttributedString(text)
     }
 
-    class Coordinator: NSObject, NSTextViewDelegate{
+    class Coordinator: NSObject, NSTextViewDelegate {
         var parent: MacRichTextEditor
         var affectedCharRange: NSRange?
         
