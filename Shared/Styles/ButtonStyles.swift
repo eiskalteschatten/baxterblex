@@ -18,7 +18,7 @@ struct RoundedFlatButtonStyle: ButtonStyle {
         
         configuration.label
             .buttonStyle(.plain)
-            .padding(.vertical, 4)
+            .padding(.vertical, 5)
             .padding(.horizontal, 8)
             .background(isHovering || configuration.isPressed ? backgroundColor : nil)
             .clipShape(RoundedRectangle(cornerRadius: 5))
@@ -38,7 +38,7 @@ struct RoundedFlatTileButtonStyle: ButtonStyle {
         
         configuration.label
             .buttonStyle(.plain)
-            .padding(.vertical, 4)
+            .padding(.vertical, 5)
             .padding(.horizontal, 8)
             .background(configuration.isPressed ? pressedColor : defaultColor)
             .clipShape(RoundedRectangle(cornerRadius: 5))
