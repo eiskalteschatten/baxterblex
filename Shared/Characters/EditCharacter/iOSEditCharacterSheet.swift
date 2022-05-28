@@ -8,13 +8,12 @@
 import SwiftUI
 
 struct iOSEditCharacterSheet: View {
+    @EnvironmentObject private var gameStore: GameStore
     @Environment(\.dismiss) var dismiss
-    
-    private var editCharacterModel = EditCharacterModel()
     
     var body: some View {
         NavigationView {
-            EditCharacterView(editCharacterModel: editCharacterModel)
+            EditCharacterView()
                 .navigationBarTitle(Text("Create a Character"), displayMode: .inline)
                     .navigationBarItems(
                         leading: Button(action: {
@@ -23,7 +22,9 @@ struct iOSEditCharacterSheet: View {
                             Text("Cancel")
                         },
                         trailing: Button(action: {
-                            editCharacterModel.save()
+                            if gameStore.editCharacterModel != nil {
+                                gameStore.editCharacterModel!.save()
+                            }
                             dismiss()
                         }) {
                             Text("Save").bold()
