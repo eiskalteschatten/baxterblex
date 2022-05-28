@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class EditCharacterModel: AbstractEditModel {
-    var character: Character?
+    var character: Character!
     private var game: Game?
     
     @Published var name: String = "" {
@@ -26,22 +26,23 @@ final class EditCharacterModel: AbstractEditModel {
     @Published var occupation = NSAttributedString(string: "")
     
     init(character: Character? = nil) {
-        self.character = character
         super.init()
-        initVariables()
+        self.character = character ?? Character(context: viewContext!)
+        
+        if character != nil {
+            initVariables()
+        }
     }
     
     override func initVariables() {
-        if let unwrapped = character {
-            name = unwrapped.name ?? name
-            picture = unwrapped.picture
-            age = unwrapped.age
-            biography = unwrapped.biography ?? biography
-            familyFriends = unwrapped.familyFriends ?? familyFriends
-            hobbies = unwrapped.hobbies ?? hobbies
-            notes = unwrapped.notes ?? notes
-            occupation = unwrapped.occupation ?? occupation
-        }
+        name = character.name ?? name
+        picture = character.picture
+        age = character.age
+        biography = character.biography ?? biography
+        familyFriends = character.familyFriends ?? familyFriends
+        hobbies = character.hobbies ?? hobbies
+        notes = character.notes ?? notes
+        occupation = character.occupation ?? occupation
     }
     
     override func save() {
@@ -51,28 +52,26 @@ final class EditCharacterModel: AbstractEditModel {
 //        }
         
         withAnimation {
-            character = character != nil ? character : Character(context: viewContext!)
+            character.createdAt = Date()
+            character.updatedAt = Date()
             
-            character!.createdAt = Date()
-            character!.updatedAt = Date()
-            
-            character!.name = name
-            character!.biography = biography
-            character!.familyFriends = familyFriends
-            character!.hobbies = hobbies
-            character!.notes = notes
-            character!.occupation = occupation
+            character.name = name
+            character.biography = biography
+            character.familyFriends = familyFriends
+            character.hobbies = hobbies
+            character.notes = notes
+            character.occupation = occupation
             
             if let unwrappedGame = game {
-                character!.game = unwrappedGame
+                character.game = unwrappedGame
             }
             
             if let unwrappedPicture = picture {
-                character!.picture = unwrappedPicture
+                character.picture = unwrappedPicture
             }
             
             if let unwrappedAge = age {
-                character!.age = unwrappedAge
+                character.age = unwrappedAge
             }
 
             do {
