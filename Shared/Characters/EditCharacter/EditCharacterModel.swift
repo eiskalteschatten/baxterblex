@@ -10,20 +10,39 @@ import SwiftUI
 final class EditCharacterModel: AbstractEditModel {
     var character: Character!
     private var game: Game?
+    private var shouldSave = false
     
     @Published var name: String = "" {
-        didSet {
-            save()
-        }
+        didSet { saveAfterEdit() }
     }
     
-    @Published var picture: Data?
-    @Published var age: Int16?
-    @Published var biography = NSAttributedString(string: "")
-    @Published var familyFriends = NSAttributedString(string: "")
-    @Published var hobbies = NSAttributedString(string: "")
-    @Published var notes = NSAttributedString(string: "")
-    @Published var occupation = NSAttributedString(string: "")
+    @Published var picture: Data? {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var age: Int16?  {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var biography = NSAttributedString(string: "") {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var familyFriends = NSAttributedString(string: "") {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var hobbies = NSAttributedString(string: "") {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var notes = NSAttributedString(string: "") {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var occupation = NSAttributedString(string: "") {
+        didSet { saveAfterEdit() }
+    }
     
     init(character: Character? = nil) {
         super.init()
@@ -32,6 +51,8 @@ final class EditCharacterModel: AbstractEditModel {
         if character != nil {
             initVariables()
         }
+        
+        self.shouldSave = true
     }
     
     override func initVariables() {
@@ -43,6 +64,12 @@ final class EditCharacterModel: AbstractEditModel {
         hobbies = character.hobbies ?? hobbies
         notes = character.notes ?? notes
         occupation = character.occupation ?? occupation
+    }
+    
+    private func saveAfterEdit() {
+        if shouldSave {
+            DispatchQueue.main.async() { self.save() }
+        }
     }
     
     override func save() {
