@@ -40,9 +40,8 @@ struct EditCharacterOverview: View {
                         Text("Age:")
                         
                         TextField(
-                            "100",
-                            value: $editCharacterModel.age,
-                            format: .number
+                            "25",
+                            text: $editCharacterModel.age
                         )
                         .frame(width: 50)
                         #if os(iOS)

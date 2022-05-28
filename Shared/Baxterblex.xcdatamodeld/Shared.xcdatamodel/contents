@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Character" representedClassName="Character" syncable="YES" codeGenerationType="class">
-        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="age" optional="YES" attributeType="String"/>
         <attribute name="biography" optional="YES" attributeType="Transformable" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="familyFriends" optional="YES" attributeType="Transformable" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>

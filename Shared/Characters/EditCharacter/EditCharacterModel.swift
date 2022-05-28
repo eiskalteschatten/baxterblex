@@ -20,7 +20,7 @@ final class EditCharacterModel: AbstractEditModel {
         didSet { saveAfterEdit() }
     }
     
-    @Published var age: Int16?  {
+    @Published var age: String = "" {
         didSet { saveAfterEdit() }
     }
     
@@ -58,7 +58,7 @@ final class EditCharacterModel: AbstractEditModel {
     override func initVariables() {
         name = character.name ?? name
         picture = character.picture
-        age = character.age
+        age = character.age ?? age
         biography = character.biography ?? biography
         familyFriends = character.familyFriends ?? familyFriends
         hobbies = character.hobbies ?? hobbies
@@ -83,6 +83,7 @@ final class EditCharacterModel: AbstractEditModel {
             character.updatedAt = Date()
             
             character.name = name
+            character.age = age
             character.biography = biography
             character.familyFriends = familyFriends
             character.hobbies = hobbies
@@ -97,10 +98,6 @@ final class EditCharacterModel: AbstractEditModel {
                 character.picture = unwrappedPicture
             }
             
-            if let unwrappedAge = age {
-                character.age = unwrappedAge
-            }
-
             do {
                 try viewContext!.save()
             } catch {
