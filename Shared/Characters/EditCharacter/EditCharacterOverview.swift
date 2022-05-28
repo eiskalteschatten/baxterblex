@@ -14,8 +14,42 @@ struct EditCharacterOverview: View {
         let textEditorHeight: CGFloat = 200
         
         ScrollView {
-            VStack(alignment: .leading, spacing: 25) {
-                TextField("Name", text: $editCharacterModel.name)
+            VStack(spacing: 30) {
+                Button(action: { /* TODO */ }) {
+//                    if let imageStore = bookModel.bookcover, let bookcover = imageStore.image {
+//                        let image = NSImage(data: bookcover)
+//                        Image(nsImage: image!)
+//                            .resizable()
+//                            .scaledToFit()
+//                    }
+//                    else {
+                        Image(systemName: "plus.square.dashed")
+                            .font(.system(size: 150))
+//                    }
+                }
+                .buttonStyle(.plain)
+                .frame(maxHeight: 300)
+                
+                VStack(alignment: .leading, spacing: 20) {
+                    TextField("Name", text: $editCharacterModel.name)
+                        .textFieldStyle(.plain)
+                        .font(.system(size: 20, weight: .bold))
+                        .multilineTextAlignment(.center)
+                    
+                    HStack {
+                        Text("Age:")
+                        
+                        TextField(
+                            "100",
+                            value: $editCharacterModel.age,
+                            format: .number
+                        )
+                        .frame(width: 50)
+                        #if os(iOS)
+                        .keyboardType(.numberPad)
+                        #endif
+                    }
+                }
                 
                 VStack(alignment: .leading) {
                     Text("Biography")
@@ -46,6 +80,19 @@ struct EditCharacterOverview: View {
                     RichTextEditor(text: $editCharacterModel.notes)
                         .frame(height: textEditorHeight)
                 }
+                
+                VStack {
+                    if let createdAt = editCharacterModel.character?.createdAt {
+                        Text("Created at: \(formatDateTimeLong(createdAt))")
+                            .font(.caption)
+                    }
+                    
+                    if let updatedAt = editCharacterModel.character?.updatedAt {
+                        Text("Last updated at: \(formatDateTimeLong(updatedAt))")
+                            .font(.caption)
+                    }
+                }
+                .opacity(0.6)
             }
         }
     }

@@ -13,3 +13,10 @@ func formatDateLong(_ date: Date) -> String {
     dateFormatter.timeStyle = .none
     return dateFormatter.string(from: date)
 }
+
+func formatDateTimeLong(_ date: Date) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .long
+    dateFormatter.timeStyle = .short
+    return dateFormatter.string(from: date)
+}

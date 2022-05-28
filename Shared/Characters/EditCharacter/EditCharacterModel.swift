@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class EditCharacterModel: AbstractEditModel {
-    private var character: Character?
+    var character: Character?
     
     @Published var name: String = ""
     @Published var picture: Data?
