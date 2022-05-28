@@ -33,7 +33,7 @@ struct MacCharactersView: View {
                 
             // Use a VStack so that the HSplitView doesn't move when switching between the two views within
             VStack {
-                if gameStore.showCreateCharacterScreen! || gameStore.selectedCharacter != nil {
+                if gameStore.selectedCharacter != nil {
                     EditCharacterView(character: gameStore.selectedCharacter)
                         .padding(15)
                 }
@@ -42,8 +42,7 @@ struct MacCharactersView: View {
                         Text("No character selected")
                         
                         Button {
-                            gameStore.selectedCharacter = nil
-                            gameStore.showCreateCharacterScreen = true
+                            gameStore.selectedCharacter = EditCharacterModel().character
                         } label : {
                             Label("Create a Character", systemImage: "person.badge.plus")
                         }
@@ -52,9 +51,6 @@ struct MacCharactersView: View {
                 }
             }
             .frame(minWidth: 300, maxWidth: .infinity, maxHeight: .infinity)
-        }
-        .onChange(of: gameStore.selectedCharacter) { _ in
-            gameStore.showCreateCharacterScreen = false
         }
     }
 }
