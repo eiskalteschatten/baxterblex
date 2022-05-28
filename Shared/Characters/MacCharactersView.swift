@@ -29,8 +29,8 @@ struct MacCharactersView: View {
             List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
                 Text(character.name ?? DEFAULT_CHARACTER_NAME)
             }
+            .frame(minWidth: 250, idealWidth: 300, maxHeight: .infinity)
             .listStyle(.sidebar)
-            .frame(minWidth: 300)
 
             // Use a VStack so that the HSplitView doesn't move when switching between the two views within
             VStack {
@@ -52,6 +52,7 @@ struct MacCharactersView: View {
                 }
             }
             .frame(minWidth: 300, maxWidth: .infinity, maxHeight: .infinity)
+            .layoutPriority(1)
         }
     }
 }
