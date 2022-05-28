@@ -13,7 +13,7 @@ struct iOSCharactersView: View {
     
     var game: Game
     
-    @State private var showCreateCharacterScreen: Bool? = false
+    @State private var showCreateCharacterScreen = false
     @FetchRequest private var characters: FetchedResults<Character>
     
     init(game: Game) {
@@ -28,17 +28,11 @@ struct iOSCharactersView: View {
     var body: some View {
         NavigationView {
             List {
-                NavigationLink(
-                    destination: EditCharacterView().navigationTitle("Create a Character"),
-                    tag: true,
-                    selection: $showCreateCharacterScreen,
-                    label: { Label("Create a Character", systemImage: "person.badge.plus") }
-                )
-                
                 Section("Characters") {
                     ForEach(characters) { character in
                         NavigationLink(
-                            destination: EditCharacterView(character: character).navigationTitle("Edit \(character.name ?? DEFAULT_CHARACTER_NAME)"),
+                            destination: EditCharacterView(editCharacterModel: EditCharacterModel(character: character))
+                                            .navigationTitle("Edit \(character.name ?? DEFAULT_CHARACTER_NAME)"),
                             tag: character,
                             selection: $gameStore.selectedCharacter,
                             label: { Text(character.name ?? DEFAULT_CHARACTER_NAME) }
@@ -61,6 +55,9 @@ struct iOSCharactersView: View {
             VStack(spacing: 25) {
                 Text("No character selected")
             }
+        }
+        .sheet(isPresented: $showCreateCharacterScreen) {
+            iOSEditCharacterSheet()
         }
     }
 }

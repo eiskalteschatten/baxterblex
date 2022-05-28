@@ -34,7 +34,7 @@ struct MacCharactersView: View {
             // Use a VStack so that the HSplitView doesn't move when switching between the two views within
             VStack {
                 if gameStore.selectedCharacter != nil {
-                    EditCharacterView(character: gameStore.selectedCharacter)
+                    EditCharacterView(editCharacterModel: EditCharacterModel(character: gameStore.selectedCharacter))
                         .padding(15)
                 }
                 else {

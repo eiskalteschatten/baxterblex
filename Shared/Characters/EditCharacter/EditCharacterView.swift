@@ -14,14 +14,14 @@ enum EditCharacterViewTabs: Int {
 struct EditCharacterView: View {
     @EnvironmentObject private var gameStore: GameStore
     
-    var character: Character?
-    
-    @ObservedObject private var editCharacterModel: EditCharacterModel
+    @ObservedObject var editCharacterModel: EditCharacterModel
+    private var character: Character?
+
     @SceneStorage("selectedEditCharacterTab") private var selectedTab: EditCharacterViewTabs = .overview
     
-    init(character: Character? = nil) {
-        self.editCharacterModel = EditCharacterModel(character: character)
-        self.character = character
+    init(editCharacterModel: EditCharacterModel = EditCharacterModel()) {
+        self.editCharacterModel = editCharacterModel
+        self.character = editCharacterModel.character
     }
     
     var body: some View {
