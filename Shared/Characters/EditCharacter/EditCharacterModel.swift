@@ -9,8 +9,14 @@ import SwiftUI
 
 final class EditCharacterModel: AbstractEditModel {
     var character: Character?
+    private var game: Game?
     
-    @Published var name: String = ""
+    @Published var name: String = "" {
+        didSet {
+            save()
+        }
+    }
+    
     @Published var picture: Data?
     @Published var age: Int16?
     @Published var biography = NSAttributedString(string: "")
@@ -20,8 +26,8 @@ final class EditCharacterModel: AbstractEditModel {
     @Published var occupation = NSAttributedString(string: "")
     
     init(character: Character? = nil) {
-        super.init()
         self.character = character
+        super.init()
         initVariables()
     }
     
@@ -39,6 +45,11 @@ final class EditCharacterModel: AbstractEditModel {
     }
     
     override func save() {
+//        if game == nil {
+//            // TODO: throw a non-fatal error after error handling is built-in
+//            fatalError("The game is not set when trying to save a character")
+//        }
+        
         withAnimation {
             character = character != nil ? character : Character(context: viewContext!)
             
@@ -46,12 +57,19 @@ final class EditCharacterModel: AbstractEditModel {
             character!.updatedAt = Date()
             
             character!.name = name
-            character!.picture = picture
             character!.biography = biography
             character!.familyFriends = familyFriends
             character!.hobbies = hobbies
             character!.notes = notes
             character!.occupation = occupation
+            
+            if let unwrappedGame = game {
+                character!.game = unwrappedGame
+            }
+            
+            if let unwrappedPicture = picture {
+                character!.picture = unwrappedPicture
+            }
             
             if let unwrappedAge = age {
                 character!.age = unwrappedAge
@@ -66,5 +84,9 @@ final class EditCharacterModel: AbstractEditModel {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
+    }
+    
+    func setGame(_ game: Game) {
+        self.game = game
     }
 }

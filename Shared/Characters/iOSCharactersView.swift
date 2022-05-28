@@ -47,7 +47,10 @@ struct iOSCharactersView: View {
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button (action: { gameStore.showCreateCharacterScreen = true }) {
+                    Button (action: {
+                        gameStore.selectedCharacter = nil
+                        gameStore.showCreateCharacterScreen = true
+                    }) {
                         Label("Create a Character", systemImage: "person.badge.plus")
                     }
                 }

@@ -71,7 +71,10 @@ struct MacGameTabView: View {
                     }
                     .disabled(gameStore.selectedGame == nil)
                 case .characters:
-                    Button(action: { gameStore.showCreateCharacterScreen = true }) {
+                    Button(action: {
+                        gameStore.selectedCharacter = nil
+                        gameStore.showCreateCharacterScreen = true
+                    }) {
                         Label("Create a Character", systemImage: "person.badge.plus")
                     }
                     .disabled(gameStore.selectedGame == nil)

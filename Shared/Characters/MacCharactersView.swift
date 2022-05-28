@@ -17,7 +17,7 @@ struct MacCharactersView: View {
     init(game: Game) {
         self._characters = FetchRequest<Character>(
             sortDescriptors: [SortDescriptor(\Character.name, order: .forward)],
-            predicate: NSPredicate(format: "ANY game == %@", game),
+            predicate: NSPredicate(format: "game == %@", game),
             animation: .default
         )
         self.game = game
@@ -42,6 +42,7 @@ struct MacCharactersView: View {
                         Text("No character selected")
                         
                         Button {
+                            gameStore.selectedCharacter = nil
                             gameStore.showCreateCharacterScreen = true
                         } label : {
                             Label("Create a Character", systemImage: "person.badge.plus")

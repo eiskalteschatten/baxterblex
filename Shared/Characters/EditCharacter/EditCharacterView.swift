@@ -12,6 +12,8 @@ enum EditCharacterViewTabs: Int {
 }
 
 struct EditCharacterView: View {
+    @EnvironmentObject private var gameStore: GameStore
+    
     var character: Character?
     
     @ObservedObject private var editCharacterModel: EditCharacterModel
@@ -52,6 +54,11 @@ struct EditCharacterView: View {
             }
             
             Spacer()
+        }
+        .onAppear {
+            if let game = gameStore.selectedGame {
+                editCharacterModel.setGame(game)
+            }
         }
         #if os(iOS)
         .padding(.horizontal, 20)
