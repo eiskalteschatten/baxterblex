@@ -28,16 +28,14 @@ struct iOSCharactersView: View {
     var body: some View {
         NavigationView {
             List {
-                Section("Characters") {
-                    ForEach(characters) { character in
-                        NavigationLink(
-                            destination: EditCharacterView(editCharacterModel: EditCharacterModel(character: character))
-                                            .navigationTitle("Edit \(character.name ?? DEFAULT_CHARACTER_NAME)"),
-                            tag: character,
-                            selection: $gameStore.selectedCharacter,
-                            label: { Text(character.name ?? DEFAULT_CHARACTER_NAME) }
-                        )
-                    }
+                ForEach(characters) { character in
+                    NavigationLink(
+                        destination: EditCharacterView(editCharacterModel: EditCharacterModel(character: character))
+                                        .navigationTitle("Edit \(character.name ?? DEFAULT_CHARACTER_NAME)"),
+                        tag: character,
+                        selection: $gameStore.selectedCharacter,
+                        label: { Text(character.name ?? DEFAULT_CHARACTER_NAME) }
+                    )
                 }
             }
             .toolbar {
