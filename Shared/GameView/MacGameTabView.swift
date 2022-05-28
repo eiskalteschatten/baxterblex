@@ -18,8 +18,6 @@ struct MacGameTabView: View {
             switch selectedTab {
             case .game:
                 SingleGameView()
-            case .dashboard:
-                DashboardView()
             case .characters:
                 CharactersView()
             case .accounting:
@@ -48,9 +46,6 @@ struct MacGameTabView: View {
                     Text("Game")
                         .tag(GameViewTabs.game)
                     
-//                    Text("Dashboard")
-//                        .tag(GameViewTabs.dashboard)
-//                    
                     Text("Characters")
                         .tag(GameViewTabs.characters)
                     
@@ -75,8 +70,6 @@ struct MacGameTabView: View {
                         Label("Edit Game", systemImage: "pencil")
                     }
                     .disabled(gameStore.selectedGame == nil)
-                case .dashboard:
-                    EmptyView()
                 case .characters:
                     Button(action: { gameStore.showCreateCharacterScreen = true }) {
                         Label("Create a Character", systemImage: "person.badge.plus")

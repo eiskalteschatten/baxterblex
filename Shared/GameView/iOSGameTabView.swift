@@ -20,12 +20,6 @@ struct iOSGameTabView: View {
                 }
                 .tag(GameViewTabs.game)
             
-//                DashboardView()
-//                    .tabItem {
-//                        Label("Dashboard", systemImage: "square.grid.3x3.square")
-//                    }
-//                    .tag(GameViewTabs.dashboard)
-            
             CharactersView()
                 .tabItem {
                     Label("Characters", systemImage: "person.3.fill")
