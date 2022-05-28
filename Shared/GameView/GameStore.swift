@@ -21,5 +21,19 @@ final class GameStore: ObservableObject {
     }
     
     // Characters
-    @Published var selectedCharacter: Character?
+    @Published var selectedCharacter: Character? {
+        didSet {
+            newEditCharacterModelWithGame(character: selectedCharacter)
+        }
+    }
+    @Published var editCharacterModel: EditCharacterModel?
+    
+    func newEditCharacterModelWithGame(character: Character?) {
+        guard let game = selectedGame else {
+            // TODO: throw a non-fatal error after error handling is built-in
+            fatalError("The game is not set when trying to save a character")
+        }
+        
+        editCharacterModel = EditCharacterModel(game: game, character: character)
+    }
 }

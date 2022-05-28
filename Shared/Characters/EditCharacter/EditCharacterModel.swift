@@ -9,7 +9,7 @@ import SwiftUI
 
 final class EditCharacterModel: AbstractEditModel {
     var character: Character!
-    private var game: Game?
+    private var game: Game
     private var shouldSave = false
     
     @Published var name: String = "" {
@@ -44,7 +44,8 @@ final class EditCharacterModel: AbstractEditModel {
         didSet { saveAfterEdit() }
     }
     
-    init(character: Character? = nil) {
+    init(game: Game, character: Character? = nil) {
+        self.game = game
         super.init()
         self.character = character ?? Character(context: viewContext!)
         
@@ -73,14 +74,10 @@ final class EditCharacterModel: AbstractEditModel {
     }
     
     override func save() {
-//        if game == nil {
-//            // TODO: throw a non-fatal error after error handling is built-in
-//            fatalError("The game is not set when trying to save a character")
-//        }
-        
         withAnimation {
             character.createdAt = Date()
             character.updatedAt = Date()
+            character.game = game
             
             character.name = name
             character.age = age
@@ -89,10 +86,6 @@ final class EditCharacterModel: AbstractEditModel {
             character.hobbies = hobbies
             character.notes = notes
             character.occupation = occupation
-            
-            if let unwrappedGame = game {
-                character.game = unwrappedGame
-            }
             
             if let unwrappedPicture = picture {
                 character.picture = unwrappedPicture

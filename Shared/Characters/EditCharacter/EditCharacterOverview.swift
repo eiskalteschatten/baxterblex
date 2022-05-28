@@ -98,7 +98,7 @@ struct EditCharacterOverview: View {
 }
 
 struct EditCharacterOverview_Previews: PreviewProvider {
-    @ObservedObject static private var editCharacterModel = EditCharacterModel()
+    @ObservedObject static private var editCharacterModel = EditCharacterModel(game: Game())
     
     static var previews: some View {
         EditCharacterOverview(editCharacterModel: editCharacterModel)

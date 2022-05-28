@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MacCharactersView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var gameStore: GameStore
     
     var game: Game
@@ -30,11 +31,11 @@ struct MacCharactersView: View {
             }
             .listStyle(.sidebar)
             .frame(minWidth: 300)
-                
+
             // Use a VStack so that the HSplitView doesn't move when switching between the two views within
             VStack {
                 if gameStore.selectedCharacter != nil {
-                    EditCharacterView(editCharacterModel: EditCharacterModel(character: gameStore.selectedCharacter))
+                    EditCharacterView()
                         .padding(15)
                 }
                 else {
@@ -42,7 +43,7 @@ struct MacCharactersView: View {
                         Text("No character selected")
                         
                         Button {
-                            gameStore.selectedCharacter = EditCharacterModel().character
+                            gameStore.selectedCharacter = Character(context: viewContext)
                         } label : {
                             Label("Create a Character", systemImage: "person.badge.plus")
                         }

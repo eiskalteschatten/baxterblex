@@ -30,7 +30,7 @@ struct iOSCharactersView: View {
             List {
                 ForEach(characters) { character in
                     NavigationLink(
-                        destination: EditCharacterView(editCharacterModel: EditCharacterModel(character: character))
+                        destination: EditCharacterView()
                                         .navigationTitle("Edit \(character.name ?? DEFAULT_CHARACTER_NAME)"),
                         tag: character,
                         selection: $gameStore.selectedCharacter,

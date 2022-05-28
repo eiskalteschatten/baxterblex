@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MacGameTabView: View {
+    @Environment(\.managedObjectContext) private var viewContext
     @EnvironmentObject var gameStore: GameStore
     
     @SceneStorage("selectedGameViewTab") private var selectedTab: GameViewTabs = .game
@@ -72,7 +73,7 @@ struct MacGameTabView: View {
                     .disabled(gameStore.selectedGame == nil)
                 case .characters:
                     Button(action: {
-                        gameStore.selectedCharacter = EditCharacterModel().character
+                        gameStore.selectedCharacter = Character(context: viewContext)
                     }) {
                         Label("Create a Character", systemImage: "person.badge.plus")
                     }

@@ -14,15 +14,7 @@ enum EditCharacterViewTabs: Int {
 struct EditCharacterView: View {
     @EnvironmentObject private var gameStore: GameStore
     
-    @ObservedObject var editCharacterModel: EditCharacterModel
-    private var character: Character?
-
     @SceneStorage("selectedEditCharacterTab") private var selectedTab: EditCharacterViewTabs = .overview
-    
-    init(editCharacterModel: EditCharacterModel = EditCharacterModel()) {
-        self.editCharacterModel = editCharacterModel
-        self.character = editCharacterModel.character
-    }
     
     var body: some View {
         VStack {
@@ -44,7 +36,7 @@ struct EditCharacterView: View {
             
             switch selectedTab {
             case .overview:
-                EditCharacterOverview(editCharacterModel: editCharacterModel)
+                EditCharacterOverview(editCharacterModel: gameStore.editCharacterModel!)
             case .stats:
                 Text("Stats")
             case .gear:
@@ -54,11 +46,6 @@ struct EditCharacterView: View {
             }
             
             Spacer()
-        }
-        .onAppear {
-            if let game = gameStore.selectedGame {
-                editCharacterModel.setGame(game)
-            }
         }
         #if os(iOS)
         .padding(.horizontal, 20)
