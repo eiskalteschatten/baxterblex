@@ -13,12 +13,13 @@ struct iOSCharactersView: View {
     
     var game: Game
     
+    @State private var showCreateCharacterScreen: Bool? = false
     @FetchRequest private var characters: FetchedResults<Character>
     
     init(game: Game) {
         self._characters = FetchRequest<Character>(
             sortDescriptors: [SortDescriptor(\Character.name, order: .forward)],
-            predicate: NSPredicate(format: "ANY game == %@", game),
+            predicate: NSPredicate(format: "game == %@", game),
             animation: .default
         )
         self.game = game
@@ -30,7 +31,7 @@ struct iOSCharactersView: View {
                 NavigationLink(
                     destination: EditCharacterView().navigationTitle("Create a Character"),
                     tag: true,
-                    selection: $gameStore.showCreateCharacterScreen,
+                    selection: $showCreateCharacterScreen,
                     label: { Label("Create a Character", systemImage: "person.badge.plus") }
                 )
                 
@@ -49,7 +50,7 @@ struct iOSCharactersView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     Button (action: {
                         gameStore.selectedCharacter = nil
-                        gameStore.showCreateCharacterScreen = true
+                        showCreateCharacterScreen = true
                     }) {
                         Label("Create a Character", systemImage: "person.badge.plus")
                     }
