@@ -61,6 +61,8 @@
 		9348660F283E7D43005497A1 /* SingleGameViewContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348660D283E7D43005497A1 /* SingleGameViewContents.swift */; };
 		93486611283E7D67005497A1 /* MacSingleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486610283E7D67005497A1 /* MacSingleGameView.swift */; };
 		93486613283E7DB8005497A1 /* iOSSingleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486612283E7DB8005497A1 /* iOSSingleGameView.swift */; };
+		93887A6828424411007216C7 /* NSAttributedStringTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93887A6728424411007216C7 /* NSAttributedStringTransformer.swift */; };
+		93887A6928424411007216C7 /* NSAttributedStringTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93887A6728424411007216C7 /* NSAttributedStringTransformer.swift */; };
 		93B9CECD283FBF3B005EB7C6 /* EditCharacterOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */; };
 		93B9CECE283FBF3B005EB7C6 /* EditCharacterOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */; };
 		93B9CED1283FCAB2005EB7C6 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CED0283FCAB2005EB7C6 /* NotesView.swift */; };
@@ -136,6 +138,7 @@
 		9348660D283E7D43005497A1 /* SingleGameViewContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGameViewContents.swift; sourceTree = "<group>"; };
 		93486610283E7D67005497A1 /* MacSingleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSingleGameView.swift; sourceTree = "<group>"; };
 		93486612283E7DB8005497A1 /* iOSSingleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSingleGameView.swift; sourceTree = "<group>"; };
+		93887A6728424411007216C7 /* NSAttributedStringTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTransformer.swift; sourceTree = "<group>"; };
 		93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterOverview.swift; sourceTree = "<group>"; };
 		93B9CED0283FCAB2005EB7C6 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		93B9CED3283FCACE005EB7C6 /* MacNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNotesView.swift; sourceTree = "<group>"; };
@@ -283,6 +286,7 @@
 			isa = PBXGroup;
 			children = (
 				934865BF283D398D005497A1 /* DateHelpers.swift */,
+				93887A6728424411007216C7 /* NSAttributedStringTransformer.swift */,
 			);
 			path = Lib;
 			sourceTree = "<group>";
@@ -580,6 +584,7 @@
 				93486598283CF304005497A1 /* EditCharacterView.swift in Sources */,
 				93B9CED1283FCAB2005EB7C6 /* NotesView.swift in Sources */,
 				9348660B283E7A8C005497A1 /* NoGameSelected.swift in Sources */,
+				93887A6828424411007216C7 /* NSAttributedStringTransformer.swift in Sources */,
 				93486604283E729D005497A1 /* SingleGameView.swift in Sources */,
 				934865B6283D221A005497A1 /* SessionsView.swift in Sources */,
 				934865AE283D2185005497A1 /* iOSAccountingView.swift in Sources */,
@@ -622,6 +627,7 @@
 				9348660C283E7A8C005497A1 /* NoGameSelected.swift in Sources */,
 				93486611283E7D67005497A1 /* MacSingleGameView.swift in Sources */,
 				93B9CED2283FCAB2005EB7C6 /* NotesView.swift in Sources */,
+				93887A6928424411007216C7 /* NSAttributedStringTransformer.swift in Sources */,
 				93486605283E729D005497A1 /* SingleGameView.swift in Sources */,
 				9348658F283CE14C005497A1 /* ButtonStyles.swift in Sources */,
 				9348657E283C0072005497A1 /* MacGameTabView.swift in Sources */,
