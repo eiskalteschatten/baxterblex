@@ -16,7 +16,7 @@ final class EditCharacterModel: AbstractEditModel {
         didSet { saveAfterEdit() }
     }
     
-    @Published var picture: Data? {
+    @Published var picture: ImageStore? {
         didSet { saveAfterEdit() }
     }
     
@@ -71,6 +71,7 @@ final class EditCharacterModel: AbstractEditModel {
     }
     
     override func initVariables() {
+        picture = character.picture
         name = character.name ?? name
         picture = character.picture
         age = character.age ?? age
@@ -118,5 +119,20 @@ final class EditCharacterModel: AbstractEditModel {
     
     func setGame(_ game: Game) {
         self.game = game
+    }
+    
+    private func getPictureImageStore(data: Data) -> ImageStore {
+        if let unwrappedImage = character.picture {
+            unwrappedImage.updatedAt = Date()
+            unwrappedImage.image = data
+            return unwrappedImage
+        }
+        else {
+            let image = ImageStore(context: viewContext!)
+            image.createdAt = Date()
+            image.updatedAt = Date()
+            image.image = data
+            return image
+        }
     }
 }

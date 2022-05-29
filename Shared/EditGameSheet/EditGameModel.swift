@@ -11,7 +11,7 @@ import CoreData
 final class EditGameModel: AbstractEditModel {
     private var game: Game?
     
-    @Published var picture: Data?
+    @Published var picture: ImageStore?
     @Published var name: String = ""
     @Published var addStartDate: Bool = false
     @Published var startDate: Date = Date()
@@ -27,7 +27,7 @@ final class EditGameModel: AbstractEditModel {
     
     override func initVariables() {
         if let unwrapped = game {
-            picture = unwrapped.picture ?? picture
+            picture = unwrapped.picture
             name = unwrapped.name ?? name
             addStartDate = unwrapped.startDate != nil
             startDate = unwrapped.startDate ?? startDate
@@ -58,6 +58,21 @@ final class EditGameModel: AbstractEditModel {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
+        }
+    }
+    
+    private func getPictureImageStore(data: Data) -> ImageStore {
+        if let unwrappedImage = game!.picture {
+            unwrappedImage.updatedAt = Date()
+            unwrappedImage.image = data
+            return unwrappedImage
+        }
+        else {
+            let image = ImageStore(context: viewContext!)
+            image.createdAt = Date()
+            image.updatedAt = Date()
+            image.image = data
+            return image
         }
     }
 }
