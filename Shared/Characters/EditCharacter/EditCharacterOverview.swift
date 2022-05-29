@@ -16,16 +16,23 @@ struct EditCharacterOverview: View {
         ScrollView {
             VStack(spacing: 30) {
                 Button(action: { /* TODO */ }) {
-//                    if let imageStore = bookModel.bookcover, let bookcover = imageStore.image {
-//                        let image = NSImage(data: bookcover)
-//                        Image(nsImage: image!)
-//                            .resizable()
-//                            .scaledToFit()
-//                    }
-//                    else {
+                    if let imageStore = editCharacterModel.picture, let picture = imageStore.image {
+                        #if os(macOS)
+                        let image = NSImage(data: picture)
+                        Image(nsImage: image!)
+                            .resizable()
+                            .scaledToFit()
+                        #else
+                        let image = UIImage(data: picture)
+                        Image(uiImage: image!)
+                            .resizable()
+                            .scaledToFit()
+                        #endif
+                    }
+                    else {
                         Image(systemName: "plus.square.dashed")
                             .font(.system(size: 150))
-//                    }
+                    }
                 }
                 .buttonStyle(.plain)
                 .frame(maxHeight: 300)
