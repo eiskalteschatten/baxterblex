@@ -56,9 +56,18 @@ final class EditCharacterModel: AbstractEditModel {
         
         if character != nil {
             initVariables()
+            
+            // Set shouldSave here on iOS because a new character should only be created
+            // when clicking on the "Save" button in the new character sheet
+            #if os(iOS)
+            self.shouldSave = true
+            #endif
         }
         
+        // Set shouldSave here on macOS because it should always save after initializing
+        #if os(macOS)
         self.shouldSave = true
+        #endif
     }
     
     override func initVariables() {
