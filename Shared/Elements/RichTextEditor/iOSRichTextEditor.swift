@@ -51,11 +51,7 @@ struct iOSRichTextEditor: UIViewRepresentable {
             self.parent = parent
         }
         
-        func textDidChange(_ notification: Notification) {
-            guard let textView = notification.object as? UITextView else {
-                return
-            }
-            
+        func textViewDidChange(_ textView: UITextView) {
 //            self.parent.text = textView.attributedText
             self.parent.text = textView.text
         }
