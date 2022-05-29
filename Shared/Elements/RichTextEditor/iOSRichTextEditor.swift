@@ -12,7 +12,8 @@ struct iOSRichTextEditor: UIViewRepresentable {
     
     var textView = UITextView()
     
-    @Binding var text: NSAttributedString
+//    @Binding var text: NSAttributedString
+    @Binding var text: String
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
@@ -35,7 +36,8 @@ struct iOSRichTextEditor: UIViewRepresentable {
     
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.backgroundColor = colorScheme == .dark ? UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 0.6) : UIColor(red: 0.95, green: 0.95, blue: 0.95, alpha: 0.8)
-        uiView.attributedText = text
+//        uiView.attributedText = text
+        uiView.text = text
     }
 
     class Coordinator: NSObject, UITextViewDelegate {
@@ -54,7 +56,8 @@ struct iOSRichTextEditor: UIViewRepresentable {
                 return
             }
             
-            self.parent.text = textView.attributedText
+//            self.parent.text = textView.attributedText
+            self.parent.text = textView.text
         }
         
         func textView(_ textView: UITextView, shouldChangeTextIn affectedCharRange: NSRange, replacementText replacementString: String) -> Bool {
