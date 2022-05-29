@@ -15,10 +15,12 @@ struct MacEditGameForm: View {
     
     var body: some View {
         VStack {
-            // TODO: add game picture
-            
             Text(isEditing ? "Edit Game" : "Create a New Game")
                 .font(.system(.title))
+            
+            MacImagePickerButton(imageStore: $editGameModel.picture)
+                .frame(maxHeight: 300)
+                .padding(.bottom, 30)
             
             Form {
                 TextField("Name", text: $editGameModel.name)
