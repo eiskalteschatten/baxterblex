@@ -14,10 +14,24 @@ struct SingleGameViewContents: View {
         if let game = gameStore.selectedGame {
             ScrollView {
                 VStack(spacing: 15) {
-                    // TODO: add game picture
-                    Image(systemName: "dice")
-                        .font(.system(size: 100))
-                        .padding(.bottom, 20)
+                    if let unwrappedImageStore = game.picture, let picture = unwrappedImageStore.image {
+                        #if os(macOS)
+                        let image = NSImage(data: picture)
+                        Image(nsImage: image!)
+                            .resizable()
+                            .scaledToFit()
+                        #else
+                        let image = UIImage(data: picture)
+                        Image(uiImage: image!)
+                            .resizable()
+                            .scaledToFit()
+                        #endif
+                    }
+                    else {
+                        Image(systemName: "dice")
+                            .font(.system(size: 100))
+                            .padding(.bottom, 20)
+                    }
                     
                     Text(game.name ?? DEFAULT_GAME_NAME)
                         .font(.title)
