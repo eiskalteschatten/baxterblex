@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct EditCharacterOverview: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    
     @ObservedObject var editCharacterModel: EditCharacterModel
     
     var body: some View {
@@ -20,27 +18,8 @@ struct EditCharacterOverview: View {
                 #if os(iOS)
                 iOSImagePickerMenu(imageStore: $editCharacterModel.picture)
                 #else
-                Button(action: pickImage) {
-                    if let imageStore = editCharacterModel.picture, let picture = imageStore.image {
-                        #if os(macOS)
-                        let image = NSImage(data: picture)
-                        Image(nsImage: image!)
-                            .resizable()
-                            .scaledToFit()
-                        #else
-                        let image = UIImage(data: picture)
-                        Image(uiImage: image!)
-                            .resizable()
-                            .scaledToFit()
-                        #endif
-                    }
-                    else {
-                        Image(systemName: "plus.square.dashed")
-                            .font(.system(size: 150))
-                    }
-                }
-                .buttonStyle(.plain)
-                .frame(maxHeight: 300)
+                MacImagePickerButton(imageStore: $editCharacterModel.picture)
+                    .frame(maxHeight: 300)
                 #endif
                 
                 VStack(alignment: .leading, spacing: 20) {
@@ -107,44 +86,6 @@ struct EditCharacterOverview: View {
                 .opacity(0.6)
             }
         }
-    }
-    
-    private func pickImage() {
-        #if os(macOS)
-        let imagePicker = MacImagePicker.pickImage()
-        if imagePicker.response == .OK {
-            if let url = imagePicker.panel.url {
-                do {
-                    let data = try Data(contentsOf: url)
-                    
-                    if let imageStore = editCharacterModel.picture {
-                        imageStore.image = data
-                        imageStore.updatedAt = Date()
-                    }
-                    else {
-                        let imageStore = ImageStore(context: viewContext)
-                        imageStore.image = data
-                        imageStore.updatedAt = Date()
-                        imageStore.createdAt = Date()
-                        editCharacterModel.picture = imageStore
-                    }
-                } catch {
-                    // TODO!
-//                    showErrorAlert(
-//                        error: error as NSError,
-//                        errorMessage: "An error occurred while choosing an image!",
-//                        subErrorMessage: "Please try again.",
-//                        logger: Logger(
-//                            subsystem: Bundle.main.bundleIdentifier!,
-//                            category: String(describing: EditCharacterOverview.self)
-//                        )
-//                    )
-                }
-            }
-        }
-        #else
-        
-        #endif
     }
 }
 
