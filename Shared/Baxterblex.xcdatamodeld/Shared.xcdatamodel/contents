@@ -2,13 +2,13 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
     <entity name="Character" representedClassName="Character" syncable="YES" codeGenerationType="class">
         <attribute name="age" optional="YES" attributeType="String"/>
-        <attribute name="biography" optional="YES" attributeType="Transformable" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
+        <attribute name="biography" optional="YES" attributeType="String" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="familyFriends" optional="YES" attributeType="Transformable" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
-        <attribute name="hobbies" optional="YES" attributeType="Transformable" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
+        <attribute name="familyFriends" optional="YES" attributeType="String" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
+        <attribute name="hobbies" optional="YES" attributeType="String" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
         <attribute name="name" attributeType="String" defaultValueString="" spotlightIndexingEnabled="YES"/>
-        <attribute name="notes" optional="YES" attributeType="Transformable" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
-        <attribute name="occupation" optional="YES" attributeType="Transformable" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
+        <attribute name="notes" optional="YES" attributeType="String" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
+        <attribute name="occupation" optional="YES" attributeType="String" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
         <attribute name="picture" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" spotlightIndexingEnabled="YES"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="characters" inverseEntity="Game" spotlightIndexingEnabled="YES"/>

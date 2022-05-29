@@ -20,7 +20,7 @@ struct BaxterblexApp: App {
         .commands {
             SidebarCommands()
             TextEditingCommands()
-            TextFormattingCommands()
+//            TextFormattingCommands()
         }
         #endif
     }

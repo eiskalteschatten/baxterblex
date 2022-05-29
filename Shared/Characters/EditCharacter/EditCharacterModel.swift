@@ -24,23 +24,28 @@ final class EditCharacterModel: AbstractEditModel {
         didSet { saveAfterEdit() }
     }
     
-    @Published var biography = NSAttributedString(string: "") {
+//    @Published var biography = NSAttributedString(string: "") {
+    @Published var biography: String = "" {
         didSet { saveAfterEdit() }
     }
     
-    @Published var familyFriends = NSAttributedString(string: "") {
+//    @Published var familyFriends = NSAttributedString(string: "") {
+    @Published var familyFriends: String = "" {
         didSet { saveAfterEdit() }
     }
     
-    @Published var hobbies = NSAttributedString(string: "") {
+//    @Published var hobbies = NSAttributedString(string: "") {
+    @Published var hobbies: String = "" {
         didSet { saveAfterEdit() }
     }
     
-    @Published var notes = NSAttributedString(string: "") {
+//    @Published var notes = NSAttributedString(string: "") {
+    @Published var notes: String = "" {
         didSet { saveAfterEdit() }
     }
     
-    @Published var occupation = NSAttributedString(string: "") {
+//    @Published var occupation = NSAttributedString(string: "") {
+    @Published var occupation: String = "" {
         didSet { saveAfterEdit() }
     }
     

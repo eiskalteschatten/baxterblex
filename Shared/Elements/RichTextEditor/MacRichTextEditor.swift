@@ -14,19 +14,21 @@ struct MacRichTextEditor: NSViewRepresentable {
     
     var textView = NSTextView()
     
-    @Binding var text: NSAttributedString
+//    @Binding var text: NSAttributedString
+    @Binding var text: String
     
     func makeNSView(context: Context) -> NSTextView {
         textView.delegate = context.coordinator
         textView.isRichText = true
         textView.allowsUndo = true
         textView.allowsImageEditing = false
-        
+
         return textView
     }
     
     func updateNSView(_ nsView: NSTextView, context: Context) {
-        nsView.textStorage?.setAttributedString(text)
+//        nsView.textStorage?.setAttributedString(text)
+        nsView.string = text
     }
 
     class Coordinator: NSObject, NSTextViewDelegate {
@@ -42,7 +44,8 @@ struct MacRichTextEditor: NSViewRepresentable {
                 return
             }
             
-            self.parent.text = textView.attributedString()
+//            self.parent.text = textView.attributedString()
+            self.parent.text = textView.string
         }
         
         func textView(_ textView: NSTextView, shouldChangeTextIn affectedCharRange: NSRange, replacementString: String?) -> Bool {
