@@ -65,6 +65,9 @@
 		93887A6928424411007216C7 /* NSAttributedStringTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93887A6728424411007216C7 /* NSAttributedStringTransformer.swift */; };
 		93887A6B284258CB007216C7 /* iOSEditCharacterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93887A6A284258CB007216C7 /* iOSEditCharacterSheet.swift */; };
 		93A2B23A2843B8D900BFF206 /* MacImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A2B2382843B8D900BFF206 /* MacImagePicker.swift */; };
+		93A2B23D2843BACF00BFF206 /* iOSImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A2B23C2843BACF00BFF206 /* iOSImagePicker.swift */; };
+		93A2B2402843BB1700BFF206 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A2B23F2843BB1700BFF206 /* UIImage.swift */; };
+		93A2B2422843BB7B00BFF206 /* iOSImagePickerMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93A2B2412843BB7B00BFF206 /* iOSImagePickerMenu.swift */; };
 		93B9CECD283FBF3B005EB7C6 /* EditCharacterOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */; };
 		93B9CECE283FBF3B005EB7C6 /* EditCharacterOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */; };
 		93B9CED1283FCAB2005EB7C6 /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93B9CED0283FCAB2005EB7C6 /* NotesView.swift */; };
@@ -143,6 +146,9 @@
 		93887A6728424411007216C7 /* NSAttributedStringTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTransformer.swift; sourceTree = "<group>"; };
 		93887A6A284258CB007216C7 /* iOSEditCharacterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSEditCharacterSheet.swift; sourceTree = "<group>"; };
 		93A2B2382843B8D900BFF206 /* MacImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacImagePicker.swift; sourceTree = "<group>"; };
+		93A2B23C2843BACF00BFF206 /* iOSImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSImagePicker.swift; sourceTree = "<group>"; };
+		93A2B23F2843BB1700BFF206 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
+		93A2B2412843BB7B00BFF206 /* iOSImagePickerMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSImagePickerMenu.swift; sourceTree = "<group>"; };
 		93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterOverview.swift; sourceTree = "<group>"; };
 		93B9CED0283FCAB2005EB7C6 /* NotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		93B9CED3283FCACE005EB7C6 /* MacNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacNotesView.swift; sourceTree = "<group>"; };
@@ -322,8 +328,18 @@
 			isa = PBXGroup;
 			children = (
 				93A2B2382843B8D900BFF206 /* MacImagePicker.swift */,
+				93A2B23C2843BACF00BFF206 /* iOSImagePicker.swift */,
+				93A2B2412843BB7B00BFF206 /* iOSImagePickerMenu.swift */,
 			);
 			path = ImagePIcker;
+			sourceTree = "<group>";
+		};
+		93A2B23E2843BB0400BFF206 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				93A2B23F2843BB1700BFF206 /* UIImage.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		93B9CECF283FCA9B005EB7C6 /* Notes */ = {
@@ -375,6 +391,7 @@
 				9348658C283CE138005497A1 /* Styles */,
 				934865BE283D397D005497A1 /* Lib */,
 				9348659D283CF3ED005497A1 /* Abstract */,
+				93A2B23E2843BB0400BFF206 /* Extensions */,
 				933CE3D8283BC99B00ADBE50 /* Constants.swift */,
 				93C5268A283B891800371B6A /* Assets.xcassets */,
 				93C52685283B891600371B6A /* Baxterblex.xcdatamodeld */,
@@ -587,6 +604,7 @@
 				933CE3CD283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
 				93B9CED8283FD1CE005EB7C6 /* RichTextEditor.swift in Sources */,
 				933CE3B2283BB67700ADBE50 /* EditGameSheet.swift in Sources */,
+				93A2B2422843BB7B00BFF206 /* iOSImagePickerMenu.swift in Sources */,
 				9348656F283BF7E9005497A1 /* CharactersView.swift in Sources */,
 				93486564283BF6F7005497A1 /* GameView.swift in Sources */,
 				934865BC283D3800005497A1 /* GamesListItemView.swift in Sources */,
@@ -601,6 +619,7 @@
 				9348660B283E7A8C005497A1 /* NoGameSelected.swift in Sources */,
 				93887A6828424411007216C7 /* NSAttributedStringTransformer.swift in Sources */,
 				93486604283E729D005497A1 /* SingleGameView.swift in Sources */,
+				93A2B2402843BB1700BFF206 /* UIImage.swift in Sources */,
 				934865B6283D221A005497A1 /* SessionsView.swift in Sources */,
 				934865AE283D2185005497A1 /* iOSAccountingView.swift in Sources */,
 				9348659B283CF370005497A1 /* EditCharacterModel.swift in Sources */,
@@ -612,6 +631,7 @@
 				93B9CECD283FBF3B005EB7C6 /* EditCharacterOverview.swift in Sources */,
 				934865C3283D7ECB005497A1 /* GameListItemTileView.swift in Sources */,
 				934865B8283D29AD005497A1 /* GamesListView.swift in Sources */,
+				93A2B23D2843BACF00BFF206 /* iOSImagePicker.swift in Sources */,
 				93486608283E749B005497A1 /* ResizableText.swift in Sources */,
 				93B9CEDE283FD805005EB7C6 /* iOSRichTextEditor.swift in Sources */,
 			);

@@ -17,6 +17,9 @@ struct EditCharacterOverview: View {
         
         ScrollView {
             VStack(spacing: 30) {
+                #if os(iOS)
+                iOSImagePickerMenu(imageStore: $editCharacterModel.picture)
+                #else
                 Button(action: pickImage) {
                     if let imageStore = editCharacterModel.picture, let picture = imageStore.image {
                         #if os(macOS)
@@ -38,6 +41,7 @@ struct EditCharacterOverview: View {
                 }
                 .buttonStyle(.plain)
                 .frame(maxHeight: 300)
+                #endif
                 
                 VStack(alignment: .leading, spacing: 20) {
                     TextField("Name", text: $editCharacterModel.name)
