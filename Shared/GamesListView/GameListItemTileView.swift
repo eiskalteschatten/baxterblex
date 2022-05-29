@@ -14,10 +14,28 @@ struct GameListItemTileView: View {
     var body: some View {
         Button(action: action) {
             VStack {
-                // TODO: add game picture
-                Image(systemName: "dice")
-                    .font(.system(size: 50))
+                if let unwrappedImageStore = game.picture, let picture = unwrappedImageStore.image {
+                    Group {
+                        #if os(macOS)
+                        let image = NSImage(data: picture)
+                        Image(nsImage: image!)
+                            .resizable()
+                            .scaledToFit()
+                        #else
+                        let image = UIImage(data: picture)
+                        Image(uiImage: image!)
+                            .resizable()
+                            .scaledToFit()
+                        #endif
+                    }
+                    .frame(maxHeight: 250)
                     .padding(.bottom, 10)
+                }
+                else {
+                    Image(systemName: DEFAULT_GAME_IMAGE_NAME)
+                        .font(.system(size: 50))
+                        .padding(.bottom, 10)
+                }
                 
                 Text(game.name ?? DEFAULT_GAME_NAME)
                     .bold()

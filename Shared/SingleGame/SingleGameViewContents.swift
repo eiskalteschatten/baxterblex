@@ -15,20 +15,23 @@ struct SingleGameViewContents: View {
             ScrollView {
                 VStack(spacing: 15) {
                     if let unwrappedImageStore = game.picture, let picture = unwrappedImageStore.image {
-                        #if os(macOS)
-                        let image = NSImage(data: picture)
-                        Image(nsImage: image!)
-                            .resizable()
-                            .scaledToFit()
-                        #else
-                        let image = UIImage(data: picture)
-                        Image(uiImage: image!)
-                            .resizable()
-                            .scaledToFit()
-                        #endif
+                        Group {
+                            #if os(macOS)
+                            let image = NSImage(data: picture)
+                            Image(nsImage: image!)
+                                .resizable()
+                                .scaledToFit()
+                            #else
+                            let image = UIImage(data: picture)
+                            Image(uiImage: image!)
+                                .resizable()
+                                .scaledToFit()
+                            #endif
+                        }
+                        .frame(maxHeight: 400)
                     }
                     else {
-                        Image(systemName: "dice")
+                        Image(systemName: DEFAULT_GAME_IMAGE_NAME)
                             .font(.system(size: 100))
                             .padding(.bottom, 20)
                     }
