@@ -28,8 +28,8 @@ struct GameListItemTileView: View {
                             .scaledToFit()
                         #endif
                     }
-                    .frame(maxHeight: 250)
-                    .padding(.bottom, 10)
+                    .frame(maxHeight: 350)
+                    .padding(.vertical, 10)
                 }
                 else {
                     Image(systemName: DEFAULT_GAME_IMAGE_NAME)

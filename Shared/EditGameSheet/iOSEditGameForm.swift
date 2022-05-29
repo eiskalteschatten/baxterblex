@@ -16,7 +16,8 @@ struct iOSEditGameForm: View {
     var body: some View {
         NavigationView {
             Form {
-                // TODO: add game picture
+                iOSImagePickerMenu(imageStore: $editGameModel.picture)
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .center)
                 
                 TextField("Name", text: $editGameModel.name)
                 
