@@ -13,13 +13,13 @@ struct iOSCharactersView: View {
     
     var game: Game
     
-    @State private var presentDeleteAlert = false
-    @State private var characterToDelete: Character?
     @State private var showCreateCharacterScreen = false
-    @FetchRequest private var characters: FetchedResults<Character>
+    
+    @SectionedFetchRequest private var sectionedCharacters: SectionedFetchResults<String?, Character>
     
     init(game: Game) {
-        self._characters = FetchRequest<Character>(
+        self._sectionedCharacters = SectionedFetchRequest<String?, Character>(
+            sectionIdentifier: \.status,
             sortDescriptors: [SortDescriptor(\Character.name, order: .forward)],
             predicate: NSPredicate(format: "game == %@", game),
             animation: .default
@@ -29,45 +29,24 @@ struct iOSCharactersView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(characters) { character in
-                    NavigationLink(
-                        destination: EditCharacterView()
-                                        .navigationTitle("Edit \(character.name ?? DEFAULT_CHARACTER_NAME)"),
-                        tag: character,
-                        selection: $gameStore.selectedCharacter,
-                        label: {
-                            HStack {
-                                Group {
-                                    if let unwrappedImageStore = character.picture, let picture = unwrappedImageStore.image {
-                                        let image = UIImage(data: picture)
-                                        Image(uiImage: image!)
-                                            .resizable()
-                                            .clipShape(RoundedRectangle(cornerRadius: 5))
-                                    }
-                                    else {
-                                        Image(systemName: DEFAULT_CHARACTER_IMAGE_NAME)
-                                            .font(.system(size: 35))
-                                    }
-                                }
-                                .clipped()
-                                .aspectRatio(1, contentMode: .fit)
-                                .frame(width: 35, height: 35)
-                                .padding(.trailing, 5)
-                                .padding(.vertical, 2)
-                                
-                                Text(character.name ?? DEFAULT_CHARACTER_NAME)
-                            }
+            List(sectionedCharacters, selection: $gameStore.selectedCharacter) { section in
+                if let rawStatus = section.id {
+                    let enumStatus = CharacterStatuses(rawValue: rawStatus)!
+                    let status = characterStatusLabels[enumStatus]!
+                    
+                    Section(status) {
+                        ForEach(section, id: \.self) { character in
+                            CharacterNavigationLink(character: character)
                         }
-                    )
-                    .contextMenu {
-                        Button("Delete Character", role: .destructive, action: {
-                            characterToDelete = character
-                            presentDeleteAlert.toggle()
-                        })
                     }
                 }
-                .onDelete(perform: deleteCharacters)
+                else {
+                    Section("No Status") {
+                        ForEach(section, id: \.self) { character in
+                            CharacterNavigationLink(character: character)
+                        }
+                    }
+                }
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -88,6 +67,54 @@ struct iOSCharactersView: View {
         .sheet(isPresented: $showCreateCharacterScreen) {
             iOSEditCharacterSheet()
         }
+    }
+}
+
+fileprivate struct CharacterNavigationLink: View {
+    @EnvironmentObject var gameStore: GameStore
+    
+    var character: Character
+    @State private var presentDeleteAlert = false
+    @State private var characterToDelete: Character?
+    
+    var body: some View {
+        NavigationLink(
+            destination: EditCharacterView()
+                            .navigationTitle("Edit \(character.name ?? DEFAULT_CHARACTER_NAME)"),
+            tag: character,
+            selection: $gameStore.selectedCharacter,
+            label: {
+                HStack {
+                    Group {
+                        if let unwrappedImageStore = character.picture, let picture = unwrappedImageStore.image {
+                            let image = UIImage(data: picture)
+                            Image(uiImage: image!)
+                                .resizable()
+                                .clipShape(RoundedRectangle(cornerRadius: 5))
+                        }
+                        else {
+                            Image(systemName: DEFAULT_CHARACTER_IMAGE_NAME)
+                                .font(.system(size: 35))
+                        }
+                    }
+                    .clipped()
+                    .aspectRatio(1, contentMode: .fit)
+                    .frame(width: 35, height: 35)
+                    .padding(.trailing, 5)
+                    .padding(.vertical, 2)
+                    
+                    Text(character.name ?? DEFAULT_CHARACTER_NAME)
+                }
+            }
+        )
+        .contextMenu {
+            Button("Delete Character", role: .destructive, action: { deleteCharacter(character) })
+        }
+        .swipeActions(content: {
+            Button(role: .destructive, action: { deleteCharacter(character) }, label: {
+                Text("Delete")
+            })
+        })
         .alert("Are you sure you want to delete this character?", isPresented: $presentDeleteAlert, actions: {
             Button("No", role: .cancel, action: {
                 characterToDelete = nil
@@ -103,21 +130,9 @@ struct iOSCharactersView: View {
         })
     }
     
-    private func deleteCharacters(offsets: IndexSet) {
-        withAnimation {
-            let viewContext = PersistenceController.shared.container.viewContext
-            offsets.map { characters[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // TODO
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
+    private func deleteCharacter(_ character: Character) {
+        characterToDelete = character
+        presentDeleteAlert.toggle()
     }
 }
 
