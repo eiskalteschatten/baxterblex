@@ -43,6 +43,27 @@ struct EditCharacterOverview: View {
                         .keyboardType(.numberPad)
                         #endif
                     }
+                    
+                    #if os(iOS)
+                    HStack {
+                        Text("Status:")
+                        
+                        Picker("Status:", selection: $editCharacterModel.status) {
+                            ForEach(CharacterStatuses.allCases) { status in
+                                Text(characterStatusLabels[status]!)
+                                    .tag(status.rawValue)
+                            }
+                        }
+                    }
+                    #else
+                    Picker("Status:", selection: $editCharacterModel.status) {
+                        ForEach(CharacterStatuses.allCases) { status in
+                            Text(characterStatusLabels[status]!)
+                                .tag(status.rawValue)
+                        }
+                    }
+                    .frame(maxWidth: 150)
+                    #endif
                 }
                 
                 VStack(alignment: .leading) {

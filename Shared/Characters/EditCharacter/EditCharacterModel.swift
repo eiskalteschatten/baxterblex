@@ -7,6 +7,22 @@
 
 import SwiftUI
 
+enum CharacterStatuses: String, CaseIterable, Identifiable {
+    case draft = "draft"
+    case active = "active"
+    case inactive = "inactive"
+    case dead = "dead"
+    
+    var id: Self { self }
+}
+
+let characterStatusLabels: [CharacterStatuses: String] = [
+    .draft: "Draft",
+    .active: "Active",
+    .inactive: "Inactive",
+    .dead: "Dead"
+]
+
 final class EditCharacterModel: AbstractEditModel {
     var character: Character!
     private var game: Game
@@ -21,6 +37,10 @@ final class EditCharacterModel: AbstractEditModel {
     }
     
     @Published var age: String = "" {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var status: CharacterStatuses = .draft {
         didSet { saveAfterEdit() }
     }
     
@@ -75,6 +95,7 @@ final class EditCharacterModel: AbstractEditModel {
         name = character.name ?? name
         picture = character.picture
         age = character.age ?? age
+        status = character.status != nil ? CharacterStatuses(rawValue: character.status!)! : status
         biography = character.biography ?? biography
         familyFriends = character.familyFriends ?? familyFriends
         hobbies = character.hobbies ?? hobbies
@@ -96,6 +117,7 @@ final class EditCharacterModel: AbstractEditModel {
             
             character.name = name
             character.age = age
+            character.status = status.rawValue
             character.biography = biography
             character.familyFriends = familyFriends
             character.hobbies = hobbies
