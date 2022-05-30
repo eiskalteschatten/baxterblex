@@ -34,7 +34,29 @@ struct iOSCharactersView: View {
                                         .navigationTitle("Edit \(character.name ?? DEFAULT_CHARACTER_NAME)"),
                         tag: character,
                         selection: $gameStore.selectedCharacter,
-                        label: { Text(character.name ?? DEFAULT_CHARACTER_NAME) }
+                        label: {
+                            HStack {
+                                Group {
+                                    if let unwrappedImageStore = character.picture, let picture = unwrappedImageStore.image {
+                                        let image = UIImage(data: picture)
+                                        Image(uiImage: image!)
+                                            .resizable()
+                                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                                    }
+                                    else {
+                                        Image(systemName: DEFAULT_CHARACTER_IMAGE_NAME)
+                                            .font(.system(size: 35))
+                                    }
+                                }
+                                .clipped()
+                                .aspectRatio(1, contentMode: .fit)
+                                .frame(width: 35, height: 35)
+                                .padding(.trailing, 5)
+                                .padding(.vertical, 2)
+                                
+                                Text(character.name ?? DEFAULT_CHARACTER_NAME)
+                            }
+                        }
                     )
                 }
             }

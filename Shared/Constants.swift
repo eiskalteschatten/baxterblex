@@ -11,3 +11,4 @@ let DEFAULT_GAME_NAME = "Untitled Game"
 let DEFAULT_GAME_IMAGE_NAME = "dice"
 
 let DEFAULT_CHARACTER_NAME = "Unnamed Character"
+let DEFAULT_CHARACTER_IMAGE_NAME = "person.crop.square"
