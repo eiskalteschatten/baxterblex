@@ -13,10 +13,11 @@ struct MacCharactersView: View {
     
     var game: Game
     
-    @FetchRequest private var characters: FetchedResults<Character>
+    @SectionedFetchRequest private var sectionedCharacters: SectionedFetchResults<String?, Character>
     
     init(game: Game) {
-        self._characters = FetchRequest<Character>(
+        self._sectionedCharacters = SectionedFetchRequest<String?, Character>(
+            sectionIdentifier: \.status,
             sortDescriptors: [SortDescriptor(\Character.name, order: .forward)],
             predicate: NSPredicate(format: "game == %@", game),
             animation: .default
@@ -26,31 +27,43 @@ struct MacCharactersView: View {
     
     var body: some View {
         HSplitView {
-            List(characters, id: \.self, selection: $gameStore.selectedCharacter) { character in
-                HStack {
-                    Group {
-                        if let unwrappedImageStore = character.picture, let picture = unwrappedImageStore.image {
-                            let image = NSImage(data: picture)
-                            Image(nsImage: image!)
-                                .resizable()
-                                .clipShape(RoundedRectangle(cornerRadius: 5))
+            List(sectionedCharacters, selection: $gameStore.selectedCharacter) { section in
+                let rawStatus = section.id!
+                let enumStatus = CharacterStatuses(rawValue: rawStatus)!
+                let status = characterStatusLabels[enumStatus]!
+                
+                Section(status) {
+                    ForEach(section) { character in
+                        HStack {
+                            Group {
+                                if let unwrappedImageStore = character.picture, let picture = unwrappedImageStore.image {
+                                    let image = NSImage(data: picture)
+                                    Image(nsImage: image!)
+                                        .resizable()
+                                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                                }
+                                else {
+                                    Image(systemName: DEFAULT_CHARACTER_IMAGE_NAME)
+                                        .font(.system(size: 35))
+                                }
+                            }
+                            .clipped()
+                            .aspectRatio(1, contentMode: .fit)
+                            .frame(width: 35, height: 35)
+                            .padding(.trailing, 5)
+                            .padding(.vertical, 2)
+                            
+                            Text(character.name ?? DEFAULT_CHARACTER_NAME)
+                                .font(.system(size: 13))
                         }
-                        else {
-                            Image(systemName: DEFAULT_CHARACTER_IMAGE_NAME)
-                                .font(.system(size: 35))
+                        .onTapGesture {
+                            gameStore.selectedCharacter = character
+                        }
+                        .tag(character)
+                        .contextMenu {
+                            Button("Delete Character", role: .destructive, action: { promptToDeleteCharacter(character) })
                         }
                     }
-                    .clipped()
-                    .aspectRatio(1, contentMode: .fit)
-                    .frame(width: 35, height: 35)
-                    .padding(.trailing, 5)
-                    .padding(.vertical, 2)
-                    
-                    Text(character.name ?? DEFAULT_CHARACTER_NAME)
-                        .font(.system(size: 13))
-                }
-                .contextMenu {
-                    Button("Delete Character", role: .destructive, action: { promptToDeleteCharacter(character) })
                 }
             }
             .frame(minWidth: 250, idealWidth: 300, maxHeight: .infinity)
