@@ -18,7 +18,8 @@ struct MacCharactersView: View {
     init(game: Game) {
         self._sectionedCharacters = SectionedFetchRequest<String?, Character>(
             sectionIdentifier: \.status,
-            sortDescriptors: [SortDescriptor(\Character.name, order: .forward)],
+            sortDescriptors: [NSSortDescriptor(keyPath: \Character.status, ascending: true),
+                              NSSortDescriptor(keyPath: \Character.name, ascending: true)],
             predicate: NSPredicate(format: "game == %@", game),
             animation: .default
         )
