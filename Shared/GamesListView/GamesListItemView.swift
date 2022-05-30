@@ -14,28 +14,30 @@ struct GamesListItemView: View {
     var body: some View {
         Button(action: action) {
             HStack {
-                if let unwrappedImageStore = game.picture, let picture = unwrappedImageStore.image {
-                    Group {
+                Group {
+                    if let unwrappedImageStore = game.picture, let picture = unwrappedImageStore.image {
                         #if os(macOS)
                         let image = NSImage(data: picture)
                         Image(nsImage: image!)
                             .resizable()
-                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
                         #else
                         let image = UIImage(data: picture)
                         Image(uiImage: image!)
                             .resizable()
-                            .scaledToFit()
+                            .clipShape(RoundedRectangle(cornerRadius: 5))
                         #endif
                     }
-                    .frame(maxHeight: 50)
-                    .padding(.trailing, 10)
+                    else {
+                        Image(systemName: DEFAULT_GAME_IMAGE_NAME)
+                            .font(.system(size: 45))
+                    }
                 }
-                else {
-                    Image(systemName: DEFAULT_GAME_IMAGE_NAME)
-                        .font(.system(size: 25))
-                        .padding(.trailing, 10)
-                }
+                .clipped()
+                .aspectRatio(1, contentMode: .fit)
+                .frame(width: 50, height: 50)
+                .padding(.trailing, 5)
+                .padding(.vertical, 2)
                 
                 Text(game.name ?? DEFAULT_GAME_NAME)
                     .bold()
@@ -66,7 +68,6 @@ struct GamesListItemView: View {
                 }
                 .opacity(0.7)
             }
-            .frame(height: 40)
         }
         .buttonStyle(RoundedFlatButtonStyle())
     }

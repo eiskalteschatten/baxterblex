@@ -17,9 +17,12 @@ struct EditCharacterOverview: View {
             VStack(spacing: 30) {
                 #if os(iOS)
                 iOSImagePickerMenu(imageStore: $editCharacterModel.picture)
+                    .frame(maxWidth: 300, maxHeight: 300)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
                 #else
                 MacImagePickerButton(imageStore: $editCharacterModel.picture)
-                    .frame(maxHeight: 300)
+                    .frame(maxWidth: 300, maxHeight: 300)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
                 #endif
                 
                 VStack(alignment: .leading, spacing: 20) {

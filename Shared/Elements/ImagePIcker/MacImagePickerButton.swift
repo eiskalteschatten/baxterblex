@@ -11,6 +11,7 @@ struct MacImagePickerButton: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @Binding var imageStore: ImageStore?
+    var defaultImage = "plus.square.dashed"
     
     var body: some View {
         Button(action: pickImage) {
@@ -21,7 +22,7 @@ struct MacImagePickerButton: View {
                     .scaledToFit()
             }
             else {
-                Image(systemName: "plus.square.dashed")
+                Image(systemName: defaultImage)
                     .font(.system(size: 150))
             }
         }

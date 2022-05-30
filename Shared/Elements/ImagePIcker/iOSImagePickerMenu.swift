@@ -13,6 +13,7 @@ struct iOSImagePickerMenu: View {
     @State private var image = UIImage()
     
     @Binding var imageStore: ImageStore?
+    var defaultImage = "plus.square.dashed"
     
     var body: some View {
         Menu {
@@ -37,7 +38,7 @@ struct iOSImagePickerMenu: View {
                     .scaledToFit()
             }
             else {
-                Image(systemName: "plus.square.dashed")
+                Image(systemName: defaultImage)
                     .font(.system(size: 150))
                     .foregroundColor(.primary)
             }

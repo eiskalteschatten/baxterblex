@@ -29,6 +29,7 @@ struct SingleGameViewContents: View {
                             #endif
                         }
                         .frame(maxHeight: 400)
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
                     }
                     else {
                         Image(systemName: DEFAULT_GAME_IMAGE_NAME)
