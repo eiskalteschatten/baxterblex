@@ -28,36 +28,20 @@ struct MacCharactersView: View {
     var body: some View {
         HSplitView {
             List(sectionedCharacters, selection: $gameStore.selectedCharacter) { section in
-                let rawStatus = section.id!
-                let enumStatus = CharacterStatuses(rawValue: rawStatus)!
-                let status = characterStatusLabels[enumStatus]!
-                
-                Section(status) {
-                    ForEach(section, id: \.self) { character in
-                        HStack {
-                            Group {
-                                if let unwrappedImageStore = character.picture, let picture = unwrappedImageStore.image {
-                                    let image = NSImage(data: picture)
-                                    Image(nsImage: image!)
-                                        .resizable()
-                                        .clipShape(RoundedRectangle(cornerRadius: 5))
-                                }
-                                else {
-                                    Image(systemName: DEFAULT_CHARACTER_IMAGE_NAME)
-                                        .font(.system(size: 35))
-                                }
-                            }
-                            .clipped()
-                            .aspectRatio(1, contentMode: .fit)
-                            .frame(width: 35, height: 35)
-                            .padding(.trailing, 5)
-                            .padding(.vertical, 2)
-                            
-                            Text(character.name ?? DEFAULT_CHARACTER_NAME)
-                                .font(.system(size: 13))
+                if let rawStatus = section.id {
+                    let enumStatus = CharacterStatuses(rawValue: rawStatus)!
+                    let status = characterStatusLabels[enumStatus]!
+                    
+                    Section(status) {
+                        ForEach(section, id: \.self) { character in
+                            CharacterListItem(character: character)
                         }
-                        .contextMenu {
-                            Button("Delete Character", role: .destructive, action: { promptToDeleteCharacter(character) })
+                    }
+                }
+                else {
+                    Section("No Status") {
+                        ForEach(section, id: \.self) { character in
+                            CharacterListItem(character: character)
                         }
                     }
                 }
@@ -86,6 +70,42 @@ struct MacCharactersView: View {
             }
             .frame(minWidth: 300, maxWidth: .infinity, maxHeight: .infinity)
             .layoutPriority(1)
+        }
+    }
+}
+
+fileprivate struct CharacterListItem: View {
+    @EnvironmentObject var gameStore: GameStore
+    
+    var character: Character
+    @State private var presentDeleteAlert = false
+    @State private var characterToDelete: Character?
+    
+    var body: some View {
+        HStack {
+            Group {
+                if let unwrappedImageStore = character.picture, let picture = unwrappedImageStore.image {
+                    let image = NSImage(data: picture)
+                    Image(nsImage: image!)
+                        .resizable()
+                        .clipShape(RoundedRectangle(cornerRadius: 5))
+                }
+                else {
+                    Image(systemName: DEFAULT_CHARACTER_IMAGE_NAME)
+                        .font(.system(size: 35))
+                }
+            }
+            .clipped()
+            .aspectRatio(1, contentMode: .fit)
+            .frame(width: 35, height: 35)
+            .padding(.trailing, 5)
+            .padding(.vertical, 2)
+            
+            Text(character.name ?? DEFAULT_CHARACTER_NAME)
+                .font(.system(size: 13))
+        }
+        .contextMenu {
+            Button("Delete Character", role: .destructive, action: { promptToDeleteCharacter(character) })
         }
     }
     
