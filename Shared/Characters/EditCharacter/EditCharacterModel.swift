@@ -135,4 +135,19 @@ final class EditCharacterModel: AbstractEditModel {
             return image
         }
     }
+    
+    static func deleteCharacter(_ character: Character) {
+        withAnimation {
+            let viewContext = PersistenceController.shared.container.viewContext
+            viewContext.delete(character)
+            
+            do {
+                try viewContext.save()
+            } catch {
+                // TODO
+//                handleCoreDataError(error as NSError)
+            }
+        }
+    }
+    
 }

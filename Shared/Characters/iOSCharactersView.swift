@@ -13,6 +13,8 @@ struct iOSCharactersView: View {
     
     var game: Game
     
+    @State private var presentDeleteAlert = false
+    @State private var characterToDelete: Character?
     @State private var showCreateCharacterScreen = false
     @FetchRequest private var characters: FetchedResults<Character>
     
@@ -60,10 +62,12 @@ struct iOSCharactersView: View {
                     )
                     .contextMenu {
                         Button("Delete Character", role: .destructive, action: {
-//                            confirmDelete(game: game)
+                            characterToDelete = character
+                            presentDeleteAlert.toggle()
                         })
                     }
                 }
+                .onDelete(perform: deleteCharacters)
             }
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
@@ -83,6 +87,35 @@ struct iOSCharactersView: View {
         }
         .sheet(isPresented: $showCreateCharacterScreen) {
             iOSEditCharacterSheet()
+        }
+        .alert("Are you sure you want to delete this character?", isPresented: $presentDeleteAlert, actions: {
+            Button("No", role: .cancel, action: {
+                characterToDelete = nil
+            })
+            Button("Yes", role: .destructive, action: {
+                if let character = characterToDelete {
+                    EditCharacterModel.deleteCharacter(character)
+                    characterToDelete = nil
+                }
+            })
+        }, message: {
+            Text("This cannot be undone")
+        })
+    }
+    
+    private func deleteCharacters(offsets: IndexSet) {
+        withAnimation {
+            let viewContext = PersistenceController.shared.container.viewContext
+            offsets.map { characters[$0] }.forEach(viewContext.delete)
+
+            do {
+                try viewContext.save()
+            } catch {
+                // Replace this implementation with code to handle the error appropriately.
+                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
         }
     }
 }
