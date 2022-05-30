@@ -33,7 +33,7 @@ struct MacCharactersView: View {
                 let status = characterStatusLabels[enumStatus]!
                 
                 Section(status) {
-                    ForEach(section) { character in
+                    ForEach(section, id: \.self) { character in
                         HStack {
                             Group {
                                 if let unwrappedImageStore = character.picture, let picture = unwrappedImageStore.image {
@@ -56,10 +56,6 @@ struct MacCharactersView: View {
                             Text(character.name ?? DEFAULT_CHARACTER_NAME)
                                 .font(.system(size: 13))
                         }
-                        .onTapGesture {
-                            gameStore.selectedCharacter = character
-                        }
-                        .tag(character)
                         .contextMenu {
                             Button("Delete Character", role: .destructive, action: { promptToDeleteCharacter(character) })
                         }
