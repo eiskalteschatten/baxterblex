@@ -58,6 +58,11 @@ struct iOSCharactersView: View {
                             }
                         }
                     )
+                    .contextMenu {
+                        Button("Delete Character", role: .destructive, action: {
+//                            confirmDelete(game: game)
+                        })
+                    }
                 }
             }
             .toolbar {

@@ -49,6 +49,11 @@ struct MacCharactersView: View {
                     Text(character.name ?? DEFAULT_CHARACTER_NAME)
                         .font(.system(size: 13))
                 }
+                .contextMenu {
+                    Button("Delete Character", role: .destructive, action: {
+//                            confirmDelete(game: game)
+                    })
+                }
             }
             .frame(minWidth: 250, idealWidth: 300, maxHeight: .infinity)
             .listStyle(.sidebar)
