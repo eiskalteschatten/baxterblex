@@ -36,16 +36,18 @@ struct iOSCharactersView: View {
                     let status = characterStatusLabels[enumStatus]!
                     
                     Section(status) {
-                        ForEach(section, id: \.self) { character in
+                        ForEach(section) { character in
                             CharacterNavigationLink(character: character)
                         }
+                        .id(UUID())
                     }
                 }
                 else {
                     Section("No Status") {
-                        ForEach(section, id: \.self) { character in
+                        ForEach(section) { character in
                             CharacterNavigationLink(character: character)
                         }
+                        .id(UUID())
                     }
                 }
             }
