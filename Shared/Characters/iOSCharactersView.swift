@@ -99,7 +99,7 @@ struct iOSCharactersView: View {
                 }
             })
         }, message: {
-            Text("This cannot be undone")
+            Text("This cannot be undone.")
         })
     }
     

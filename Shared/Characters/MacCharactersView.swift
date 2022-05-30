@@ -50,9 +50,7 @@ struct MacCharactersView: View {
                         .font(.system(size: 13))
                 }
                 .contextMenu {
-                    Button("Delete Character", role: .destructive, action: {
-//                            confirmDelete(game: game)
-                    })
+                    Button("Delete Character", role: .destructive, action: { promptToDeleteCharacter(character) })
                 }
             }
             .frame(minWidth: 250, idealWidth: 300, maxHeight: .infinity)
@@ -79,6 +77,21 @@ struct MacCharactersView: View {
             }
             .frame(minWidth: 300, maxWidth: .infinity, maxHeight: .infinity)
             .layoutPriority(1)
+        }
+    }
+    
+    private func promptToDeleteCharacter(_ character: Character) {
+        let alert = NSAlert()
+        alert.messageText = "Are you sure you want to delete this character?"
+        alert.informativeText = "This cannot be undone."
+        alert.addButton(withTitle: "No")
+        alert.addButton(withTitle: "Yes")
+        alert.alertStyle = .warning
+        
+        let delete = alert.runModal() == NSApplication.ModalResponse.alertSecondButtonReturn
+        
+        if delete {
+            EditCharacterModel.deleteCharacter(character)
         }
     }
 }
