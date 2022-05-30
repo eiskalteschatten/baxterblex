@@ -37,6 +37,7 @@ struct MacCharactersView: View {
                         ForEach(section, id: \.self) { character in
                             CharacterListItem(character: character)
                         }
+                        .id(UUID())
                     }
                 }
                 else {
@@ -44,6 +45,7 @@ struct MacCharactersView: View {
                         ForEach(section, id: \.self) { character in
                             CharacterListItem(character: character)
                         }
+                        .id(UUID())
                     }
                 }
             }
