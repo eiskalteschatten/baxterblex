@@ -33,7 +33,6 @@ struct MacCharactersView: View {
                     ForEach(section, id: \.self) { character in
                         CharacterListItem(character: character)
                     }
-                    .id(UUID())
                 }
             }
             .frame(minWidth: 250, idealWidth: 300, maxHeight: .infinity)
@@ -78,7 +77,7 @@ struct MacCharactersView: View {
 fileprivate struct CharacterListItem: View {
     @EnvironmentObject var gameStore: GameStore
     
-    var character: Character
+    @ObservedObject var character: Character
     @State private var presentDeleteAlert = false
     @State private var characterToDelete: Character?
     
