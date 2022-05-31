@@ -38,7 +38,7 @@ struct EditCharacterView: View {
             case .overview:
                 EditCharacterOverview(editCharacterModel: gameStore.editCharacterModel!)
             case .attributes:
-                Text("Attributes")
+                EditCharacterAttributes(editCharacterModel: gameStore.editCharacterModel!)
             case .gear:
                 Text("Gear")
             case .health:

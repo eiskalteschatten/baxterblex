@@ -91,6 +91,8 @@
 		93C526B7283B891800371B6A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93C52689283B891600371B6A /* Persistence.swift */; };
 		93C526B8283B891800371B6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C5268A283B891800371B6A /* Assets.xcassets */; };
 		93C526B9283B891800371B6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C5268A283B891800371B6A /* Assets.xcassets */; };
+		93D0E028284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */; };
+		93D0E029284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -171,6 +173,7 @@
 		93C526A8283B891800371B6A /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		93C526AC283B891800371B6A /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		93C526AE283B891800371B6A /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterAttributes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -280,6 +283,7 @@
 				9348659A283CF370005497A1 /* EditCharacterModel.swift */,
 				93486597283CF304005497A1 /* EditCharacterView.swift */,
 				93B9CECC283FBF3B005EB7C6 /* EditCharacterOverview.swift */,
+				93D0E02A284638F3002A27F9 /* EditCharacterAttributes */,
 				93887A6A284258CB007216C7 /* iOSEditCharacterSheet.swift */,
 			);
 			path = EditCharacter;
@@ -437,6 +441,14 @@
 				93C526AE283B891800371B6A /* Tests_macOSLaunchTests.swift */,
 			);
 			path = "Tests macOS";
+			sourceTree = "<group>";
+		};
+		93D0E02A284638F3002A27F9 /* EditCharacterAttributes */ = {
+			isa = PBXGroup;
+			children = (
+				93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */,
+			);
+			path = EditCharacterAttributes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -608,6 +620,7 @@
 				93B9CED8283FD1CE005EB7C6 /* RichTextEditor.swift in Sources */,
 				933CE3B2283BB67700ADBE50 /* EditGameSheet.swift in Sources */,
 				93A2B2422843BB7B00BFF206 /* iOSImagePickerMenu.swift in Sources */,
+				93D0E028284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */,
 				9348656F283BF7E9005497A1 /* CharactersView.swift in Sources */,
 				93486564283BF6F7005497A1 /* GameView.swift in Sources */,
 				934865BC283D3800005497A1 /* GamesListItemView.swift in Sources */,
@@ -682,6 +695,7 @@
 				934865C4283D7ECB005497A1 /* GameListItemTileView.swift in Sources */,
 				9348659C283CF370005497A1 /* EditCharacterModel.swift in Sources */,
 				93486609283E749B005497A1 /* ResizableText.swift in Sources */,
+				93D0E029284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
