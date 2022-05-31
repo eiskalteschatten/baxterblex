@@ -15,11 +15,11 @@ struct iOSCharactersView: View {
     
     @State private var showCreateCharacterScreen = false
     
-    @SectionedFetchRequest private var sectionedCharacters: SectionedFetchResults<String?, Character>
+    @FetchRequest private var characters: FetchedResults<Character>
+    @State private var sectionedCharacters: Dictionary<String, [Character]> = [:]
     
     init(game: Game) {
-        self._sectionedCharacters = SectionedFetchRequest<String?, Character>(
-            sectionIdentifier: \.status,
+        self._characters = FetchRequest<Character>(
             sortDescriptors: [NSSortDescriptor(keyPath: \Character.status, ascending: true),
                               NSSortDescriptor(keyPath: \Character.name, ascending: true)],
             predicate: NSPredicate(format: "game == %@", game),
@@ -30,13 +30,13 @@ struct iOSCharactersView: View {
     
     var body: some View {
         NavigationView {
-            List(sectionedCharacters, selection: $gameStore.selectedCharacter) { section in
-                if let rawStatus = section.id {
-                    let enumStatus = CharacterStatuses(rawValue: rawStatus)!
+            List(Array(sectionedCharacters.keys), id: \.self, selection: $gameStore.selectedCharacter) { (section: String) in
+                if section != "noStatus" {
+                    let enumStatus = CharacterStatuses(rawValue: section)!
                     let status = characterStatusLabels[enumStatus]!
-                    
+
                     Section(status) {
-                        ForEach(section, id: \.self) { character in
+                        ForEach(sectionedCharacters[section]!, id: \.self) { character in
                             CharacterNavigationLink(character: character)
                         }
                         .id(UUID())
@@ -44,7 +44,7 @@ struct iOSCharactersView: View {
                 }
                 else {
                     Section("No Status") {
-                        ForEach(section, id: \.self) { character in
+                        ForEach(sectionedCharacters[section]!, id: \.self) { character in
                             CharacterNavigationLink(character: character)
                         }
                         .id(UUID())
@@ -69,6 +69,18 @@ struct iOSCharactersView: View {
         }
         .sheet(isPresented: $showCreateCharacterScreen) {
             iOSEditCharacterSheet()
+        }
+        .onAppear {
+            sectionedCharacters["draft"] = characters.filter { $0.status == CharacterStatuses.draft.rawValue }
+            sectionedCharacters["active"] = characters.filter { $0.status == CharacterStatuses.active.rawValue }
+            sectionedCharacters["inactive"] = characters.filter { $0.status == CharacterStatuses.inactive.rawValue }
+            sectionedCharacters["dead"] = characters.filter { $0.status == CharacterStatuses.dead.rawValue }
+            sectionedCharacters["noStatus"] = characters.filter {
+                $0.status != CharacterStatuses.draft.rawValue &&
+                $0.status != CharacterStatuses.active.rawValue &&
+                $0.status != CharacterStatuses.inactive.rawValue &&
+                $0.status != CharacterStatuses.dead.rawValue
+            }
         }
     }
 }
