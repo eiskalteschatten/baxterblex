@@ -36,7 +36,6 @@ struct iOSCharactersView: View {
                         ForEach(characters, id: \.self) { character in
                             CharacterNavigationLink(character: character)
                         }
-                        .id(UUID())
                     }
                 }
             }
@@ -88,7 +87,7 @@ struct iOSCharactersView: View {
 fileprivate struct CharacterNavigationLink: View {
     @EnvironmentObject var gameStore: GameStore
     
-    var character: Character
+    @ObservedObject var character: Character
     @State private var presentDeleteAlert = false
     @State private var characterToDelete: Character?
     
