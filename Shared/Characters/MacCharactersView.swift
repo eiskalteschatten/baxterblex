@@ -29,24 +29,11 @@ struct MacCharactersView: View {
     var body: some View {
         HSplitView {
             List(sectionedCharacters, selection: $gameStore.selectedCharacter) { section in
-                if let rawStatus = section.id {
-                    let enumStatus = CharacterStatuses(rawValue: rawStatus)!
-                    let status = characterStatusLabels[enumStatus]!
-                    
-                    Section(status) {
-                        ForEach(section, id: \.self) { character in
-                            CharacterListItem(character: character)
-                        }
-                        .id(UUID())
+                Section(getSectionTitle(section.id)) {
+                    ForEach(section, id: \.self) { character in
+                        CharacterListItem(character: character)
                     }
-                }
-                else {
-                    Section("No Status") {
-                        ForEach(section, id: \.self) { character in
-                            CharacterListItem(character: character)
-                        }
-                        .id(UUID())
-                    }
+                    .id(UUID())
                 }
             }
             .frame(minWidth: 250, idealWidth: 300, maxHeight: .infinity)
@@ -74,6 +61,17 @@ struct MacCharactersView: View {
             .frame(minWidth: 300, maxWidth: .infinity, maxHeight: .infinity)
             .layoutPriority(1)
         }
+    }
+    
+    private func getSectionTitle(_ sectionId: String?) -> String {
+        var status = "No Status"
+        
+        if let section = sectionId {
+            let enumStatus = CharacterStatuses(rawValue: section)!
+            status = characterStatusLabels[enumStatus]!
+        }
+        
+        return status
     }
 }
 
