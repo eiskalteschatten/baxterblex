@@ -10,8 +10,15 @@ import SwiftUI
 struct EditCharacterAttributes: View {
     @ObservedObject var editCharacterModel: EditCharacterModel
     
+    @State private var showAttributeEditorSheet = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button("Edit Character Attributes", action: { showAttributeEditorSheet.toggle() })
+        }
+        .sheet(isPresented: $showAttributeEditorSheet) {
+            CharacterAttributeEditorSheet()
+        }
     }
 }
 

@@ -93,6 +93,8 @@
 		93C526B9283B891800371B6A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93C5268A283B891800371B6A /* Assets.xcassets */; };
 		93D0E028284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */; };
 		93D0E029284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */; };
+		93D0E02C2846391D002A27F9 /* CharacterAttributeEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */; };
+		93D0E02D2846391D002A27F9 /* CharacterAttributeEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +176,7 @@
 		93C526AC283B891800371B6A /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
 		93C526AE283B891800371B6A /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterAttributes.swift; sourceTree = "<group>"; };
+		93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAttributeEditorSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -447,6 +450,7 @@
 			isa = PBXGroup;
 			children = (
 				93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */,
+				93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */,
 			);
 			path = EditCharacterAttributes;
 			sourceTree = "<group>";
@@ -642,6 +646,7 @@
 				934865B5283D2214005497A1 /* iOSSessionsView.swift in Sources */,
 				934865C0283D398D005497A1 /* DateHelpers.swift in Sources */,
 				933CE3D2283BC31400ADBE50 /* iOSEditGameForm.swift in Sources */,
+				93D0E02C2846391D002A27F9 /* CharacterAttributeEditorSheet.swift in Sources */,
 				933CE3D9283BC99B00ADBE50 /* Constants.swift in Sources */,
 				9348660E283E7D43005497A1 /* SingleGameViewContents.swift in Sources */,
 				93B9CECD283FBF3B005EB7C6 /* EditCharacterOverview.swift in Sources */,
@@ -696,6 +701,7 @@
 				9348659C283CF370005497A1 /* EditCharacterModel.swift in Sources */,
 				93486609283E749B005497A1 /* ResizableText.swift in Sources */,
 				93D0E029284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */,
+				93D0E02D2846391D002A27F9 /* CharacterAttributeEditorSheet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
