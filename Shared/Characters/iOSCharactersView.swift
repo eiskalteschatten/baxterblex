@@ -31,21 +31,8 @@ struct iOSCharactersView: View {
     var body: some View {
         NavigationView {
             List(Array(sectionedCharacters.keys), id: \.self, selection: $gameStore.selectedCharacter) { (section: String) in
-                if section != "noStatus" {
-                    let enumStatus = CharacterStatuses(rawValue: section)!
-                    let status = characterStatusLabels[enumStatus]!
-
-                    if let characters = sectionedCharacters[section], characters.count > 0 {
-                        Section(status) {
-                            ForEach(characters, id: \.self) { character in
-                                CharacterNavigationLink(character: character)
-                            }
-                            .id(UUID())
-                        }
-                    }
-                }
-                else if let characters = sectionedCharacters[section], characters.count > 0 {
-                    Section("No Status") {
+                if let characters = sectionedCharacters[section], characters.count > 0 {
+                    Section(getSectionTitle(section)) {
                         ForEach(characters, id: \.self) { character in
                             CharacterNavigationLink(character: character)
                         }
@@ -84,6 +71,17 @@ struct iOSCharactersView: View {
                 $0.status != CharacterStatuses.dead.rawValue
             }
         }
+    }
+    
+    private func getSectionTitle(_ section: String) -> String {
+        var status = "No Status"
+        
+        if section != "noStatus" {
+            let enumStatus = CharacterStatuses(rawValue: section)!
+            status = characterStatusLabels[enumStatus]!
+        }
+        
+        return status
     }
 }
 
