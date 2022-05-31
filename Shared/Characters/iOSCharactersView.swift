@@ -16,7 +16,6 @@ struct iOSCharactersView: View {
     @State private var showCreateCharacterScreen = false
     
     @FetchRequest private var characters: FetchedResults<Character>
-    @State private var sectionedCharacters: Dictionary<String, [Character]> = [:]
     
     init(game: Game) {
         self._characters = FetchRequest<Character>(
@@ -30,6 +29,8 @@ struct iOSCharactersView: View {
     
     var body: some View {
         NavigationView {
+            let sectionedCharacters = getSectionedCharacters()
+            
             List(Array(sectionedCharacters.keys), id: \.self, selection: $gameStore.selectedCharacter) { (section: String) in
                 if let characters = sectionedCharacters[section], characters.count > 0 {
                     Section(getSectionTitle(section)) {
@@ -59,17 +60,24 @@ struct iOSCharactersView: View {
             iOSEditCharacterSheet()
         }
         .onAppear {
-            sectionedCharacters["draft"] = characters.filter { $0.status == CharacterStatuses.draft.rawValue }
-            sectionedCharacters["active"] = characters.filter { $0.status == CharacterStatuses.active.rawValue }
-            sectionedCharacters["inactive"] = characters.filter { $0.status == CharacterStatuses.inactive.rawValue }
-            sectionedCharacters["dead"] = characters.filter { $0.status == CharacterStatuses.dead.rawValue }
-            sectionedCharacters["noStatus"] = characters.filter {
-                $0.status != CharacterStatuses.draft.rawValue &&
-                $0.status != CharacterStatuses.active.rawValue &&
-                $0.status != CharacterStatuses.inactive.rawValue &&
-                $0.status != CharacterStatuses.dead.rawValue
-            }
+            
         }
+    }
+    
+    private func getSectionedCharacters() -> Dictionary<String, [Character]> {
+        var sectionedCharacters: [String: [Character]] = [:]
+        
+        characters.forEach { character in
+            let status = (character.status ?? "").isEmpty ? "noStatus" : character.status!
+            
+            if sectionedCharacters[status] == nil {
+                sectionedCharacters[status] = []
+            }
+            
+            sectionedCharacters[status]!.append(character)
+        }
+        
+        return sectionedCharacters
     }
     
     private func getSectionTitle(_ section: String) -> String {
