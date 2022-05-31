@@ -36,7 +36,7 @@ struct iOSCharactersView: View {
                     let status = characterStatusLabels[enumStatus]!
                     
                     Section(status) {
-                        ForEach(section) { character in
+                        ForEach(section, id: \.self) { character in
                             CharacterNavigationLink(character: character)
                         }
                         .id(UUID())
@@ -44,7 +44,7 @@ struct iOSCharactersView: View {
                 }
                 else {
                     Section("No Status") {
-                        ForEach(section) { character in
+                        ForEach(section, id: \.self) { character in
                             CharacterNavigationLink(character: character)
                         }
                         .id(UUID())
