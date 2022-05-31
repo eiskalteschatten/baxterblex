@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum EditCharacterViewTabs: Int {
-    case overview, gear, stats, health
+    case overview, gear, attributes, health
 }
 
 struct EditCharacterView: View {
@@ -25,8 +25,8 @@ struct EditCharacterView: View {
                 Text("Gear")
                     .tag(EditCharacterViewTabs.gear)
                 
-                Text("Stats")
-                    .tag(EditCharacterViewTabs.stats)
+                Text("Attributes")
+                    .tag(EditCharacterViewTabs.attributes)
                 
                 Text("Health")
                     .tag(EditCharacterViewTabs.health)
@@ -37,8 +37,8 @@ struct EditCharacterView: View {
             switch selectedTab {
             case .overview:
                 EditCharacterOverview(editCharacterModel: gameStore.editCharacterModel!)
-            case .stats:
-                Text("Stats")
+            case .attributes:
+                Text("Attributes")
             case .gear:
                 Text("Gear")
             case .health:
