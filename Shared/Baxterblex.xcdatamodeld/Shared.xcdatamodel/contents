@@ -18,9 +18,10 @@
     <entity name="CharacterAttribute" representedClassName="CharacterAttribute" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="type" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="value" optional="YES" attributeType="String"/>
+        <attribute name="value" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CharacterAttributeCategory" inverseName="attributes" inverseEntity="CharacterAttributeCategory"/>
         <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="attributes" inverseEntity="Character"/>
     </entity>
@@ -59,7 +60,7 @@
         <element name="Game" positionX="-63" positionY="-18" width="128" height="164"/>
         <element name="ImageStore" positionX="-54" positionY="81" width="128" height="104"/>
         <element name="Session" positionX="-54" positionY="0" width="128" height="74"/>
-        <element name="CharacterAttribute" positionX="-54" positionY="81" width="128" height="134"/>
+        <element name="CharacterAttribute" positionX="-54" positionY="81" width="128" height="149"/>
         <element name="CharacterAttributeCategory" positionX="-45" positionY="90" width="128" height="104"/>
     </elements>
 </model>
