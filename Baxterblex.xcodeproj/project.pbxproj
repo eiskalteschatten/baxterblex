@@ -95,6 +95,9 @@
 		93D0E029284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */; };
 		93D0E02C2846391D002A27F9 /* CharacterAttributeEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */; };
 		93D0E02D2846391D002A27F9 /* CharacterAttributeEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */; };
+		93D4505E2847787C0015F019 /* MacCharacterAttributeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */; };
+		93D45060284778D00015F019 /* EditCharacterAttributeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */; };
+		93D45061284778D00015F019 /* EditCharacterAttributeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,6 +180,8 @@
 		93C526AE283B891800371B6A /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 		93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterAttributes.swift; sourceTree = "<group>"; };
 		93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAttributeEditorSheet.swift; sourceTree = "<group>"; };
+		93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCharacterAttributeEditor.swift; sourceTree = "<group>"; };
+		93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterAttributeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -449,8 +454,10 @@
 		93D0E02A284638F3002A27F9 /* EditCharacterAttributes */ = {
 			isa = PBXGroup;
 			children = (
+				93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */,
 				93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */,
 				93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */,
+				93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */,
 			);
 			path = EditCharacterAttributes;
 			sourceTree = "<group>";
@@ -622,6 +629,7 @@
 				9348659F283CF404005497A1 /* AbstractEditModel.swift in Sources */,
 				933CE3CD283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
 				93B9CED8283FD1CE005EB7C6 /* RichTextEditor.swift in Sources */,
+				93D45060284778D00015F019 /* EditCharacterAttributeModel.swift in Sources */,
 				933CE3B2283BB67700ADBE50 /* EditGameSheet.swift in Sources */,
 				93A2B2422843BB7B00BFF206 /* iOSImagePickerMenu.swift in Sources */,
 				93D0E028284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */,
@@ -671,6 +679,7 @@
 				933CE3CE283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
 				933CE3B3283BB67700ADBE50 /* EditGameSheet.swift in Sources */,
 				93A2B23A2843B8D900BFF206 /* MacImagePicker.swift in Sources */,
+				93D4505E2847787C0015F019 /* MacCharacterAttributeEditor.swift in Sources */,
 				93486570283BF7E9005497A1 /* CharactersView.swift in Sources */,
 				93B9CED9283FD1CE005EB7C6 /* RichTextEditor.swift in Sources */,
 				934865AC283D2181005497A1 /* MacAccountingView.swift in Sources */,
@@ -681,6 +690,7 @@
 				93486586283C2A61005497A1 /* MacCharactersView.swift in Sources */,
 				93C526B1283B891800371B6A /* Baxterblex.xcdatamodeld in Sources */,
 				93B9CEDC283FD1EE005EB7C6 /* MacRichTextEditor.swift in Sources */,
+				93D45061284778D00015F019 /* EditCharacterAttributeModel.swift in Sources */,
 				934865A0283CF404005497A1 /* AbstractEditModel.swift in Sources */,
 				9348660C283E7A8C005497A1 /* NoGameSelected.swift in Sources */,
 				93486611283E7D67005497A1 /* MacSingleGameView.swift in Sources */,
