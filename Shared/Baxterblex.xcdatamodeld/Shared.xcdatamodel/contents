@@ -11,7 +11,7 @@
         <attribute name="occupation" optional="YES" attributeType="String" valueTransformerName="NSAttributedStringTransformer" customClassName="NSAttributedString"/>
         <attribute name="status" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="attributes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CharacterAttribute" inverseName="character" inverseEntity="CharacterAttribute"/>
+        <relationship name="attributeTypes" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CharacterAttributeType" inverseName="character" inverseEntity="CharacterAttributeType"/>
         <relationship name="game" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="characters" inverseEntity="Game" spotlightIndexingEnabled="YES"/>
         <relationship name="picture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="ImageStore" inverseName="character" inverseEntity="ImageStore"/>
     </entity>
@@ -23,7 +23,6 @@
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="value" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="NO"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CharacterAttributeCategory" inverseName="attributes" inverseEntity="CharacterAttributeCategory"/>
-        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="attributes" inverseEntity="Character"/>
     </entity>
     <entity name="CharacterAttributeCategory" representedClassName="CharacterAttributeCategory" syncable="YES" codeGenerationType="class">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -37,6 +36,7 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="categories" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="CharacterAttributeCategory" inverseName="type" inverseEntity="CharacterAttributeCategory"/>
+        <relationship name="character" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="attributeTypes" inverseEntity="Character"/>
     </entity>
     <entity name="Game" representedClassName="Game" syncable="YES" codeGenerationType="class">
         <attribute name="archived" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -63,11 +63,11 @@
     </entity>
     <elements>
         <element name="Character" positionX="-63" positionY="-9" width="128" height="224"/>
-        <element name="CharacterAttribute" positionX="-54" positionY="81" width="128" height="149"/>
+        <element name="CharacterAttribute" positionX="-54" positionY="81" width="128" height="134"/>
         <element name="CharacterAttributeCategory" positionX="-45" positionY="90" width="128" height="104"/>
         <element name="Game" positionX="-63" positionY="-18" width="128" height="164"/>
         <element name="ImageStore" positionX="-54" positionY="81" width="128" height="104"/>
         <element name="Session" positionX="-54" positionY="0" width="128" height="74"/>
-        <element name="CharacterAttributeType" positionX="-54" positionY="99" width="128" height="89"/>
+        <element name="CharacterAttributeType" positionX="-54" positionY="99" width="128" height="104"/>
     </elements>
 </model>

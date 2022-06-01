@@ -8,7 +8,7 @@
 import SwiftUI
 
 final class EditCharacterAttributeModel: AbstractEditModel {
-    var character: Character
+    var category: CharacterAttributeCategory
     var attribute: CharacterAttribute!
     
     @Published var name: String = ""
@@ -16,8 +16,8 @@ final class EditCharacterAttributeModel: AbstractEditModel {
     @Published var starred = false
     @Published var value: Int?
     
-    init(character: Character, attribute: CharacterAttribute? = nil) {
-        self.character = character
+    init(category: CharacterAttributeCategory, attribute: CharacterAttribute? = nil) {
+        self.category = category
         super.init()
         self.attribute = attribute ?? CharacterAttribute(context: viewContext!)
         
@@ -37,7 +37,7 @@ final class EditCharacterAttributeModel: AbstractEditModel {
         withAnimation {
             attribute.createdAt = Date()
             attribute.updatedAt = Date()
-            attribute.character = character
+            attribute.category = category
 
             attribute.name = name
             attribute.notes = notes

@@ -8,11 +8,13 @@
 import SwiftUI
 
 final class EditCharacterAttributeTypeModel: AbstractEditModel {
+    var character: Character
     var type: CharacterAttributeType!
     
     @Published var name: String = ""
     
-    init(type: CharacterAttributeType? = nil) {
+    init(character: Character, type: CharacterAttributeType? = nil) {
+        self.character = character
         super.init()
         self.type = type ?? CharacterAttributeType(context: viewContext!)
         
@@ -29,6 +31,7 @@ final class EditCharacterAttributeTypeModel: AbstractEditModel {
         withAnimation {
             type.createdAt = Date()
             type.updatedAt = Date()
+            type.character = character
 
             type.name = name
 
