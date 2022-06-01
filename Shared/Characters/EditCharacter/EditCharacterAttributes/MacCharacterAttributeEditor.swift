@@ -27,14 +27,8 @@ struct MacCharacterAttributeEditor: View {
             HStack {
                 Spacer()
                 
-                Button("Cancel") { dismiss() }
+                Button("Done") { dismiss() }
                     .keyboardShortcut(.cancelAction)
-                
-                Button("Save") {
-//                    editGameModel.save()
-                    dismiss()
-                }
-                .keyboardShortcut(.defaultAction)
             }
         }
         .frame(minWidth: 400, minHeight: 300)
