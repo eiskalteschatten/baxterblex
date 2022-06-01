@@ -22,8 +22,14 @@ struct MacCharacterAttributeEditor: View {
 
     @ObservedObject private var modelManager: ModelManager
     @State private var selectedType: CharacterAttributeType?
+    @State private var isEditingTypeName = false
     @State private var selectedCategory: CharacterAttributeCategory?
     @State private var selectedAttribute: CharacterAttribute?
+    
+    private enum FocusField: Int, Hashable {
+        case typeName
+    }
+    @FocusState private var focusedField: FocusField?
     
     @FetchRequest private var types: FetchedResults<CharacterAttributeType>
     
@@ -46,11 +52,13 @@ struct MacCharacterAttributeEditor: View {
                     Text("Types:")
                     
                     List(types, id: \.self, selection: $selectedType) { type in
-                        if let name = type.name, !name.isEmpty {
-                            Text(name)
-                        }
-                        else {
+                        if isEditingTypeName && selectedType == type {
                             TextField("Type Name", text: $modelManager.attributeTypeModel.name)
+                                .focused($focusedField, equals: .typeName)
+                                .onSubmit { isEditingTypeName = false }
+                        }
+                        else if let name = type.name {
+                            Text(name)
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -60,6 +68,9 @@ struct MacCharacterAttributeEditor: View {
                         Button {
                             modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(character: character)
                             modelManager.attributeTypeModel.save()
+                            selectedType = modelManager.attributeTypeModel.type
+                            isEditingTypeName = true
+                            focusedField = .typeName
                         } label: {
                             Image(systemName: "plus")
                         }
