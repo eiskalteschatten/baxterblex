@@ -140,10 +140,6 @@ final class EditCharacterModel: AbstractEditModel {
         }
     }
     
-    func setGame(_ game: Game) {
-        self.game = game
-    }
-    
     private func getPictureImageStore(data: Data) -> ImageStore {
         if let unwrappedImage = character.picture {
             unwrappedImage.updatedAt = Date()
@@ -172,5 +168,4 @@ final class EditCharacterModel: AbstractEditModel {
             }
         }
     }
-    
 }
