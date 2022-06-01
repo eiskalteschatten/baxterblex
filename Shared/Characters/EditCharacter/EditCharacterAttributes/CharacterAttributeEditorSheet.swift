@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct CharacterAttributeEditorSheet: View {
+    @EnvironmentObject private var gameStore: GameStore
+    
     var body: some View {
-        #if os(macOS)
-        MacCharacterAttributeEditor()
-        #else
-        // TODO
-        #endif
+        if let character = gameStore.selectedCharacter {
+            #if os(macOS)
+            MacCharacterAttributeEditor(character: character)
+            #else
+            // TODO
+            #endif
+        }
+        else {
+            Text("No character selected")
+        }
     }
 }
 
