@@ -8,49 +8,45 @@
 import SwiftUI
 
 final class EditCharacterAttributeModel: AbstractEditModel {
-    var character: Character!
+    var character: Character
+    var attribute: CharacterAttribute!
     
     @Published var name: String = ""
+    @Published var notes: String = ""
+    @Published var starred = false
+    @Published var value: Int?
     
-    init(character: Character) {
-        super.init()
+    init(character: Character, attribute: CharacterAttribute? = nil) {
         self.character = character
+        super.init()
+        self.attribute = attribute ?? CharacterAttribute(context: viewContext!)
         
-//        initVariables()
+        if attribute != nil {
+            initVariables()
+        }
     }
     
-//    override func initVariables() {
-//        picture = character.picture
-//        name = character.name ?? name
-//        picture = character.picture
-//        age = character.age ?? age
-//        status = character.status != nil ? CharacterStatuses(rawValue: character.status!)! : status
-//        biography = character.biography ?? biography
-//        familyFriends = character.familyFriends ?? familyFriends
-//        hobbies = character.hobbies ?? hobbies
-//        notes = character.notes ?? notes
-//        occupation = character.occupation ?? occupation
-//    }
+    override func initVariables() {
+        name = attribute.name ?? name
+        notes = attribute.notes ?? notes
+        starred = attribute.starred
+        value = attribute.value?.intValue ?? value
+    }
     
     override func save() {
         withAnimation {
-//            character.createdAt = Date()
-//            character.updatedAt = Date()
-//            character.game = game
-//            
-//            character.name = name
-//            character.age = age
-//            character.status = status.rawValue
-//            character.biography = biography
-//            character.familyFriends = familyFriends
-//            character.hobbies = hobbies
-//            character.notes = notes
-//            character.occupation = occupation
-//            
-//            if let unwrappedPicture = picture {
-//                character.picture = unwrappedPicture
-//            }
+            attribute.createdAt = Date()
+            attribute.updatedAt = Date()
+            attribute.character = character
+
+            attribute.name = name
+            attribute.notes = notes
+            attribute.starred = starred
             
+            if let unwrapped = value {
+                attribute.value = NSNumber(value: unwrapped)
+            }
+
             do {
                 try viewContext!.save()
             } catch {
