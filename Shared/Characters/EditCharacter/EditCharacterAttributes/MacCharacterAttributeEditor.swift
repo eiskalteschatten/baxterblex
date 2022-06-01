@@ -31,13 +31,89 @@ struct MacCharacterAttributeEditor: View {
     var body: some View {
         VStack {
             HSplitView {
-                List(types, id: \.self, selection: $selectedType) { type in
-                    Text(type.name ?? "")
+                VStack(alignment: .leading) {
+                    Text("Types:")
+                    
+                    List(types, id: \.self, selection: $selectedType) { type in
+                        Text(type.name ?? "")
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .layoutPriority(1)
+                    
+                    HStack {
+                        Button {
+                            // Add item
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Button {
+                            // Remove item
+                        } label: {
+                            Image(systemName: "minus")
+                        }
+                        .buttonStyle(.plain)
+                    }
                 }
+                .frame(minWidth: 150)
+                .padding(.horizontal, 10)
+                    
+                VStack(alignment: .leading) {
+                    Text("Categories:")
+                    
+                    List(types, id: \.self, selection: $selectedType) { type in
+                        Text(type.name ?? "")
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .layoutPriority(1)
+                    
+                    HStack {
+                        Button {
+                            // Add item
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Button {
+                            // Remove item
+                        } label: {
+                            Image(systemName: "minus")
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .frame(minWidth: 150)
+                .padding(.horizontal, 10)
                 
-                Text("Categories")
-                
-                Text("Attributes")
+                VStack(alignment: .leading) {
+                    Text("Attributes:")
+                    
+                    List(types, id: \.self, selection: $selectedType) { type in
+                        Text(type.name ?? "")
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .layoutPriority(1)
+                    
+                    HStack {
+                        Button {
+                            // Add item
+                        } label: {
+                            Image(systemName: "plus")
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Button {
+                            // Remove item
+                        } label: {
+                            Image(systemName: "minus")
+                        }
+                        .buttonStyle(.plain)
+                    }
+                }
+                .frame(minWidth: 150)
+                .padding(.horizontal, 10)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             
@@ -51,7 +127,7 @@ struct MacCharacterAttributeEditor: View {
                     .keyboardShortcut(.cancelAction)
             }
         }
-        .frame(minWidth: 400, minHeight: 300)
+        .frame(minWidth: 800, minHeight: 500)
         .padding(20)
     }
 }
