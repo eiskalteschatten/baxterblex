@@ -7,11 +7,20 @@
 
 import SwiftUI
 
+fileprivate final class ModelManager: ObservableObject {
+    @Published var attributeTypeModel: EditCharacterAttributeTypeModel
+    
+    init(character: Character) {
+        attributeTypeModel = EditCharacterAttributeTypeModel(character: character)
+    }
+}
+
 struct MacCharacterAttributeEditor: View {
     @Environment(\.dismiss) var dismiss
     
     var character: Character
-    
+
+    @ObservedObject private var modelManager: ModelManager
     @State private var selectedType: CharacterAttributeType?
     @State private var selectedCategory: CharacterAttributeCategory?
     @State private var selectedAttribute: CharacterAttribute?
@@ -26,6 +35,8 @@ struct MacCharacterAttributeEditor: View {
             predicate: NSPredicate(format: "character == %@", character),
             animation: .default
         )
+        
+        self.modelManager = ModelManager(character: character)
     }
     
     var body: some View {
@@ -35,7 +46,12 @@ struct MacCharacterAttributeEditor: View {
                     Text("Types:")
                     
                     List(types, id: \.self, selection: $selectedType) { type in
-                        Text(type.name ?? "")
+                        if let name = type.name {
+                            Text(name)
+                        }
+                        else {
+                            TextField("", text: $modelManager.attributeTypeModel.name)
+                        }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .layoutPriority(1)
@@ -129,6 +145,9 @@ struct MacCharacterAttributeEditor: View {
         }
         .frame(minWidth: 800, minHeight: 500)
         .padding(20)
+        .onChange(of: selectedType) { type in
+            modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(character: character, type: type)
+        }
     }
 }
 
