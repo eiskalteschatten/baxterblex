@@ -46,11 +46,11 @@ struct MacCharacterAttributeEditor: View {
                     Text("Types:")
                     
                     List(types, id: \.self, selection: $selectedType) { type in
-                        if let name = type.name {
+                        if let name = type.name, !name.isEmpty {
                             Text(name)
                         }
                         else {
-                            TextField("", text: $modelManager.attributeTypeModel.name)
+                            TextField("Type Name", text: $modelManager.attributeTypeModel.name)
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -58,18 +58,21 @@ struct MacCharacterAttributeEditor: View {
                     
                     HStack {
                         Button {
-                            // Add item
+                            modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(character: character)
+                            modelManager.attributeTypeModel.save()
                         } label: {
                             Image(systemName: "plus")
                         }
                         .buttonStyle(.plain)
                         
                         Button {
-                            // Remove item
+                            modelManager.attributeTypeModel.promptToDeleteType()
                         } label: {
                             Image(systemName: "minus")
+                                .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
+                        .disabled(selectedType == nil)
                     }
                 }
                 .frame(minWidth: 150)

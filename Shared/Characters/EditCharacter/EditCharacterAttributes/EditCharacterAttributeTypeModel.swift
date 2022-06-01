@@ -11,7 +11,9 @@ final class EditCharacterAttributeTypeModel: AbstractEditModel {
     var character: Character
     var type: CharacterAttributeType!
     
-    @Published var name: String = ""
+    @Published var name: String = "" {
+        didSet { save() }
+    }
     
     init(character: Character, type: CharacterAttributeType? = nil) {
         self.character = character
@@ -47,19 +49,35 @@ final class EditCharacterAttributeTypeModel: AbstractEditModel {
         }
     }
     
-//    static func deleteCharacter(_ character: Character) {
-//        withAnimation {
-//            let viewContext = PersistenceController.shared.container.viewContext
-//            viewContext.delete(character)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // TODO
-////                handleCoreDataError(error as NSError)
-//            }
-//        }
-//    }
+    func deleteType() {
+        withAnimation {
+            viewContext!.delete(type)
+
+            do {
+                try viewContext!.save()
+            } catch {
+                // TODO
+//                handleCoreDataError(error as NSError)
+            }
+        }
+    }
+    
+    #if os(macOS)
+    func promptToDeleteType() {
+        let alert = NSAlert()
+        alert.messageText = "Are you sure you want to delete this character attribute type?"
+        alert.informativeText = "All of the attributes and categires within this type will also be deleted."
+        alert.addButton(withTitle: "No")
+        alert.addButton(withTitle: "Yes")
+        alert.alertStyle = .warning
+        
+        let delete = alert.runModal() == NSApplication.ModalResponse.alertSecondButtonReturn
+        
+        if delete {
+            deleteType()
+        }
+    }
+    #endif
 }
 
 
