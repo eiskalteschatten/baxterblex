@@ -10,8 +10,8 @@ import SwiftUI
 fileprivate final class ModelManager: ObservableObject {
     @Published var attributeTypeModel: EditCharacterAttributeTypeModel
     
-    init(character: Character) {
-        attributeTypeModel = EditCharacterAttributeTypeModel(character: character)
+    init(game: Game) {
+        attributeTypeModel = EditCharacterAttributeTypeModel(game: game)
     }
 }
 
@@ -19,6 +19,7 @@ struct MacCharacterAttributeEditor: View {
     @Environment(\.dismiss) var dismiss
     
     var character: Character
+    var game: Game
 
     @ObservedObject private var modelManager: ModelManager
     @State private var selectedType: CharacterAttributeType?
@@ -35,14 +36,15 @@ struct MacCharacterAttributeEditor: View {
     
     init(character: Character) {
         self.character = character
+        self.game = character.game!
         
         self._types = FetchRequest<CharacterAttributeType>(
             sortDescriptors: [NSSortDescriptor(keyPath: \CharacterAttributeType.name, ascending: true)],
-            predicate: NSPredicate(format: "character == %@", character),
+            predicate: NSPredicate(format: "game == %@", game),
             animation: .default
         )
         
-        self.modelManager = ModelManager(character: character)
+        self.modelManager = ModelManager(game: game)
     }
     
     var body: some View {
@@ -69,7 +71,7 @@ struct MacCharacterAttributeEditor: View {
                     
                     HStack {
                         Button {
-                            modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(character: character)
+                            modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(game: game)
                             modelManager.attributeTypeModel.save()
                             editType(modelManager.attributeTypeModel.type)
                         } label: {
@@ -161,7 +163,7 @@ struct MacCharacterAttributeEditor: View {
         .frame(minWidth: 800, minHeight: 500)
         .padding(20)
         .onChange(of: selectedType) { type in
-            modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(character: character, type: type)
+            modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(game: game, type: type)
         }
     }
     
