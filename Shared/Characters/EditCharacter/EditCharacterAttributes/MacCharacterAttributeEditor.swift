@@ -8,10 +8,38 @@
 import SwiftUI
 
 struct MacCharacterAttributeEditor: View {
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
-        HSplitView {
+        VStack {
+            HSplitView {
+                Text("Types")
+                
+                Text("Categories")
+                
+                Text("Attributes")
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             
+            Divider()
+                .padding(.vertical, 10)
+            
+            HStack {
+                Spacer()
+                
+                Button("Cancel") { dismiss() }
+                    .keyboardShortcut(.cancelAction)
+                
+                Button("Save") {
+//                    editGameModel.save()
+                    dismiss()
+                }
+                .keyboardShortcut(.defaultAction)
+            }
         }
+        .frame(minWidth: 400, minHeight: 300)
+        .padding(.vertical, 20)
+        .padding(.horizontal, 30)
     }
 }
 
