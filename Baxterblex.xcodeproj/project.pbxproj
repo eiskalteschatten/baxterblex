@@ -98,6 +98,8 @@
 		93D4505E2847787C0015F019 /* MacCharacterAttributeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */; };
 		93D45060284778D00015F019 /* EditCharacterAttributeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */; };
 		93D45061284778D00015F019 /* EditCharacterAttributeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */; };
+		93D4506328477DB20015F019 /* EditCharacterAttributeTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4506228477DB20015F019 /* EditCharacterAttributeTypeModel.swift */; };
+		93D4506428477DB20015F019 /* EditCharacterAttributeTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4506228477DB20015F019 /* EditCharacterAttributeTypeModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -182,6 +184,7 @@
 		93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAttributeEditorSheet.swift; sourceTree = "<group>"; };
 		93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCharacterAttributeEditor.swift; sourceTree = "<group>"; };
 		93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterAttributeModel.swift; sourceTree = "<group>"; };
+		93D4506228477DB20015F019 /* EditCharacterAttributeTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterAttributeTypeModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -455,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */,
+				93D4506228477DB20015F019 /* EditCharacterAttributeTypeModel.swift */,
 				93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */,
 				93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */,
 				93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */,
@@ -650,6 +654,7 @@
 				93A2B2402843BB1700BFF206 /* UIImage.swift in Sources */,
 				934865B6283D221A005497A1 /* SessionsView.swift in Sources */,
 				934865AE283D2185005497A1 /* iOSAccountingView.swift in Sources */,
+				93D4506328477DB20015F019 /* EditCharacterAttributeTypeModel.swift in Sources */,
 				9348659B283CF370005497A1 /* EditCharacterModel.swift in Sources */,
 				934865B5283D2214005497A1 /* iOSSessionsView.swift in Sources */,
 				934865C0283D398D005497A1 /* DateHelpers.swift in Sources */,
@@ -679,6 +684,7 @@
 				933CE3CE283BC06F00ADBE50 /* EditGameModel.swift in Sources */,
 				933CE3B3283BB67700ADBE50 /* EditGameSheet.swift in Sources */,
 				93A2B23A2843B8D900BFF206 /* MacImagePicker.swift in Sources */,
+				93D4506428477DB20015F019 /* EditCharacterAttributeTypeModel.swift in Sources */,
 				93D4505E2847787C0015F019 /* MacCharacterAttributeEditor.swift in Sources */,
 				93486570283BF7E9005497A1 /* CharactersView.swift in Sources */,
 				93B9CED9283FD1CE005EB7C6 /* RichTextEditor.swift in Sources */,
