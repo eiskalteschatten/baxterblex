@@ -59,6 +59,9 @@ struct MacCharacterAttributeEditor: View {
                         }
                         else if let name = type.name {
                             Text(name)
+                                .onTapGesture(count: 2) {
+                                    editType(type)
+                                }
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -68,9 +71,7 @@ struct MacCharacterAttributeEditor: View {
                         Button {
                             modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(character: character)
                             modelManager.attributeTypeModel.save()
-                            selectedType = modelManager.attributeTypeModel.type
-                            isEditingTypeName = true
-                            focusedField = .typeName
+                            editType(modelManager.attributeTypeModel.type)
                         } label: {
                             Image(systemName: "plus")
                         }
@@ -162,6 +163,12 @@ struct MacCharacterAttributeEditor: View {
         .onChange(of: selectedType) { type in
             modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(character: character, type: type)
         }
+    }
+    
+    private func editType(_ type: CharacterAttributeType) {
+        selectedType = type
+        isEditingTypeName = true
+        focusedField = .typeName
     }
 }
 
