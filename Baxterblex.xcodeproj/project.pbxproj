@@ -100,6 +100,8 @@
 		93D45061284778D00015F019 /* EditCharacterAttributeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */; };
 		93D4506328477DB20015F019 /* EditCharacterAttributeTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4506228477DB20015F019 /* EditCharacterAttributeTypeModel.swift */; };
 		93D4506428477DB20015F019 /* EditCharacterAttributeTypeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4506228477DB20015F019 /* EditCharacterAttributeTypeModel.swift */; };
+		93D4506628477E350015F019 /* EditCharacterAttributeCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4506528477E350015F019 /* EditCharacterAttributeCategoryModel.swift */; };
+		93D4506728477E350015F019 /* EditCharacterAttributeCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93D4506528477E350015F019 /* EditCharacterAttributeCategoryModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +187,7 @@
 		93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacCharacterAttributeEditor.swift; sourceTree = "<group>"; };
 		93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterAttributeModel.swift; sourceTree = "<group>"; };
 		93D4506228477DB20015F019 /* EditCharacterAttributeTypeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterAttributeTypeModel.swift; sourceTree = "<group>"; };
+		93D4506528477E350015F019 /* EditCharacterAttributeCategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCharacterAttributeCategoryModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -457,8 +460,9 @@
 		93D0E02A284638F3002A27F9 /* EditCharacterAttributes */ = {
 			isa = PBXGroup;
 			children = (
-				93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */,
 				93D4506228477DB20015F019 /* EditCharacterAttributeTypeModel.swift */,
+				93D4506528477E350015F019 /* EditCharacterAttributeCategoryModel.swift */,
+				93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */,
 				93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */,
 				93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */,
 				93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */,
@@ -666,6 +670,7 @@
 				934865C3283D7ECB005497A1 /* GameListItemTileView.swift in Sources */,
 				934865B8283D29AD005497A1 /* GamesListView.swift in Sources */,
 				93A2B23D2843BACF00BFF206 /* iOSImagePicker.swift in Sources */,
+				93D4506628477E350015F019 /* EditCharacterAttributeCategoryModel.swift in Sources */,
 				93486608283E749B005497A1 /* ResizableText.swift in Sources */,
 				93B9CEDE283FD805005EB7C6 /* iOSRichTextEditor.swift in Sources */,
 			);
@@ -705,6 +710,7 @@
 				93486605283E729D005497A1 /* SingleGameView.swift in Sources */,
 				9348658F283CE14C005497A1 /* ButtonStyles.swift in Sources */,
 				9348657E283C0072005497A1 /* MacGameTabView.swift in Sources */,
+				93D4506728477E350015F019 /* EditCharacterAttributeCategoryModel.swift in Sources */,
 				934865B2283D2201005497A1 /* MacSessionsView.swift in Sources */,
 				934865B4283D2201005497A1 /* SessionsView.swift in Sources */,
 				934865C1283D398D005497A1 /* DateHelpers.swift in Sources */,
