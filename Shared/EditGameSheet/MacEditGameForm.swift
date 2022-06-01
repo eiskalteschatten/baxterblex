@@ -66,8 +66,7 @@ struct MacEditGameForm: View {
                 .keyboardShortcut(.defaultAction)
             }
         }
-        .padding(.vertical, 20)
-        .padding(.horizontal, 30)
+        .padding(20)
     }
 }
 

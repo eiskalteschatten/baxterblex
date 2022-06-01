@@ -32,8 +32,7 @@ struct MacCharacterAttributeEditor: View {
             }
         }
         .frame(minWidth: 400, minHeight: 300)
-        .padding(.vertical, 20)
-        .padding(.horizontal, 30)
+        .padding(20)
     }
 }
 
