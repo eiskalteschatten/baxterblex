@@ -10,11 +10,16 @@ import SwiftUI
 fileprivate final class ModelManager: ObservableObject {
     @Published var attributeTypeModel: EditCharacterAttributeTypeModel
     @Published var attributeCategoryModel: EditCharacterAttributeCategoryModel
+    @Published var attributeModel: EditCharacterAttributeModel
     
     init(game: Game) {
         let _attributeTypeModel = EditCharacterAttributeTypeModel(game: game)
         attributeTypeModel = _attributeTypeModel
-        attributeCategoryModel = EditCharacterAttributeCategoryModel(type: _attributeTypeModel.type)
+        
+        let _attributeCategoryModel = EditCharacterAttributeCategoryModel(type: _attributeTypeModel.type)
+        attributeCategoryModel = _attributeCategoryModel
+        
+        attributeModel = EditCharacterAttributeModel(category: _attributeCategoryModel.category)
     }
 }
 
@@ -165,7 +170,15 @@ struct MacCharacterAttributeEditor: View {
                     
                     HStack {
                         Button {
-                            // Add item
+                            if let unwrappedCategory = selectedCategory {
+                                modelManager.attributeModel = EditCharacterAttributeModel(category: unwrappedCategory)
+                                modelManager.attributeModel.save()
+                                
+                                Task {
+                                    attributes = await EditCharacterAttributeModel.getAttributesFromCategory(unwrappedCategory)
+                                    editAttribute(modelManager.attributeModel.attribute)
+                                }
+                            }
                         } label: {
                             Image(systemName: "plus")
                         }
@@ -231,6 +244,10 @@ struct MacCharacterAttributeEditor: View {
         selectedCategory = category
         isEditingCategoryName = true
         focusedField = .categoryName
+    }
+    
+    private func editAttribute(_ attribute: CharacterAttribute) {
+        selectedAttribute = attribute
     }
 }
 
