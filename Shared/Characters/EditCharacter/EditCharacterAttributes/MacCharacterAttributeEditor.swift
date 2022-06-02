@@ -22,17 +22,20 @@ struct MacCharacterAttributeEditor: View {
     var game: Game
 
     @ObservedObject private var modelManager: ModelManager
+    @FetchRequest private var types: FetchedResults<CharacterAttributeType>
     @State private var selectedType: CharacterAttributeType?
     @State private var isEditingTypeName = false
+    
+    @State private var categories: [CharacterAttributeCategory] = []
     @State private var selectedCategory: CharacterAttributeCategory?
+    
+    @State private var attributes: [CharacterAttribute] = []
     @State private var selectedAttribute: CharacterAttribute?
     
     private enum FocusField: Int, Hashable {
         case typeName
     }
     @FocusState private var focusedField: FocusField?
-    
-    @FetchRequest private var types: FetchedResults<CharacterAttributeType>
     
     init(character: Character) {
         self.character = character
@@ -61,9 +64,12 @@ struct MacCharacterAttributeEditor: View {
                         }
                         else if let name = type.name {
                             Text(name)
-                                .onTapGesture(count: 2) {
+                                .gesture(TapGesture(count: 2).onEnded {
                                     editType(type)
-                                }
+                                })
+                                .simultaneousGesture(TapGesture(count: 1).onEnded {
+                                    selectedType = type
+                                })
                         }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -95,8 +101,8 @@ struct MacCharacterAttributeEditor: View {
                 VStack(alignment: .leading) {
                     Text("Categories:")
                     
-                    List(types, id: \.self, selection: $selectedType) { type in
-                        Text(type.name ?? "")
+                    List(categories, id: \.self, selection: $selectedCategory) { category in
+                        Text(category.name ?? "")
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .layoutPriority(1)
@@ -123,8 +129,8 @@ struct MacCharacterAttributeEditor: View {
                 VStack(alignment: .leading) {
                     Text("Attributes:")
                     
-                    List(types, id: \.self, selection: $selectedType) { type in
-                        Text(type.name ?? "")
+                    List(attributes, id: \.self, selection: $selectedAttribute) { attribute in
+                        Text(attribute.name ?? "")
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .layoutPriority(1)
@@ -163,7 +169,14 @@ struct MacCharacterAttributeEditor: View {
         .frame(minWidth: 800, minHeight: 500)
         .padding(20)
         .onChange(of: selectedType) { type in
+            isEditingTypeName = false
             modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(game: game, type: type)
+            
+            if let unwrappedType = type {
+                Task {
+                    categories = await EditCharacterAttributeCategoryModel.getCategoriesFromType(type: unwrappedType)
+                }
+            }
         }
     }
     

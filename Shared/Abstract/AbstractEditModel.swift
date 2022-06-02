@@ -12,8 +12,7 @@ class AbstractEditModel: ObservableObject {
     var viewContext: NSManagedObjectContext?
     
     init() {
-        let persistenceController = PersistenceController.shared
-        viewContext = persistenceController.container.viewContext
+        viewContext = PersistenceController.shared.container.viewContext
     }
     
     func initVariables() {

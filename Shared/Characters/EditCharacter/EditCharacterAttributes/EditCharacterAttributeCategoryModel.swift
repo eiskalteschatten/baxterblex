@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 final class EditCharacterAttributeCategoryModel: AbstractEditModel {
     var type: CharacterAttributeType
@@ -45,6 +46,24 @@ final class EditCharacterAttributeCategoryModel: AbstractEditModel {
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
+    }
+    
+    static func getCategoriesFromType(type: CharacterAttributeType) async -> [CharacterAttributeCategory] {
+        let viewContext = PersistenceController.shared.container.viewContext
+        
+        let fetchRequest: NSFetchRequest<CharacterAttributeCategory>
+        fetchRequest = CharacterAttributeCategory.fetchRequest()
+        fetchRequest.predicate = NSPredicate(format: "type == %@", type)
+        
+        do {
+            return try await viewContext.perform {
+                return try fetchRequest.execute()
+            }
+        } catch {
+            // TODO: Add core data error handling
+        }
+        
+        return []
     }
     
 //    static func deleteCharacter(_ character: Character) {
