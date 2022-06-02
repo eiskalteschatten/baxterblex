@@ -55,6 +55,7 @@ final class EditCharacterAttributeCategoryModel: AbstractEditModel {
         
         let fetchRequest: NSFetchRequest<CharacterAttributeCategory>
         fetchRequest = CharacterAttributeCategory.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \CharacterAttributeCategory.name, ascending: true)]
         fetchRequest.predicate = NSPredicate(format: "type == %@", type)
         
         do {
