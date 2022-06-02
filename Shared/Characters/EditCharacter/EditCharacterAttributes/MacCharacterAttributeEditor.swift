@@ -127,9 +127,15 @@ struct MacCharacterAttributeEditor: View {
                     
                     HStack {
                         Button {
-                            modelManager.attributeCategoryModel = EditCharacterAttributeCategoryModel(type: selectedType!)
-                            modelManager.attributeCategoryModel.save()
-                            editCategory(modelManager.attributeCategoryModel.category)
+                            if let unwrappedType = selectedType {
+                                modelManager.attributeCategoryModel = EditCharacterAttributeCategoryModel(type: unwrappedType)
+                                modelManager.attributeCategoryModel.save()
+                                
+                                Task {
+                                    categories = await EditCharacterAttributeCategoryModel.getCategoriesFromType(type: unwrappedType)
+                                    editCategory(modelManager.attributeCategoryModel.category)
+                                }
+                            }
                         } label: {
                             Image(systemName: "plus")
                         }
@@ -194,6 +200,8 @@ struct MacCharacterAttributeEditor: View {
         .padding(20)
         .onChange(of: selectedType) { type in
             modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(game: game, type: type)
+            
+            print("selectedType")
             
             if let unwrappedType = type {
                 Task {
