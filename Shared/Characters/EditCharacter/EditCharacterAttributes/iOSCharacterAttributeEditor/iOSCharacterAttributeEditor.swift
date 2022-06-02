@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct iOSCharacterAttributeEditor: View {
+    @Environment(\.dismiss) var dismiss
+    
     var character: Character
     private var game: Game
+    
+    @State private var selectedType: CharacterAttributeType?
     
     @FetchRequest private var types: FetchedResults<CharacterAttributeType>
     
@@ -25,7 +29,25 @@ struct iOSCharacterAttributeEditor: View {
     }
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            List(types, id: \.self, selection: $selectedType) { type in
+                NavigationLink(
+                    destination: Text(type.name ?? ""),
+                    tag: type,
+                    selection: $selectedType,
+                    label: { Text(type.name ?? "") }
+                )
+            }
+            .navigationBarTitle("Edit Character Attributes", displayMode: .inline)
+                .navigationBarItems(
+                    trailing: Button(action: {
+                        dismiss()
+                    }) {
+                        Text("Done")
+                    }
+                )
+        }
+        .navigationViewStyle(.stack)
     }
 }
 

@@ -36,17 +36,9 @@ final class EditCharacterAttributeModel: AbstractEditModel {
         
         if attribute != nil {
             initVariables()
-            
-            // Set shouldSave here on iOS because a new character should only be created
-            // when clicking on the "Save" button in the new character sheet
-            #if os(iOS)
-            self.shouldSave = true
-            #endif
         }
         
-        #if os(macOS)
         self.shouldSave = true
-        #endif
     }
     
     override func initVariables() {
