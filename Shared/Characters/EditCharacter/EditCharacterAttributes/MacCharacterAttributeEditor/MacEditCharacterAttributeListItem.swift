@@ -32,14 +32,10 @@ struct MacEditCharacterAttributeListItem: View {
                     Image(systemName: "info.circle")
                 }
                 .buttonStyle(.plain)
+                .popover(isPresented: $showAttributePopover, attachmentAnchor: .point(.leading), arrowEdge: .leading) {
+                    MacEditCharacterAttributePopover(attributeModel: $attributeModel)
+                }
             }
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .popover(isPresented: $showAttributePopover, attachmentAnchor: .point(.top), arrowEdge: .top) {
-            MacEditCharacterAttributePopover(attributeModel: $attributeModel)
-        }
-        .onChange(of: selectedAttribute) { newAttribute in
-            showAttributePopover = attribute == newAttribute
         }
     }
 }
