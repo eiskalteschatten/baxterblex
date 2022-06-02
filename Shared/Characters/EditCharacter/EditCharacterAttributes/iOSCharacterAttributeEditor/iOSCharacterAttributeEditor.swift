@@ -30,13 +30,25 @@ struct iOSCharacterAttributeEditor: View {
     
     var body: some View {
         NavigationView {
-            List(types, id: \.self, selection: $selectedType) { type in
-                NavigationLink(
-                    destination: Text(type.name ?? ""),
-                    tag: type,
-                    selection: $selectedType,
-                    label: { Text(type.name ?? "") }
-                )
+            List {
+                Section {
+                    ForEach(types, id: \.self) { type in
+                        NavigationLink(
+                            destination: Text(type.name ?? ""),
+                            tag: type,
+                            selection: $selectedType,
+                            label: { Text(type.name ?? "") }
+                        )
+                    }
+                }
+                
+                Section {
+                    Button {
+                        // TODO
+                    } label: {
+                        Label("Add New Character Type", systemImage: "plus.circle")
+                    }
+                }
             }
             .navigationBarTitle("Edit Character Attributes", displayMode: .inline)
                 .navigationBarItems(
@@ -44,6 +56,7 @@ struct iOSCharacterAttributeEditor: View {
                         dismiss()
                     }) {
                         Text("Done")
+                            .bold()
                     }
                 )
         }
