@@ -12,7 +12,7 @@ final class EditCharacterAttributeTypeModel: AbstractEditModel {
     var type: CharacterAttributeType!
     
     @Published var name: String = "" {
-        didSet { save() }
+        didSet { DispatchQueue.main.async() { self.save() } }
     }
     
     init(game: Game, type: CharacterAttributeType? = nil) {

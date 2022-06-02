@@ -13,7 +13,7 @@ final class EditCharacterAttributeCategoryModel: AbstractEditModel {
     var category: CharacterAttributeCategory!
     
     @Published var name: String = "" {
-        didSet { save() }
+        didSet { DispatchQueue.main.async() { self.save() } }
     }
     
     init(type: CharacterAttributeType, category: CharacterAttributeCategory? = nil) {
