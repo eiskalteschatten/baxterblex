@@ -16,10 +16,20 @@ struct MacEditCharacterAttributeListItem: View {
     var body: some View {
         HStack {
             Text(attribute.name ?? "")
+            
             Spacer()
+            
+            if attribute == selectedAttribute {
+                Button {
+                    showAttributePopover.toggle()
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+                .buttonStyle(.plain)
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .popover(isPresented: $showAttributePopover) {
+        .popover(isPresented: $showAttributePopover, attachmentAnchor: .point(.top), arrowEdge: .top) {
             MacEditCharacterAttributePopover()
         }
         .onChange(of: selectedAttribute) { newAttribute in
