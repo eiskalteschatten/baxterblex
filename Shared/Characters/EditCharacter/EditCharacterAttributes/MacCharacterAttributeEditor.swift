@@ -91,7 +91,7 @@ struct MacCharacterAttributeEditor: View {
                         .buttonStyle(.plain)
                         
                         Button {
-                            modelManager.attributeTypeModel.promptToDeleteType()
+                            modelManager.attributeTypeModel.promptToDelete()
                         } label: {
                             Image(systemName: "minus")
                                 .contentShape(Rectangle())
@@ -143,7 +143,7 @@ struct MacCharacterAttributeEditor: View {
                         .disabled(selectedType == nil)
                         
                         Button {
-                            // Remove item
+                            modelManager.attributeCategoryModel.promptToDelete()
                         } label: {
                             Image(systemName: "minus")
                         }
@@ -200,8 +200,6 @@ struct MacCharacterAttributeEditor: View {
         .padding(20)
         .onChange(of: selectedType) { type in
             modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(game: game, type: type)
-            
-            print("selectedType")
             
             if let unwrappedType = type {
                 Task {

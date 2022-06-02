@@ -63,7 +63,7 @@ final class EditCharacterAttributeTypeModel: AbstractEditModel {
     }
     
     #if os(macOS)
-    func promptToDeleteType() {
+    func promptToDelete() {
         let alert = NSAlert()
         alert.messageText = "Are you sure you want to delete this character attribute type?"
         alert.informativeText = "All of the attributes and categires within this type will also be deleted."

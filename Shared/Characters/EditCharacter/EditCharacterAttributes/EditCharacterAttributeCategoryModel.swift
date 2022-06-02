@@ -69,19 +69,35 @@ final class EditCharacterAttributeCategoryModel: AbstractEditModel {
         return []
     }
     
-//    static func deleteCharacter(_ character: Character) {
-//        withAnimation {
-//            let viewContext = PersistenceController.shared.container.viewContext
-//            viewContext.delete(character)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // TODO
-////                handleCoreDataError(error as NSError)
-//            }
-//        }
-//    }
+    func deleteCategory() {
+        withAnimation {
+            viewContext!.delete(category)
+
+            do {
+                try viewContext!.save()
+            } catch {
+                // TODO
+//                handleCoreDataError(error as NSError)
+            }
+        }
+    }
+    
+    #if os(macOS)
+    func promptToDelete() {
+        let alert = NSAlert()
+        alert.messageText = "Are you sure you want to delete this character attribute category?"
+        alert.informativeText = "All of the attributes within this type will also be deleted."
+        alert.addButton(withTitle: "No")
+        alert.addButton(withTitle: "Yes")
+        alert.alertStyle = .warning
+        
+        let delete = alert.runModal() == NSApplication.ModalResponse.alertSecondButtonReturn
+        
+        if delete {
+            deleteCategory()
+        }
+    }
+    #endif
 }
 
 
