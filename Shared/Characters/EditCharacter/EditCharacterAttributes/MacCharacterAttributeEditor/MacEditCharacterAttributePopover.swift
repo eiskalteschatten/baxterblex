@@ -13,8 +13,18 @@ struct MacEditCharacterAttributePopover: View {
     var body: some View {
         Form {
             TextField("Name:", text: $attributeModel.name)
+            
+            TextField(
+                "Value:",
+                value: $attributeModel.value,
+                format: .number
+            )
+            
+            Text("Notes:")
+            TextEditor(text: $attributeModel.notes)
+                .frame(height: 80)
         }
-        .frame(width: 200)
-        .padding(10)
+        .frame(width: 300)
+        .padding(15)
     }
 }
