@@ -27,7 +27,7 @@ struct MacCharacterAttributeEditor: View {
     @Environment(\.dismiss) var dismiss
     
     var character: Character
-    var game: Game
+    private var game: Game
 
     @ObservedObject private var modelManager: ModelManager
     @FetchRequest private var types: FetchedResults<CharacterAttributeType>
