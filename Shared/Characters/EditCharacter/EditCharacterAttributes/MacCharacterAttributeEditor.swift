@@ -62,7 +62,7 @@ struct MacCharacterAttributeEditor: View {
                     Text("Types:")
                     
                     List(types, id: \.self, selection: $selectedType) { type in
-                        if isEditingTypeName && selectedType == type {
+                        if isEditingTypeName && modelManager.attributeTypeModel.type == type {
                             TextField("Skills, Stats, etc", text: $modelManager.attributeTypeModel.name)
                                 .focused($focusedField, equals: .typeName)
                                 .onSubmit { isEditingTypeName = false }
@@ -107,7 +107,7 @@ struct MacCharacterAttributeEditor: View {
                     Text("Categories:")
                     
                     List(categories, id: \.self, selection: $selectedCategory) { category in
-                        if isEditingCategoryName && selectedCategory == category {
+                        if isEditingCategoryName && modelManager.attributeCategoryModel.category == category {
                             TextField("Empathy, Tech, etc", text: $modelManager.attributeCategoryModel.name)
                                 .focused($focusedField, equals: .categoryName)
                                 .onSubmit { isEditingCategoryName = false }
