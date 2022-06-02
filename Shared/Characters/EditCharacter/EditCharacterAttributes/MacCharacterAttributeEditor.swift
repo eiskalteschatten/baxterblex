@@ -210,14 +210,12 @@ struct MacCharacterAttributeEditor: View {
             }
         }
         .onChange(of: selectedCategory) { category in
-            if let type = selectedType {
+            if let unwrappedCategory = category, let type = selectedType {
                 modelManager.attributeCategoryModel = EditCharacterAttributeCategoryModel(type: type, category: category)
                 selectedAttribute = nil
                 
-                if let unwrappedCategory = category {
-                    Task {
-                        attributes = await EditCharacterAttributeModel.getAttributesFromCategory(unwrappedCategory)
-                    }
+                Task {
+                    attributes = await EditCharacterAttributeModel.getAttributesFromCategory(unwrappedCategory)
                 }
             }
         }
