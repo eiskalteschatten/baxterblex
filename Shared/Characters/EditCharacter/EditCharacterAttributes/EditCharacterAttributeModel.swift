@@ -59,6 +59,25 @@ final class EditCharacterAttributeModel: AbstractEditModel {
         }
     }
     
+    static func getAttributesFromCategory(_ category: CharacterAttributeCategory) async -> [CharacterAttribute] {
+        let viewContext = PersistenceController.shared.container.viewContext
+        
+        let fetchRequest: NSFetchRequest<CharacterAttribute>
+        fetchRequest = CharacterAttribute.fetchRequest()
+        fetchRequest.sortDescriptors = [NSSortDescriptor(keyPath: \CharacterAttribute.name, ascending: true)]
+        fetchRequest.predicate = NSPredicate(format: "category == %@", category)
+        
+        do {
+            return try await viewContext.perform {
+                return try fetchRequest.execute()
+            }
+        } catch {
+            // TODO: Add core data error handling
+        }
+        
+        return []
+    }
+    
 //    static func deleteCharacter(_ character: Character) {
 //        withAnimation {
 //            let viewContext = PersistenceController.shared.container.viewContext

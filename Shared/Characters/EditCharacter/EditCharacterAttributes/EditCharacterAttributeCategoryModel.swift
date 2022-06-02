@@ -50,7 +50,7 @@ final class EditCharacterAttributeCategoryModel: AbstractEditModel {
         }
     }
     
-    static func getCategoriesFromType(type: CharacterAttributeType) async -> [CharacterAttributeCategory] {
+    static func getCategoriesFromType(_ type: CharacterAttributeType) async -> [CharacterAttributeCategory] {
         let viewContext = PersistenceController.shared.container.viewContext
         
         let fetchRequest: NSFetchRequest<CharacterAttributeCategory>

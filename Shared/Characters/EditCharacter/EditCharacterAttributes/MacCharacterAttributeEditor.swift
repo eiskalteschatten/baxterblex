@@ -132,7 +132,7 @@ struct MacCharacterAttributeEditor: View {
                                 modelManager.attributeCategoryModel.save()
                                 
                                 Task {
-                                    categories = await EditCharacterAttributeCategoryModel.getCategoriesFromType(type: unwrappedType)
+                                    categories = await EditCharacterAttributeCategoryModel.getCategoriesFromType(unwrappedType)
                                     editCategory(modelManager.attributeCategoryModel.category)
                                 }
                             }
@@ -200,23 +200,25 @@ struct MacCharacterAttributeEditor: View {
         .padding(20)
         .onChange(of: selectedType) { type in
             modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(game: game, type: type)
+            selectedCategory = nil
+            selectedAttribute = nil
             
             if let unwrappedType = type {
                 Task {
-                    categories = await EditCharacterAttributeCategoryModel.getCategoriesFromType(type: unwrappedType)
+                    categories = await EditCharacterAttributeCategoryModel.getCategoriesFromType(unwrappedType)
                 }
             }
         }
         .onChange(of: selectedCategory) { category in
             if let type = selectedType {
                 modelManager.attributeCategoryModel = EditCharacterAttributeCategoryModel(type: type, category: category)
+                selectedAttribute = nil
                 
-                // TODO: fetch attributes
-    //            if let unwrappedCategory = category {
-    //                Task {
-    //                    attributes = await EditCharacterAttributeCategoryModel.getCategoriesFromType(type: unwrappedType)
-    //                }
-    //            }
+                if let unwrappedCategory = category {
+                    Task {
+                        attributes = await EditCharacterAttributeModel.getAttributesFromCategory(unwrappedCategory)
+                    }
+                }
             }
         }
     }
