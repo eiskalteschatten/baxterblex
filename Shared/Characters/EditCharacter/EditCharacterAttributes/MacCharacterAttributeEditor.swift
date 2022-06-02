@@ -9,9 +9,12 @@ import SwiftUI
 
 fileprivate final class ModelManager: ObservableObject {
     @Published var attributeTypeModel: EditCharacterAttributeTypeModel
+    @Published var attributeCategoryModel: EditCharacterAttributeCategoryModel
     
     init(game: Game) {
-        attributeTypeModel = EditCharacterAttributeTypeModel(game: game)
+        let _attributeTypeModel = EditCharacterAttributeTypeModel(game: game)
+        attributeTypeModel = _attributeTypeModel
+        attributeCategoryModel = EditCharacterAttributeCategoryModel(type: _attributeTypeModel.type)
     }
 }
 
@@ -28,12 +31,14 @@ struct MacCharacterAttributeEditor: View {
     
     @State private var categories: [CharacterAttributeCategory] = []
     @State private var selectedCategory: CharacterAttributeCategory?
+    @State private var isEditingCategoryName = false
     
     @State private var attributes: [CharacterAttribute] = []
     @State private var selectedAttribute: CharacterAttribute?
+    @State private var isEditingAttributeName = false
     
     private enum FocusField: Int, Hashable {
-        case typeName
+        case typeName, categoryName
     }
     @FocusState private var focusedField: FocusField?
     
@@ -58,7 +63,7 @@ struct MacCharacterAttributeEditor: View {
                     
                     List(types, id: \.self, selection: $selectedType) { type in
                         if isEditingTypeName && selectedType == type {
-                            TextField("Type Name", text: $modelManager.attributeTypeModel.name)
+                            TextField("Skills, Stats, etc", text: $modelManager.attributeTypeModel.name)
                                 .focused($focusedField, equals: .typeName)
                                 .onSubmit { isEditingTypeName = false }
                         }
@@ -102,18 +107,34 @@ struct MacCharacterAttributeEditor: View {
                     Text("Categories:")
                     
                     List(categories, id: \.self, selection: $selectedCategory) { category in
-                        Text(category.name ?? "")
+                        if isEditingCategoryName && selectedCategory == category {
+                            TextField("Empathy, Tech, etc", text: $modelManager.attributeCategoryModel.name)
+                                .focused($focusedField, equals: .categoryName)
+                                .onSubmit { isEditingCategoryName = false }
+                        }
+                        else if let name = category.name {
+                            Text(name)
+                                .gesture(TapGesture(count: 2).onEnded {
+                                    editCategory(category)
+                                })
+                                .simultaneousGesture(TapGesture(count: 1).onEnded {
+                                    selectedCategory = category
+                                })
+                        }
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .layoutPriority(1)
                     
                     HStack {
                         Button {
-                            // Add item
+                            modelManager.attributeCategoryModel = EditCharacterAttributeCategoryModel(type: selectedType!)
+                            modelManager.attributeCategoryModel.save()
+                            editCategory(modelManager.attributeCategoryModel.category)
                         } label: {
                             Image(systemName: "plus")
                         }
                         .buttonStyle(.plain)
+                        .disabled(selectedType == nil)
                         
                         Button {
                             // Remove item
@@ -121,6 +142,7 @@ struct MacCharacterAttributeEditor: View {
                             Image(systemName: "minus")
                         }
                         .buttonStyle(.plain)
+                        .disabled(selectedCategory == nil)
                     }
                 }
                 .frame(minWidth: 150)
@@ -142,6 +164,7 @@ struct MacCharacterAttributeEditor: View {
                             Image(systemName: "plus")
                         }
                         .buttonStyle(.plain)
+                        .disabled(selectedCategory == nil)
                         
                         Button {
                             // Remove item
@@ -149,6 +172,7 @@ struct MacCharacterAttributeEditor: View {
                             Image(systemName: "minus")
                         }
                         .buttonStyle(.plain)
+                        .disabled(selectedAttribute == nil)
                     }
                 }
                 .frame(minWidth: 150)
@@ -169,7 +193,6 @@ struct MacCharacterAttributeEditor: View {
         .frame(minWidth: 800, minHeight: 500)
         .padding(20)
         .onChange(of: selectedType) { type in
-            isEditingTypeName = false
             modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(game: game, type: type)
             
             if let unwrappedType = type {
@@ -178,12 +201,30 @@ struct MacCharacterAttributeEditor: View {
                 }
             }
         }
+        .onChange(of: selectedCategory) { category in
+            if let type = selectedType {
+                modelManager.attributeCategoryModel = EditCharacterAttributeCategoryModel(type: type, category: category)
+                
+                // TODO: fetch attributes
+    //            if let unwrappedCategory = category {
+    //                Task {
+    //                    attributes = await EditCharacterAttributeCategoryModel.getCategoriesFromType(type: unwrappedType)
+    //                }
+    //            }
+            }
+        }
     }
     
     private func editType(_ type: CharacterAttributeType) {
         selectedType = type
         isEditingTypeName = true
         focusedField = .typeName
+    }
+    
+    private func editCategory(_ category: CharacterAttributeCategory) {
+        selectedCategory = category
+        isEditingCategoryName = true
+        focusedField = .categoryName
     }
 }
 

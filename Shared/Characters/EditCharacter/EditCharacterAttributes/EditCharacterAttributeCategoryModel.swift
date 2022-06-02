@@ -12,7 +12,9 @@ final class EditCharacterAttributeCategoryModel: AbstractEditModel {
     var type: CharacterAttributeType
     var category: CharacterAttributeCategory!
     
-    @Published var name: String = ""
+    @Published var name: String = "" {
+        didSet { save() }
+    }
     
     init(type: CharacterAttributeType, category: CharacterAttributeCategory? = nil) {
         self.type = type
