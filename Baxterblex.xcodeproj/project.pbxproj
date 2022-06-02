@@ -348,6 +348,16 @@
 			path = Elements;
 			sourceTree = "<group>";
 		};
+		937707192848DDC200E6F5DF /* MacCharacterAttributeEditor */ = {
+			isa = PBXGroup;
+			children = (
+				93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */,
+				937707162848D8C500E6F5DF /* MacEditCharacterAttributeListItem.swift */,
+				937707132848D57100E6F5DF /* MacEditCharacterAttributePopover.swift */,
+			);
+			path = MacCharacterAttributeEditor;
+			sourceTree = "<group>";
+		};
 		93A2B23B2843B8F700BFF206 /* ImagePIcker */ = {
 			isa = PBXGroup;
 			children = (
@@ -469,9 +479,7 @@
 				93D4505F284778D00015F019 /* EditCharacterAttributeModel.swift */,
 				93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */,
 				93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */,
-				93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */,
-				937707162848D8C500E6F5DF /* MacEditCharacterAttributeListItem.swift */,
-				937707132848D57100E6F5DF /* MacEditCharacterAttributePopover.swift */,
+				937707192848DDC200E6F5DF /* MacCharacterAttributeEditor */,
 			);
 			path = EditCharacterAttributes;
 			sourceTree = "<group>";
