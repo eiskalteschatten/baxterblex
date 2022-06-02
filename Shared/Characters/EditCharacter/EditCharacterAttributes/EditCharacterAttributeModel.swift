@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 final class EditCharacterAttributeModel: AbstractEditModel {
     var category: CharacterAttributeCategory

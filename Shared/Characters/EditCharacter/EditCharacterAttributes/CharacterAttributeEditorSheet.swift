@@ -15,7 +15,7 @@ struct CharacterAttributeEditorSheet: View {
             #if os(macOS)
             MacCharacterAttributeEditor(character: character)
             #else
-            // TODO
+            iOSCharacterAttributeEditor(character: character)
             #endif
         }
         else {
