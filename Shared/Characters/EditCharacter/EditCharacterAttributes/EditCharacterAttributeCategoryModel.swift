@@ -83,7 +83,7 @@ final class EditCharacterAttributeCategoryModel: AbstractEditModel {
     }
     
     #if os(macOS)
-    func promptToDelete() {
+    func promptToDelete() -> Bool {
         let alert = NSAlert()
         alert.messageText = "Are you sure you want to delete this character attribute category?"
         alert.informativeText = "All of the attributes within this type will also be deleted."
@@ -95,7 +95,10 @@ final class EditCharacterAttributeCategoryModel: AbstractEditModel {
         
         if delete {
             deleteCategory()
+            return true
         }
+        
+        return false
     }
     #endif
 }

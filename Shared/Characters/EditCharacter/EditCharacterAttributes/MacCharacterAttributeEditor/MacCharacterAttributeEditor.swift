@@ -147,7 +147,15 @@ struct MacCharacterAttributeEditor: View {
                         .disabled(selectedType == nil)
                         
                         Button {
-                            modelManager.attributeCategoryModel.promptToDelete()
+                            let didDelete = modelManager.attributeCategoryModel.promptToDelete()
+                            
+                            if didDelete {
+                                selectedCategory = nil
+                                
+                                Task {
+                                    await refreshCategories()
+                                }
+                            }
                         } label: {
                             Image(systemName: "minus")
                         }
@@ -189,7 +197,14 @@ struct MacCharacterAttributeEditor: View {
                         .disabled(selectedCategory == nil)
                         
                         Button {
-                            modelManager.attributeModel.promptToDelete()
+                            let didDelete = modelManager.attributeModel.promptToDelete()
+                            
+                            if didDelete {
+                                selectedAttribute = nil
+                                Task {
+                                    await refreshAttributes()
+                                }
+                            }
                         } label: {
                             Image(systemName: "minus")
                         }
@@ -217,29 +232,20 @@ struct MacCharacterAttributeEditor: View {
         .onChange(of: selectedType) { type in
             modelManager.attributeTypeModel = EditCharacterAttributeTypeModel(game: game, type: type)
             selectedCategory = nil
-            selectedAttribute = nil
             
-            if let unwrappedType = type {
-                Task {
-                    categories = await EditCharacterAttributeCategoryModel.getCategoriesFromType(unwrappedType)
-                }
-            }
-            else {
-                categories = []
+            Task {
+                await refreshCategories()
             }
         }
         .onChange(of: selectedCategory) { category in
+            selectedAttribute = nil
+            
             if let type = selectedType {
                 modelManager.attributeCategoryModel = EditCharacterAttributeCategoryModel(type: type, category: category)
                 selectedAttribute = nil
                
-                if let unwrappedCategory = category {
-                    Task {
-                        attributes = await EditCharacterAttributeModel.getAttributesFromCategory(unwrappedCategory)
-                    }
-                }
-                else {
-                    attributes = []
+                Task {
+                    await refreshAttributes()
                 }
             }
         }
@@ -264,6 +270,24 @@ struct MacCharacterAttributeEditor: View {
     
     private func editAttribute(_ attribute: CharacterAttribute) {
         selectedAttribute = attribute
+    }
+    
+    private func refreshCategories() async {
+        if let type = selectedType {
+            categories = await EditCharacterAttributeCategoryModel.getCategoriesFromType(type)
+        }
+        else {
+            categories = []
+        }
+    }
+    
+    private func refreshAttributes() async {
+        if let category = selectedCategory {
+            attributes = await EditCharacterAttributeModel.getAttributesFromCategory(category)
+        }
+        else {
+            attributes = []
+        }
     }
 }
 

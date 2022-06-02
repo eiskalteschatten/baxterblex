@@ -120,7 +120,7 @@ final class EditCharacterAttributeModel: AbstractEditModel {
     }
     
     #if os(macOS)
-    func promptToDelete() {
+    func promptToDelete() -> Bool {
         let alert = NSAlert()
         alert.messageText = "Are you sure you want to delete this character attribute?"
         alert.informativeText = "This cannot be undone."
@@ -132,7 +132,10 @@ final class EditCharacterAttributeModel: AbstractEditModel {
         
         if delete {
             deleteAttribute()
+            return true
         }
+        
+        return false
     }
     #endif
 }
