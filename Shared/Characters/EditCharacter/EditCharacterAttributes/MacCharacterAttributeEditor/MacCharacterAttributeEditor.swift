@@ -189,7 +189,7 @@ struct MacCharacterAttributeEditor: View {
                         .disabled(selectedCategory == nil)
                         
                         Button {
-                            // Remove item
+                            modelManager.attributeModel.promptToDelete()
                         } label: {
                             Image(systemName: "minus")
                         }

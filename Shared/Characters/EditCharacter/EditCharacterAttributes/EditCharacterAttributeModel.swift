@@ -106,18 +106,34 @@ final class EditCharacterAttributeModel: AbstractEditModel {
         return []
     }
     
-//    static func deleteCharacter(_ character: Character) {
-//        withAnimation {
-//            let viewContext = PersistenceController.shared.container.viewContext
-//            viewContext.delete(character)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // TODO
-////                handleCoreDataError(error as NSError)
-//            }
-//        }
-//    }
+    func deleteAttribute() {
+        withAnimation {
+            viewContext!.delete(attribute)
+
+            do {
+                try viewContext!.save()
+            } catch {
+                // TODO
+//                handleCoreDataError(error as NSError)
+            }
+        }
+    }
+    
+    #if os(macOS)
+    func promptToDelete() {
+        let alert = NSAlert()
+        alert.messageText = "Are you sure you want to delete this character attribute?"
+        alert.informativeText = "This cannot be undone."
+        alert.addButton(withTitle: "No")
+        alert.addButton(withTitle: "Yes")
+        alert.alertStyle = .warning
+        
+        let delete = alert.runModal() == NSApplication.ModalResponse.alertSecondButtonReturn
+        
+        if delete {
+            deleteAttribute()
+        }
+    }
+    #endif
 }
 
