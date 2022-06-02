@@ -21,14 +21,6 @@ final class EditCharacterAttributeModel: AbstractEditModel {
         didSet { saveAfterEdit() }
     }
     
-    @Published var starred = false {
-        didSet { saveAfterEdit() }
-    }
-    
-    @Published var value: Int? {
-        didSet { saveAfterEdit() }
-    }
-    
     init(category: CharacterAttributeCategory, attribute: CharacterAttribute? = nil) {
         self.category = category
         super.init()
@@ -44,8 +36,6 @@ final class EditCharacterAttributeModel: AbstractEditModel {
     override func initVariables() {
         name = attribute.name ?? name
         notes = attribute.notes ?? notes
-        starred = attribute.starred
-        value = attribute.value?.intValue ?? value
     }
     
     private func saveAfterEdit() {
@@ -62,11 +52,8 @@ final class EditCharacterAttributeModel: AbstractEditModel {
 
             attribute.name = name
             attribute.notes = notes
-            attribute.starred = starred
             
-            if let unwrapped = value {
-                attribute.value = NSNumber(value: unwrapped)
-            }
+            // TODO: Add value
 
             do {
                 try viewContext!.save()

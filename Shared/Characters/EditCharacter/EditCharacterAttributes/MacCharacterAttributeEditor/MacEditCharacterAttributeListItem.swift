@@ -18,11 +18,6 @@ struct MacEditCharacterAttributeListItem: View {
         HStack {
             Text(attribute.name ?? "")
             
-            if let value = attribute.value {
-                Text(value.stringValue)
-                    .opacity(0.5)
-            }
-            
             Spacer()
             
             if attribute == selectedAttribute {
