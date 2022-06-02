@@ -187,7 +187,7 @@ struct MacCharacterAttributeEditor: View {
                                 
                                 Task {
                                     attributes = await EditCharacterAttributeModel.getAttributesFromCategory(unwrappedCategory)
-                                    editAttribute(modelManager.attributeModel.attribute)
+                                    selectedAttribute = modelManager.attributeModel.attribute
                                 }
                             }
                         } label: {
@@ -266,10 +266,6 @@ struct MacCharacterAttributeEditor: View {
         selectedCategory = category
         isEditingCategoryName = true
         focusedField = .categoryName
-    }
-    
-    private func editAttribute(_ attribute: CharacterAttribute) {
-        selectedAttribute = attribute
     }
     
     private func refreshCategories() async {
