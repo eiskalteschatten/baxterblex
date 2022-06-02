@@ -10,11 +10,23 @@ import SwiftUI
 final class EditCharacterAttributeModel: AbstractEditModel {
     var category: CharacterAttributeCategory
     var attribute: CharacterAttribute!
+    private var shouldSave = false
     
-    @Published var name: String = ""
-    @Published var notes: String = ""
-    @Published var starred = false
-    @Published var value: Int?
+    @Published var name: String = "" {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var notes: String = "" {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var starred = false {
+        didSet { saveAfterEdit() }
+    }
+    
+    @Published var value: Int? {
+        didSet { saveAfterEdit() }
+    }
     
     init(category: CharacterAttributeCategory, attribute: CharacterAttribute? = nil) {
         self.category = category
@@ -23,7 +35,17 @@ final class EditCharacterAttributeModel: AbstractEditModel {
         
         if attribute != nil {
             initVariables()
+            
+            // Set shouldSave here on iOS because a new character should only be created
+            // when clicking on the "Save" button in the new character sheet
+            #if os(iOS)
+            self.shouldSave = true
+            #endif
         }
+        
+        #if os(macOS)
+        self.shouldSave = true
+        #endif
     }
     
     override func initVariables() {
@@ -31,6 +53,12 @@ final class EditCharacterAttributeModel: AbstractEditModel {
         notes = attribute.notes ?? notes
         starred = attribute.starred
         value = attribute.value?.intValue ?? value
+    }
+    
+    private func saveAfterEdit() {
+        if shouldSave {
+            DispatchQueue.main.async() { self.save() }
+        }
     }
     
     override func save() {

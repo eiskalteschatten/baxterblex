@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MacEditCharacterAttributePopover: View {
+    @Binding var attributeModel: EditCharacterAttributeModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct MacEditCharacterAttributePopover_Previews: PreviewProvider {
-    static var previews: some View {
-        MacEditCharacterAttributePopover()
+        Form {
+            TextField("Name:", text: $attributeModel.name)
+        }
+        .frame(width: 200)
+        .padding(10)
     }
 }

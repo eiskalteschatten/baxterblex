@@ -162,7 +162,11 @@ struct MacCharacterAttributeEditor: View {
                     Text("Attributes:")
                     
                     List(attributes, id: \.self, selection: $selectedAttribute) { attribute in
-                        MacEditCharacterAttributeListItem(attribute: attribute, selectedAttribute: $selectedAttribute)
+                        MacEditCharacterAttributeListItem(
+                            attribute: attribute,
+                            selectedAttribute: $selectedAttribute,
+                            attributeModel: $modelManager.attributeModel
+                        )
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .layoutPriority(1)
@@ -220,15 +224,28 @@ struct MacCharacterAttributeEditor: View {
                     categories = await EditCharacterAttributeCategoryModel.getCategoriesFromType(unwrappedType)
                 }
             }
+            else {
+                categories = []
+            }
         }
         .onChange(of: selectedCategory) { category in
-            if let unwrappedCategory = category, let type = selectedType {
+            if let type = selectedType {
                 modelManager.attributeCategoryModel = EditCharacterAttributeCategoryModel(type: type, category: category)
                 selectedAttribute = nil
-                
-                Task {
-                    attributes = await EditCharacterAttributeModel.getAttributesFromCategory(unwrappedCategory)
+               
+                if let unwrappedCategory = category {
+                    Task {
+                        attributes = await EditCharacterAttributeModel.getAttributesFromCategory(unwrappedCategory)
+                    }
                 }
+                else {
+                    attributes = []
+                }
+            }
+        }
+        .onChange(of: selectedAttribute) { attribute in
+            if let category = selectedCategory {
+                modelManager.attributeModel = EditCharacterAttributeModel(category: category, attribute: attribute)
             }
         }
     }
