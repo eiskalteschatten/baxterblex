@@ -61,6 +61,8 @@
 		9348660F283E7D43005497A1 /* SingleGameViewContents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9348660D283E7D43005497A1 /* SingleGameViewContents.swift */; };
 		93486611283E7D67005497A1 /* MacSingleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486610283E7D67005497A1 /* MacSingleGameView.swift */; };
 		93486613283E7DB8005497A1 /* iOSSingleGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93486612283E7DB8005497A1 /* iOSSingleGameView.swift */; };
+		937707152848D57100E6F5DF /* MacEditCharacterAttributePopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937707132848D57100E6F5DF /* MacEditCharacterAttributePopover.swift */; };
+		937707182848D8C500E6F5DF /* MacEditCharacterAttributeListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937707162848D8C500E6F5DF /* MacEditCharacterAttributeListItem.swift */; };
 		93887A6828424411007216C7 /* NSAttributedStringTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93887A6728424411007216C7 /* NSAttributedStringTransformer.swift */; };
 		93887A6928424411007216C7 /* NSAttributedStringTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93887A6728424411007216C7 /* NSAttributedStringTransformer.swift */; };
 		93887A6B284258CB007216C7 /* iOSEditCharacterSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93887A6A284258CB007216C7 /* iOSEditCharacterSheet.swift */; };
@@ -155,6 +157,8 @@
 		9348660D283E7D43005497A1 /* SingleGameViewContents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleGameViewContents.swift; sourceTree = "<group>"; };
 		93486610283E7D67005497A1 /* MacSingleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSingleGameView.swift; sourceTree = "<group>"; };
 		93486612283E7DB8005497A1 /* iOSSingleGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSingleGameView.swift; sourceTree = "<group>"; };
+		937707132848D57100E6F5DF /* MacEditCharacterAttributePopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacEditCharacterAttributePopover.swift; sourceTree = "<group>"; };
+		937707162848D8C500E6F5DF /* MacEditCharacterAttributeListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacEditCharacterAttributeListItem.swift; sourceTree = "<group>"; };
 		93887A6728424411007216C7 /* NSAttributedStringTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSAttributedStringTransformer.swift; sourceTree = "<group>"; };
 		93887A6A284258CB007216C7 /* iOSEditCharacterSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSEditCharacterSheet.swift; sourceTree = "<group>"; };
 		93A2B2382843B8D900BFF206 /* MacImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacImagePicker.swift; sourceTree = "<group>"; };
@@ -466,6 +470,8 @@
 				93D0E027284638A4002A27F9 /* EditCharacterAttributes.swift */,
 				93D0E02B2846391D002A27F9 /* CharacterAttributeEditorSheet.swift */,
 				93D4505D2847787C0015F019 /* MacCharacterAttributeEditor.swift */,
+				937707162848D8C500E6F5DF /* MacEditCharacterAttributeListItem.swift */,
+				937707132848D57100E6F5DF /* MacEditCharacterAttributePopover.swift */,
 			);
 			path = EditCharacterAttributes;
 			sourceTree = "<group>";
@@ -720,10 +726,12 @@
 				9348660F283E7D43005497A1 /* SingleGameViewContents.swift in Sources */,
 				93B9CECE283FBF3B005EB7C6 /* EditCharacterOverview.swift in Sources */,
 				934865C4283D7ECB005497A1 /* GameListItemTileView.swift in Sources */,
+				937707152848D57100E6F5DF /* MacEditCharacterAttributePopover.swift in Sources */,
 				9348659C283CF370005497A1 /* EditCharacterModel.swift in Sources */,
 				93486609283E749B005497A1 /* ResizableText.swift in Sources */,
 				93D0E029284638A4002A27F9 /* EditCharacterAttributes.swift in Sources */,
 				93D0E02D2846391D002A27F9 /* CharacterAttributeEditorSheet.swift in Sources */,
+				937707182848D8C500E6F5DF /* MacEditCharacterAttributeListItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

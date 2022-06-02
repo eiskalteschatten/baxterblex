@@ -40,7 +40,6 @@ struct MacCharacterAttributeEditor: View {
     
     @State private var attributes: [CharacterAttribute] = []
     @State private var selectedAttribute: CharacterAttribute?
-    @State private var isEditingAttributeName = false
     
     private enum FocusField: Int, Hashable {
         case typeName, categoryName
@@ -163,7 +162,7 @@ struct MacCharacterAttributeEditor: View {
                     Text("Attributes:")
                     
                     List(attributes, id: \.self, selection: $selectedAttribute) { attribute in
-                        Text(attribute.name ?? "")
+                        MacEditCharacterAttributeListItem(attribute: attribute, selectedAttribute: $selectedAttribute)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
                     .layoutPriority(1)
